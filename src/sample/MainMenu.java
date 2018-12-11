@@ -6,6 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,6 +17,13 @@ public class MainMenu {
 
     @FXML
     private Button play;
+    @FXML
+    private MenuButton language;
+    @FXML
+    private ImageView flag;
+
+    private Image greece = new Image("Images/greece.png");
+    private Image uk = new Image("Images/uk.png");
 
     public void initialize(){
 
@@ -28,6 +38,16 @@ public class MainMenu {
 
     public void settingsClicked(){
 
+    }
+
+    public void english(){
+        flag.setImage(uk);
+        language.setText("English(UK)");
+    }
+
+    public void greek(){
+        flag.setImage(greece);
+        language.setText("Greek");
     }
 
     public void creditsClicked(){
