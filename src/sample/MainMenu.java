@@ -22,8 +22,8 @@ public class MainMenu {
     @FXML
     private ImageView flag;
 
-    private Image greece = new Image("Images/greece.png");
-    private Image uk = new Image("Images/uk.png");
+    private Image greece = new Image("Images/el.png");
+    private Image uk = new Image("Images/en.png");
 
     public void initialize(){
 
@@ -42,7 +42,7 @@ public class MainMenu {
 
     public void english(){
         flag.setImage(uk);
-        language.setText("English(UK)");
+        language.setText("English");
     }
 
     public void greek(){

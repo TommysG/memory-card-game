@@ -17,13 +17,13 @@
             <Image url="@/Images/settings.png" />
          </image>
       </ImageView>
-      <MenuButton fx:id="language" focusTraversable="false" layoutX="607.0" layoutY="545.0" mnemonicParsing="false" popupSide="TOP" prefHeight="41.0" prefWidth="179.0" text="English(UK)" textAlignment="RIGHT">
+      <MenuButton fx:id="language" focusTraversable="false" layoutX="607.0" layoutY="545.0" mnemonicParsing="false" popupSide="TOP" prefHeight="41.0" prefWidth="179.0" text="English" textAlignment="RIGHT">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#greek" text="Greek">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/Images/greece.png" />
+                        <Image url="@/Images/el.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -32,7 +32,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/Images/uk.png" />
+                        <Image url="@/Images/en.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -41,7 +41,7 @@
          <graphic>
             <ImageView fx:id="flag" fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@/Images/uk.png" />
+                  <Image url="@/Images/en.png" />
                </image>
             </ImageView>
          </graphic>
