@@ -33,7 +33,6 @@ public class MainMenu {
         Parent root = FXMLLoader.load(getClass().getResource("Game.fxml"));
         Stage stage = (Stage) play.getScene().getWindow();
         stage.setScene(new Scene(root,800,600));
-
     }
 
     public void settingsClicked(){
