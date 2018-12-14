@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="settingsPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Settings">
+   <children>
+      <ImageView fx:id="normalMode" fitHeight="150.0" fitWidth="200.0" layoutX="79.0" layoutY="86.0" onMouseClicked="#normalModeClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Images/GameModes/Game1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="doubleMode" fitHeight="150.0" fitWidth="200.0" layoutX="316.0" layoutY="86.0" onMouseClicked="#doubleModeClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Images/GameModes/Game2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="trioMode" fitHeight="150.0" fitWidth="234.0" layoutX="579.0" layoutY="86.0" onMouseClicked="#trioModeClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Images/GameModes/Game3.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="gamemodeLabel" layoutX="311.0" layoutY="22.0" text="GAMEMODE" textFill="#d5d5d5">
+         <font>
+            <Font name="Comic Sans MS" size="30.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="normal" focusTraversable="false" layoutX="136.0" layoutY="242.0" mnemonicParsing="false" onAction="#normalClicked" text="NORMAL" textFill="WHITE" />
+      <CheckBox fx:id="doublesize" focusTraversable="false" layoutX="367.0" layoutY="242.0" mnemonicParsing="false" onAction="#doubleClicked" text="DOUBLE" textFill="WHITE" />
+      <CheckBox fx:id="trio" focusTraversable="false" layoutX="617.0" layoutY="242.0" mnemonicParsing="false" onAction="#trioClicked" text="TRIO" textFill="WHITE" />
+      <Button fx:id="start" focusTraversable="false" layoutX="207.0" layoutY="514.0" mnemonicParsing="false" onAction="#startClicked" prefHeight="60.0" prefWidth="150.0" text="SINGLE MODE" />
+      <Label fx:id="themesLabel" layoutX="336.0" layoutY="279.0" text="THEMES" textFill="#d5d5d5">
+         <font>
+            <Font name="Comic Sans MS" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="redImage" fitHeight="150.0" fitWidth="200.0" layoutX="228.0" layoutY="332.0" onMouseClicked="#redClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Images/Cards/backgroundBig.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="blackImage" fitHeight="150.0" fitWidth="200.0" layoutX="465.0" layoutY="332.0" onMouseClicked="#blackClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@/Images/Cards/background1Big.png" />
+         </image>
+      </ImageView>
+      <CheckBox fx:id="red" focusTraversable="false" layoutX="258.0" layoutY="489.0" mnemonicParsing="false" onAction="#redCheckClicked" text="RED" textFill="WHITE" />
+      <CheckBox fx:id="black" focusTraversable="false" layoutX="492.0" layoutY="489.0" mnemonicParsing="false" onAction="#blackCheckClicked" text="BLACK" textFill="WHITE" />
+      <Button fx:id="backButton" focusTraversable="false" layoutX="19.0" layoutY="30.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="60.0" prefWidth="60.0">
+         <graphic>
+            <ImageView fitHeight="28.0" fitWidth="29.0">
+               <image>
+                  <Image url="@/Images/back.png" />
+               </image></ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="multiplayer" focusTraversable="false" layoutX="445.0" layoutY="514.0" mnemonicParsing="false" onAction="#multiplayerClicked" prefHeight="60.0" prefWidth="150.0" text="MULTIPLAYER" />
+   </children>
+</AnchorPane>

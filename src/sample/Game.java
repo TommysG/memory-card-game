@@ -15,7 +15,7 @@ public class Game {
     private Button back;
 
     public void backClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.setScene(new Scene(root,800,600));
     }

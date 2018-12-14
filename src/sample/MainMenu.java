@@ -30,7 +30,7 @@ public class MainMenu {
     }
 
     public void playClicked() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Game.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Settings.fxml"));
         Stage stage = (Stage) play.getScene().getWindow();
         stage.setScene(new Scene(root,800,600));
     }
