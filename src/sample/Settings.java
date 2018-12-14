@@ -63,7 +63,7 @@ public class Settings{
         Stage stage = (Stage) start.getScene().getWindow();
         Scene scene = new Scene(root,width,height);
         scene.setFill(Color.TRANSPARENT);
-       // game.setMode(mode,theme);
+        game.setMode(mode,theme);
         stage.setScene(scene);
     }
     public void multiplayerClicked() throws IOException{
