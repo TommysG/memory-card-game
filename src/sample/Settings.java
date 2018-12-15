@@ -66,6 +66,7 @@ public class Settings{
         game.setMode(mode,theme);
         stage.setScene(scene);
     }
+
     public void multiplayerClicked() throws IOException{
     }
 

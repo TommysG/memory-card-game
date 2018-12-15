@@ -32,10 +32,10 @@ public class Game {
 
     private Image theme;
     public int number,clicks = 0;
-    private int id1,id2;
+    private int id1,id2,id3;
 
-    private ImageView imageView1,imageView2;
-    private Card card1,card2;
+    private ImageView imageView1,imageView2,imageView3;
+    private Card card1,card2,card3;
 
     @FXML
     private Label winLabel;
@@ -132,7 +132,6 @@ public class Game {
             }
             clicks = 0;
         }
-
 
     }
 
