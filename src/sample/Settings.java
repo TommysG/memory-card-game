@@ -67,9 +67,6 @@ public class Settings{
         stage.setScene(scene);
     }
     public void multiplayerClicked() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("Multiplayer.fxml"));
-        Stage stage = (Stage) multiplayer.getScene().getWindow();
-        stage.setScene(new Scene(root,800,600));
     }
 
     @FXML

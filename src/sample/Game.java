@@ -51,7 +51,6 @@ public class Game {
 
     public void initialize(){
         winLabel.setVisible(false);
-
     }
 
     public void setMode(int number,Image theme){
@@ -101,7 +100,7 @@ public class Game {
             if(id1 == id2){
                 foundCards.add(imageView1);
                 foundCards.add(imageView2);
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.4)));
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.6)));
                 timeline.play();
                 timeline.setOnFinished(event -> {
                     imageView1.setDisable(true);
