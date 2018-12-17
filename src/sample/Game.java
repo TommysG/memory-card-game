@@ -91,47 +91,92 @@ public class Game {
             imageView1 = imageView;
             card1 = card;
         }
-        if(clicks == 2){
+        if(clicks == 2) {
             id2 = card.getId();
             imageView2 = imageView;
             card2 = card;
 
-            disableAll();
-            if(id1 == id2){
-                foundCards.add(imageView1);
-                foundCards.add(imageView2);
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.6)));
-                timeline.play();
-                timeline.setOnFinished(event -> {
-                    imageView1.setDisable(true);
-                    imageView2.setDisable(true);
-                    imageView1.setOpacity(0.6);
-                    imageView2.setOpacity(0.6);
-                    enableAll();
-                });
-            }
-            else{
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
-                timeline.play();
-                timeline.setOnFinished(event -> {
-                    imageView1.setImage(card1.getBackground());
-                    imageView2.setImage(card2.getBackground());
-                    imageView1.setDisable(false);
-                    imageView2.setDisable(false);
-                    enableAll();
-                });
+            if (gameMode.getMode() != 3) {
+                disableAll();
+                if (id1 == id2) {
+                    foundCards.add(imageView1);
+                    foundCards.add(imageView2);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.6)));
+                    timeline.play();
+                    timeline.setOnFinished(event -> {
+                        imageView1.setDisable(true);
+                        imageView2.setDisable(true);
+                        imageView1.setOpacity(0.6);
+                        imageView2.setOpacity(0.6);
+                        enableAll();
+                    });
+                } else {
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+                    timeline.play();
+                    timeline.setOnFinished(event -> {
+                        imageView1.setImage(card1.getBackground());
+                        imageView2.setImage(card2.getBackground());
+                        imageView1.setDisable(false);
+                        imageView2.setDisable(false);
+                        enableAll();
+                    });
+
+                }
+                if (foundCards.size() == gameMode.getSize()) {
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+                    timeline.play();
+                    timeline.setOnFinished(event -> {
+                        eraseCards();
+                        winLabel.setVisible(true);
+                    });
+                }
+                clicks = 0;
 
             }
-            if(foundCards.size() == gameMode.getSize()){
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
-                timeline.play();
-                timeline.setOnFinished(event -> {
-                    eraseCards();
-                    winLabel.setVisible(true);
-                });
-            }
-            clicks = 0;
         }
+        if (gameMode.getMode()==3) {
+            if (clicks == 3) {
+                id3 = card.getId();
+                imageView3 = imageView;
+                card3 = card;
+
+                disableAll();
+                if (id1 == id2 && id2 == id3) {
+                    foundCards.add(imageView1);
+                    foundCards.add(imageView2);
+                    foundCards.add(imageView3);
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.6)));
+                    timeline.play();
+                    timeline.setOnFinished(event -> {
+                        imageView1.setDisable(true);
+                        imageView2.setDisable(true);
+                        imageView3.setDisable(true);
+                        imageView1.setOpacity(0.6);
+                        imageView2.setOpacity(0.6);
+                        imageView3.setOpacity(0.6);
+                        enableAll();
+                    });
+
+                }
+                else{
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+                    timeline.play();
+                    timeline.setOnFinished(event -> {
+                        imageView1.setImage(card1.getBackground());
+                        imageView2.setImage(card2.getBackground());
+                        imageView3.setImage(card3.getBackground());
+                        imageView1.setDisable(false);
+                        imageView2.setDisable(false);
+                        imageView3.setDisable(false);
+                        enableAll();
+                    });
+
+                }
+                clicks=0;
+            }
+
+        }
+
 
     }
 

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,11 +17,12 @@ import java.io.IOException;
 public class MainMenu {
 
     @FXML
-    private Button play;
+    private Button play,exit,credits;
     @FXML
     private MenuButton language;
     @FXML
     private ImageView flag;
+
 
     private Image greece = new Image("Images/el.png");
     private Image uk = new Image("Images/en.png");
@@ -54,6 +56,6 @@ public class MainMenu {
     }
 
     public void exitClicked(){
-        Platform.exit();
+
     }
 }
