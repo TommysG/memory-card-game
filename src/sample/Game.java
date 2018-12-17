@@ -62,7 +62,7 @@ public class Game {
 
         createImageViews();
         createImages();
-        //shuffleCards();
+        shuffleCards();
         setImages();
 
         player();
@@ -171,6 +171,14 @@ public class Game {
                         enableAll();
                     });
 
+                }
+                if (foundCards.size() == gameMode.getSize()) {
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+                    timeline.play();
+                    timeline.setOnFinished(event -> {
+                        eraseCards();
+                        winLabel.setVisible(true);
+                    });
                 }
                 clicks=0;
             }

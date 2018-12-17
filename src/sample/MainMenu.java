@@ -10,7 +10,9 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -55,7 +57,16 @@ public class MainMenu {
 
     }
 
-    public void exitClicked(){
+    public void exitClicked() throws Exception{
+        Parent root = FXMLLoader.load(getClass().getResource("Dialog.fxml"));
+        Stage dialog = new Stage();
+        dialog.setTitle("Exit");
+        dialog.setScene(new Scene(root, 400, 200));
+        dialog.initModality(Modality.WINDOW_MODAL);
+        dialog.initOwner(exit.getScene().getWindow());
+        dialog.setResizable(false);
+
+        dialog.show();
 
     }
 }

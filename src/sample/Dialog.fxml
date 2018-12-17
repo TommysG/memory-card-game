@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #0e2944;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Dialog">
+   <children>
+      <Button fx:id="yes" layoutX="221.0" layoutY="161.0" mnemonicParsing="false" onAction="#yesClicked" text="YES" />
+      <Button fx:id="no" layoutX="147.0" layoutY="161.0" mnemonicParsing="false" onAction="#noClicked" text="NO" />
+      <Label layoutX="65.0" layoutY="62.0" prefHeight="30.0" prefWidth="270.0" text="Are you sure you want to exit?" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
