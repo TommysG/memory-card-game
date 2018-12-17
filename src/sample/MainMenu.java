@@ -10,6 +10,7 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -61,10 +62,13 @@ public class MainMenu {
         Parent root = FXMLLoader.load(getClass().getResource("Dialog.fxml"));
         Stage dialog = new Stage();
         dialog.setTitle("Exit");
-        dialog.setScene(new Scene(root, 400, 200));
+        Scene scene = new Scene(root,400,200);
+        scene.setFill(Color.TRANSPARENT);
+        dialog.setScene(scene);
         dialog.initModality(Modality.WINDOW_MODAL);
         dialog.initOwner(exit.getScene().getWindow());
         dialog.setResizable(false);
+        dialog.initStyle(StageStyle.TRANSPARENT);
 
         dialog.show();
 

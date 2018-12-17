@@ -62,7 +62,7 @@ public class Game {
 
         createImageViews();
         createImages();
-        shuffleCards();
+        //shuffleCards();
         setImages();
 
         player();
