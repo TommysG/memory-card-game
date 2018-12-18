@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #0e2944; -fx-background-radius: 15; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Dialog">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" style="-fx-background-color: #0e2944; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #000000; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Dialog">
    <children>
-      <Button fx:id="yes" layoutX="221.0" layoutY="161.0" mnemonicParsing="false" onAction="#yesClicked" text="YES" />
-      <Button fx:id="no" layoutX="147.0" layoutY="161.0" mnemonicParsing="false" onAction="#noClicked" text="NO" />
+      <Button fx:id="yes" focusTraversable="false" layoutX="114.0" layoutY="161.0" mnemonicParsing="false" onAction="#yesClicked" prefHeight="25.0" prefWidth="76.0" text="YES" />
+      <Button fx:id="no" focusTraversable="false" layoutX="210.0" layoutY="161.0" mnemonicParsing="false" onAction="#noClicked" prefHeight="25.0" prefWidth="76.0" text="NO" />
       <Label layoutX="65.0" layoutY="62.0" prefHeight="30.0" prefWidth="270.0" text="Are you sure you want to exit?" textFill="WHITE">
          <font>
             <Font size="20.0" />
