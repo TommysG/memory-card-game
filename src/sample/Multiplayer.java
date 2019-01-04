@@ -41,10 +41,10 @@ public class Multiplayer extends Game {
         player();
     }
 
-    @Override
-    public void player() {
-        super.player();
-    }
+     @Override
+     public void player() {
+         super.player();
+     }
 
     @Override
     public void clickEvent(ImageView imageView, Card card) {
@@ -52,9 +52,23 @@ public class Multiplayer extends Game {
         clicks++;
 
         if(clicks == 2){
-            Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2),event -> goldfish()));
-            delay.play();
-            clicks = 0;
+            if (gameMode.getPlayer1().equals("Goldfish")) {
+                Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> goldfish()));
+                delay.play();
+                clicks = 0;
+            }
+            else if(gameMode.getPlayer1().equals("Elephant"))
+            {
+                    Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> elephant()));
+                    delay.play();
+                    clicks = 0;
+            }
+            else if(gameMode.getPlayer1().equals("Human"))
+            {
+                Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event ->player()));
+                delay.play();
+
+            }
         }
 
     }
@@ -214,4 +228,6 @@ public class Multiplayer extends Game {
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
+
+
 }

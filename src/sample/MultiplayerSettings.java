@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.*;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,7 +27,9 @@ public class MultiplayerSettings {
     @FXML
     private ImageView redImage,blackImage,normalMode,doubleMode,trioMode;
     @FXML
-    private MenuButton player1,player2,player3,player4,number;
+    private MenuButton player1,player2,player3,number;
+    @FXML
+    private MenuItem Human1,Goldfish1,Kangaroo1,Elephant1;
 
 
     private Properties properties = new Properties();
@@ -110,13 +109,19 @@ public class MultiplayerSettings {
         multi.setMode(mode,theme);
         stage.getScene().setRoot(Loader.getRoot());
     }
+    public void number1Clicked()
+    {
+        number.setText("1");
+        player1.setDisable(false);
+        player2.setDisable(true);
+        player3.setDisable(true);
+    }
 
     public void number2Clicked(){
         number.setText("2");
         player1.setDisable(false);
         player2.setDisable(false);
         player3.setDisable(true);
-        player4.setDisable(true);
     }
 
     public void number3Clicked(){
@@ -124,15 +129,6 @@ public class MultiplayerSettings {
         player1.setDisable(false);
         player2.setDisable(false);
         player3.setDisable(false);
-        player4.setDisable(true);
-    }
-
-    public void number4Clicked(){
-        number.setText("4");
-        player1.setDisable(false);
-        player2.setDisable(false);
-        player3.setDisable(false);
-        player4.setDisable(false);
     }
 
     @FXML
@@ -210,6 +206,23 @@ public class MultiplayerSettings {
         normal.setSelected(false);
         doublesize.setSelected(false);
         trio.setSelected(true);
+    }
+
+    public void H1()
+    {
+        mode.setPlayer1("Human");
+    }
+    public void E1()
+    {
+        mode.setPlayer1("Elephant");
+    }
+    public void G1()
+    {
+        mode.setPlayer1("Goldfish");
+    }
+    public void K1()
+    {
+        mode.setPlayer1("Kangaroo");
     }
 
 }

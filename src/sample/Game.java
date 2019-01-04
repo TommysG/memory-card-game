@@ -225,39 +225,7 @@ public class Game {
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
-/*
-    public void createImageViews(AnchorPane pane){
-       //int x = 105,y = 35,count = 0;
-       // double y = startY,x = startX,count = 0;
-        double y = gameMode.getStartY(),x = gameMode.getStartX(),count = 0;
-       // int x = 80,y = 10,count = 0;
-        for(int i = 0;i<gameMode.getSize();i++){
-            ImageView imageView = new ImageView();
-            imageView.setFitWidth(gameMode.getImWidth());
-            imageView.setFitHeight(gameMode.getImHeight());
-         //   imageView.setFitWidth(90);
-          //  imageView.setFitHeight(130);
-           // imageView.setFitWidth(60);
-           // imageView.setFitHeight(90);
-            if(i%gameMode.getColumns() == 0 && i != 0) {
-                y = y + gameMode.getYraise();
-           //     y = y + 135;
-              //  y = y + 99;
-                imageView.setLayoutX(x);
-                imageView.setLayoutX(y);
-                count = 0;
-            }
-            imageView.setLayoutX(x + count);
-            imageView.setLayoutY(y);
-            pane.getChildren().add(imageView);
-            imageViews.add(imageView);
-            count = count + gameMode.getXraise();
-          //  count = count + 100;
-          //  count = count + 80;
 
-        }
-    }
-    */
 
     public void createImageViews(GridPane grid){
 
