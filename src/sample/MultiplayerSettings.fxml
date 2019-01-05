@@ -114,15 +114,7 @@
                 </Label>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <Label fx:id="themesLabel1" prefHeight="42.0" prefWidth="133.0" text="RIVALS" textFill="#d5d5d5" VBox.vgrow="ALWAYS">
-                            <font>
-                                <Font name="Comic Sans MS" size="30.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="30.0" />
-                            </VBox.margin>
-                        </Label>
-                        <MenuButton fx:id="number" maxHeight="50.0" maxWidth="200.0" mnemonicParsing="false" text="NUMBER" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="number" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="NUMBER" VBox.vgrow="ALWAYS">
                             <items>
                                 <MenuItem fx:id="number1" mnemonicParsing="false" onAction="#number1Clicked" text="1" />
                                 <MenuItem fx:id="number2" mnemonicParsing="false" onAction="#number2Clicked" text="2" />
@@ -132,7 +124,7 @@
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                         </MenuButton>
-                        <MenuButton fx:id="player1" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="200.0" mnemonicParsing="false" text="RIVAL1" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="player1" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="RIVAL1" VBox.vgrow="ALWAYS">
                             <items>
                                 <MenuItem fx:id="Human1" mnemonicParsing="false" onAction="#H1" text="Human" />
                                 <MenuItem fx:id="Goldfish1" mnemonicParsing="false" onAction="#G1" text="Goldfish" />
@@ -143,30 +135,38 @@
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                         </MenuButton>
-                        <MenuButton fx:id="player2" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="200.0" mnemonicParsing="false" text="RIVAL2" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="player2" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="RIVAL2" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Human" />
-                                <MenuItem mnemonicParsing="false" text="Goldfish" />
-                                <MenuItem mnemonicParsing="false" text="Kangaroo" />
-                                <MenuItem mnemonicParsing="false" text="Elephant" />
+                                <MenuItem fx:id="h2" mnemonicParsing="false" onAction="#h2" text="Human" />
+                                <MenuItem fx:id="g2" mnemonicParsing="false" onAction="#g2" text="Goldfish" />
+                                <MenuItem fx:id="k2" mnemonicParsing="false" onAction="#k2" text="Kangaroo" />
+                                <MenuItem fx:id="e2" mnemonicParsing="false" onAction="#e2" text="Elephant" />
                             </items>
                         </MenuButton>
-                        <MenuButton fx:id="player3" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="200.0" mnemonicParsing="false" text="RIVAL3" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="player3" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="RIVAL3" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Human" />
-                        <MenuItem mnemonicParsing="false" text="Goldfish" />
-                        <MenuItem mnemonicParsing="false" text="Kangaroo" />
-                        <MenuItem mnemonicParsing="false" text="Elephant" />
+                        <MenuItem fx:id="h3" mnemonicParsing="false" onAction="#h3" text="Human" />
+                        <MenuItem fx:id="g3" mnemonicParsing="false" onAction="#g3" text="Goldfish" />
+                        <MenuItem fx:id="k3" mnemonicParsing="false" onAction="#k3" text="Kangaroo" />
+                        <MenuItem fx:id="e3" mnemonicParsing="false" onAction="#e3" text="Elephant" />
                      </items>
                         </MenuButton>
                     </children>
                 </VBox>
+                  <Label fx:id="themesLabel1" prefHeight="42.0" prefWidth="133.0" text="RIVALS" textFill="#d5d5d5" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                      <font>
+                          <Font name="Comic Sans MS" size="30.0" />
+                      </font>
+               <GridPane.margin>
+                  <Insets left="25.0" right="25.0" />
+               </GridPane.margin>
+                  </Label>
             </children>
         </GridPane>
     </children>

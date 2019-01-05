@@ -109,8 +109,8 @@ public class MultiplayerSettings {
         multi.setMode(mode,theme);
         stage.getScene().setRoot(Loader.getRoot());
     }
-    public void number1Clicked()
-    {
+    public void number1Clicked(){
+        mode.setPlayersNumber(1);
         number.setText("1");
         player1.setDisable(false);
         player2.setDisable(true);
@@ -118,6 +118,7 @@ public class MultiplayerSettings {
     }
 
     public void number2Clicked(){
+        mode.setPlayersNumber(2);
         number.setText("2");
         player1.setDisable(false);
         player2.setDisable(false);
@@ -125,6 +126,7 @@ public class MultiplayerSettings {
     }
 
     public void number3Clicked(){
+        mode.setPlayersNumber(3);
         number.setText("3");
         player1.setDisable(false);
         player2.setDisable(false);
@@ -211,18 +213,60 @@ public class MultiplayerSettings {
     public void H1()
     {
         mode.setPlayer1("Human");
+        player1.setText("Human");
     }
     public void E1()
     {
         mode.setPlayer1("Elephant");
+        player1.setText("Elephant");
     }
     public void G1()
     {
         mode.setPlayer1("Goldfish");
+        player1.setText("Goldfish");
     }
     public void K1()
     {
         mode.setPlayer1("Kangaroo");
+        player1.setText("Kangaroo");
+    }
+    public void h2(){
+        mode.setPlayer2("Human");
+        player2.setText("Human");
+
+    }
+    public void g2(){
+        mode.setPlayer2("Goldfish");
+        player2.setText("Goldfish");
+
+    }
+    public void k2(){
+        mode.setPlayer2("Kangaroo");
+        player2.setText("Kangaroo");
+
+    }
+    public void e2(){
+        mode.setPlayer2("Elephant");
+        player2.setText("Elephant");
+
+    }
+    public void h3(){
+        mode.setPlayer3("Human");
+        player3.setText("Human");
+
+    }
+    public void g3(){
+        mode.setPlayer3("Goldfish");
+        player3.setText("Goldfish");
+
+    }
+    public void k3(){
+        mode.setPlayer3("Kangaroo");
+        player3.setText("Kangaroo");
+    }
+    public void e3(){
+        mode.setPlayer3("Elephant");
+        player3.setText("Elephant");
     }
 
 }

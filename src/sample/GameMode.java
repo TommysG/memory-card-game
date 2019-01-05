@@ -16,8 +16,16 @@ public class GameMode {
     private String globalMode,player1,player2,player3,player4;
     private Properties properties = new Properties();
     private InputStream input = null;
-    private int width;
+    private int width,playersNumber;
     private double imWidth = 90,imHeight = 130;
+
+    public GameMode(){
+        player1 = "";
+        player2 = "";
+        player3 = "";
+        player4 = "";
+        playersNumber = 0;
+    }
 
     public void CreateMode(){
 
@@ -96,6 +104,14 @@ public class GameMode {
 
         }
 
+    }
+
+    public int getPlayersNumber() {
+        return playersNumber;
+    }
+
+    public void setPlayersNumber(int playersNumber) {
+        this.playersNumber = playersNumber;
     }
 
     public String getPlayer1() {

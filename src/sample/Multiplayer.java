@@ -27,6 +27,9 @@ public class Multiplayer extends Game {
     @FXML
     private Button back;
 
+
+    private double secs;
+
     public Multiplayer(){
     }
 
@@ -51,25 +54,90 @@ public class Multiplayer extends Game {
         super.clickEvent(imageView,card);
         clicks++;
 
-        if(clicks == 2){
-            if (gameMode.getPlayer1().equals("Goldfish")) {
-                Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> goldfish()));
-                delay.play();
-                clicks = 0;
-            }
-            else if(gameMode.getPlayer1().equals("Elephant"))
-            {
-                    Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> elephant()));
-                    delay.play();
-                    clicks = 0;
-            }
-            else if(gameMode.getPlayer1().equals("Human"))
-            {
-                Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event ->player()));
-                delay.play();
+        Timeline player1 = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> {
 
+            if(clicks == 2){
+                if(gameMode.getPlayer1().equals("Goldfish")){
+                    goldfish();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 1) {
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer1().equals("Human")){
+                        enableAll();
+                    if(gameMode.getPlayersNumber() == 1) {
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer1().equals("Elephant")){
+                    elephant();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 1) {
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
             }
-        }
+        }));
+        player1.play();
+
+        Timeline player2 = new Timeline(new KeyFrame(Duration.seconds(3),event -> {
+            if(clicks == 4){
+                if(gameMode.getPlayer2().equals("Goldfish")){
+                    goldfish();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 2) {
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer2().equals("Human")){
+                    enableAll();
+                    if(gameMode.getPlayersNumber() == 2) {
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer2().equals("Elephant")){
+                    elephant();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 2) {
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+            }
+        }));
+        player2.play();
+
+        Timeline player3 = new Timeline(new KeyFrame(Duration.seconds(4.5),event -> {
+            if(clicks == 6){
+                if(gameMode.getPlayer3().equals("Goldfish")){
+                    goldfish();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 3) {
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer3().equals("Human")){
+                    enableAll();
+                    if(gameMode.getPlayersNumber() == 3) {
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer3().equals("Elephant")){
+                    elephant();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 3) {
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+            }
+        }));
+        player3.play();
 
     }
 
@@ -127,7 +195,7 @@ public class Multiplayer extends Game {
                 imageView2.setOpacity(0.6);
             });
         } else {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5)));
             timeline.play();
             timeline.setOnFinished(event -> {
                 imageView1.setImage(card1.getBackground());
@@ -138,8 +206,8 @@ public class Multiplayer extends Game {
 
         }
 
-        Timeline beat2 = new Timeline(new KeyFrame(Duration.seconds(1.2),event -> {enableAll();}));
-        beat2.play();
+      //  Timeline beat2 = new Timeline(new KeyFrame(Duration.seconds(1.2),event -> {enableAll();}));
+      //  beat2.play();
     }
 
     public void elephant(){
@@ -169,15 +237,15 @@ public class Multiplayer extends Game {
         final Card c2 = seenCard2;
 
         if(flag){
-            Timeline beat = new Timeline(new KeyFrame(Duration.seconds(2)));
+            Timeline beat = new Timeline(new KeyFrame(Duration.seconds(1)));
             beat.play();
             beat.setOnFinished(event -> {
                 findAnimation(i1, i2, c1, c2);
                 foundCards.add(i1);
                 foundCards.add(i2);
             });
-            Timeline beat2 = new Timeline(new KeyFrame(Duration.seconds(2.5),event -> enableAll()));
-            beat2.play();
+           // Timeline beat2 = new Timeline(new KeyFrame(Duration.seconds(2.5),event -> enableAll()));
+          //  beat2.play();
             seenImageViews.remove(i1);
             seenImageViews.remove(i2);
             seenCards.remove(c1);
