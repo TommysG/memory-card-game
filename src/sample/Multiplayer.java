@@ -52,7 +52,9 @@ public class Multiplayer extends Game {
     @Override
     public void clickEvent(ImageView imageView, Card card) {
         super.clickEvent(imageView,card);
+
         clicks++;
+
 
         Timeline player1 = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> {
 
@@ -82,6 +84,7 @@ public class Multiplayer extends Game {
             }
         }));
         player1.play();
+        System.out.println(clicks);
 
         Timeline player2 = new Timeline(new KeyFrame(Duration.seconds(3),event -> {
             if(clicks == 4){
@@ -110,6 +113,7 @@ public class Multiplayer extends Game {
             }
         }));
         player2.play();
+        System.out.println(clicks);
 
         Timeline player3 = new Timeline(new KeyFrame(Duration.seconds(4.5),event -> {
             if(clicks == 6){
@@ -138,6 +142,8 @@ public class Multiplayer extends Game {
             }
         }));
         player3.play();
+        System.out.println(clicks);
+
 
     }
 
