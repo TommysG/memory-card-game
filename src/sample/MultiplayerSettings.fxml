@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MultiplayerSettings">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MultiplayerSettings">
     <children>
         <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" minWidth="0.0" style="-fx-background-color: #123456;" vgap="10.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="202.0" />
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="183.0" />
-                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="194.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="214.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="181.0" />
+                <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="184.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="196.0" vgrow="ALWAYS" />
@@ -31,7 +31,7 @@
             <children>
                 <Button fx:id="multiplayer" focusTraversable="false" maxHeight="60.0" maxWidth="400.0" mnemonicParsing="false" onAction="#multiplayerClicked" prefHeight="40.0" prefWidth="150.0" text="MULTIPLAYER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets bottom="10.0" left="50.0" right="50.0" />
+                        <Insets bottom="10.0" left="45.0" right="45.0" />
                     </GridPane.margin>
                 </Button>
                 <ImageView fx:id="redImage" fitHeight="115.0" fitWidth="191.0" onMouseClicked="#redClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
@@ -39,13 +39,16 @@
                         <Image url="@/Images/Cards/backgroundBig.png" />
                     </image>
                     <GridPane.margin>
-                        <Insets left="40.0" />
+                        <Insets left="52.0" />
                     </GridPane.margin>
                 </ImageView>
                 <ImageView fx:id="blackImage" fitHeight="115.0" fitWidth="80.0" onMouseClicked="#blackClicked" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <image>
                         <Image url="@/Images/Cards/background1Big.png" />
                     </image>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
                 </ImageView>
                 <ImageView fx:id="doubleMode" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#doubleModeClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                     <image>

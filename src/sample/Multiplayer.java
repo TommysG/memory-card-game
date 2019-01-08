@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class Multiplayer extends Game {
 
-    private int clicks = 0,random1,random2;
+    private int clicks,random1,random2;
     @FXML
     private GridPane grid;
     @FXML
@@ -35,6 +35,7 @@ public class Multiplayer extends Game {
 
     public Multiplayer(){
         multiInitialize = new Timeline();
+        clicks = 0;
     }
 
     @Override
@@ -55,10 +56,10 @@ public class Multiplayer extends Game {
             }
             else if(clicks == 2){
                 if(gameMode.getPlayer1().equals("Goldfish")){
-                    goldfish();
+                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> goldfish()));
+                    bot.play();
                     clicks = clicks +2;
                     if(gameMode.getPlayersNumber() == 1){
-                        enableAll();
                         clicks = 0;
                     }
                 }
@@ -69,20 +70,20 @@ public class Multiplayer extends Game {
                     player();
                 }
                 else if(gameMode.getPlayer1().equals("Elephant")){
-                    elephant();
+                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> elephant()));
+                    bot.play();
                     clicks = clicks +2;
                     if(gameMode.getPlayersNumber() == 1){
-                        enableAll();
                         clicks = 0;
                     }
                 }
             }
             else if(clicks == 4){
                 if(gameMode.getPlayer2().equals("Goldfish")){
-                    goldfish();
+                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(3.5),event1 -> goldfish()));
+                    bot.play();
                     clicks = clicks +2;
                     if(gameMode.getPlayersNumber() == 2){
-                        enableAll();
                         clicks = 0;
                     }
                 }
@@ -93,20 +94,20 @@ public class Multiplayer extends Game {
                     player();
                 }
                 else if(gameMode.getPlayer2().equals("Elephant")){
-                    elephant();
+                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(3.5),event1 -> elephant()));
+                    bot.play();
                     clicks = clicks +2;
                     if(gameMode.getPlayersNumber() == 2){
-                        enableAll();
                         clicks = 0;
                     }
                 }
             }
             else if(clicks == 6){
                 if(gameMode.getPlayer3().equals("Goldfish")){
-                    goldfish();
+                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(5.5),event1 -> goldfish()));
+                    bot.play();
                     clicks = clicks +2;
                     if(gameMode.getPlayersNumber() == 3){
-                        enableAll();
                         clicks = 0;
                     }
                 }
@@ -117,10 +118,10 @@ public class Multiplayer extends Game {
                     player();
                 }
                 else if(gameMode.getPlayer3().equals("Elephant")){
-                    elephant();
+                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(5.5),event1 -> elephant()));
+                    bot.play();
                     clicks = clicks +2;
                     if(gameMode.getPlayersNumber() == 3){
-                        enableAll();
                         clicks = 0;
                     }
                 }
@@ -205,6 +206,8 @@ public class Multiplayer extends Game {
                 imageView1.setOpacity(0.6);
                 imageView2.setOpacity(0.6);
             });
+            Timeline playAgain = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> goldfish()));
+            playAgain.play();
         } else {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5)));
             timeline.play();
@@ -248,19 +251,19 @@ public class Multiplayer extends Game {
         final Card c2 = seenCard2;
 
         if(flag){
-            Timeline beat = new Timeline(new KeyFrame(Duration.seconds(1)));
-            beat.play();
-            beat.setOnFinished(event -> {
-                findAnimation(i1, i2, c1, c2);
-                foundCards.add(i1);
-                foundCards.add(i2);
-            });
-           // Timeline beat2 = new Timeline(new KeyFrame(Duration.seconds(2.5),event -> enableAll()));
-          //  beat2.play();
             seenImageViews.remove(i1);
             seenImageViews.remove(i2);
             seenCards.remove(c1);
             seenCards.remove(c2);
+            Timeline beat = new Timeline(new KeyFrame(Duration.seconds(0.5),event -> {
+                findAnimation(i1, i2, c1, c2);
+                foundCards.add(i1);
+                foundCards.add(i2);
+            }));
+            beat.play();
+
+            Timeline playAgain = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> elephant()));
+            playAgain.play();
         }
         else{
             goldfish();
