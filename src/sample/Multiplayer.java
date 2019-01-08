@@ -111,7 +111,7 @@ public class Multiplayer extends Game {
                     }
                 }
                 else if(gameMode.getPlayer3().equals("Human")){
-                    System.out.println("HUMAN 2 IS PLAYING");
+                    System.out.println("HUMAN 3 IS PLAYING");
                     // System.out.println(clicks);
                     enableAll();
                     player();
