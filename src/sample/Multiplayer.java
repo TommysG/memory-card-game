@@ -48,88 +48,93 @@ public class Multiplayer extends Game {
 
         //player();
 
-        multiInitialize = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            if(clicks == 0 ){
-                System.out.println("THOMAS IS PLAYING");
-                enableAll();
-                player();
-            }
-            else if(clicks == 2){
-                if(gameMode.getPlayer1().equals("Goldfish")){
-                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> goldfish()));
-                    bot.play();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 1){
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer1().equals("Human")){
-                    System.out.println("HUMAN 1 IS PLAYING");
-                   // System.out.println(clicks);
+        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> {
+            multiInitialize = new Timeline(new KeyFrame(Duration.seconds(1.5), event2 -> {
+                if(clicks == 0 ){
+                    System.out.println("THOMAS IS PLAYING");
                     enableAll();
                     player();
                 }
-                else if(gameMode.getPlayer1().equals("Elephant")){
-                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> elephant()));
-                    bot.play();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 1){
-                        clicks = 0;
+                else if(clicks == 2){
+                    if(gameMode.getPlayer1().equals("Goldfish")){
+                        Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> goldfish()));
+                        bot.play();
+                        clicks = clicks +2;
+                        if(gameMode.getPlayersNumber() == 1){
+                            clicks = 0;
+                        }
+                    }
+                    else if(gameMode.getPlayer1().equals("Human")){
+                        System.out.println("HUMAN 1 IS PLAYING");
+                        // System.out.println(clicks);
+                        enableAll();
+                        player();
+                    }
+                    else if(gameMode.getPlayer1().equals("Elephant")){
+                        Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> elephant()));
+                        bot.play();
+                        clicks = clicks +2;
+                        if(gameMode.getPlayersNumber() == 1){
+                            clicks = 0;
+                        }
                     }
                 }
-            }
-            else if(clicks == 4){
-                if(gameMode.getPlayer2().equals("Goldfish")){
-                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(3.5),event1 -> goldfish()));
-                    bot.play();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 2){
-                        clicks = 0;
+                else if(clicks == 4){
+                    if(gameMode.getPlayer2().equals("Goldfish")){
+                        Timeline bot = new Timeline(new KeyFrame(Duration.seconds(3.5),event1 -> goldfish()));
+                        bot.play();
+                        clicks = clicks +2;
+                        if(gameMode.getPlayersNumber() == 2){
+                            clicks = 0;
+                        }
+                    }
+                    else if(gameMode.getPlayer2().equals("Human")){
+                        System.out.println("HUMAN 2 IS PLAYING");
+                        // System.out.println(clicks);
+                        enableAll();
+                        player();
+                    }
+                    else if(gameMode.getPlayer2().equals("Elephant")){
+                        Timeline bot = new Timeline(new KeyFrame(Duration.seconds(3.5),event1 -> elephant()));
+                        bot.play();
+                        clicks = clicks +2;
+                        if(gameMode.getPlayersNumber() == 2){
+                            clicks = 0;
+                        }
                     }
                 }
-                else if(gameMode.getPlayer2().equals("Human")){
-                    System.out.println("HUMAN 2 IS PLAYING");
-                   // System.out.println(clicks);
-                    enableAll();
-                    player();
-                }
-                else if(gameMode.getPlayer2().equals("Elephant")){
-                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(3.5),event1 -> elephant()));
-                    bot.play();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 2){
-                        clicks = 0;
+                else if(clicks == 6){
+                    if(gameMode.getPlayer3().equals("Goldfish")){
+                        Timeline bot = new Timeline(new KeyFrame(Duration.seconds(5.5),event1 -> goldfish()));
+                        bot.play();
+                        clicks = clicks +2;
+                        if(gameMode.getPlayersNumber() == 3){
+                            clicks = 0;
+                        }
+                    }
+                    else if(gameMode.getPlayer3().equals("Human")){
+                        System.out.println("HUMAN 3 IS PLAYING");
+                        // System.out.println(clicks);
+                        enableAll();
+                        player();
+                    }
+                    else if(gameMode.getPlayer3().equals("Elephant")){
+                        Timeline bot = new Timeline(new KeyFrame(Duration.seconds(5.5),event1 -> elephant()));
+                        bot.play();
+                        clicks = clicks +2;
+                        if(gameMode.getPlayersNumber() == 3){
+                            clicks = 0;
+                        }
                     }
                 }
-            }
-            else if(clicks == 6){
-                if(gameMode.getPlayer3().equals("Goldfish")){
-                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(5.5),event1 -> goldfish()));
-                    bot.play();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 3){
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer3().equals("Human")){
-                    System.out.println("HUMAN 3 IS PLAYING");
-                    // System.out.println(clicks);
-                    enableAll();
-                    player();
-                }
-                else if(gameMode.getPlayer3().equals("Elephant")){
-                    Timeline bot = new Timeline(new KeyFrame(Duration.seconds(5.5),event1 -> elephant()));
-                    bot.play();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 3){
-                        clicks = 0;
-                    }
-                }
-            }
 
+            }));
+            multiInitialize.setCycleCount(Timeline.INDEFINITE);
+            multiInitialize.play();
         }));
-        multiInitialize.setCycleCount(Timeline.INDEFINITE);
-        multiInitialize.play();
+        delay.play();
+
+
     }
 
      @Override
@@ -206,7 +211,7 @@ public class Multiplayer extends Game {
                 imageView1.setOpacity(0.6);
                 imageView2.setOpacity(0.6);
             });
-            Timeline playAgain = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> goldfish()));
+            Timeline playAgain = new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish()));
             playAgain.play();
         } else {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5)));
@@ -262,7 +267,7 @@ public class Multiplayer extends Game {
             }));
             beat.play();
 
-            Timeline playAgain = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> elephant()));
+            Timeline playAgain = new Timeline(new KeyFrame(Duration.seconds(1),event -> elephant()));
             playAgain.play();
         }
         else{
