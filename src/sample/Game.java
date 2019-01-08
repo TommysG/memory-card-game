@@ -31,10 +31,10 @@ public class Game {
 
     private Image theme;
     private int clicks = 0;
-    private int id1,id2,id3;
+    public int id1,id2,id3;
 
-    private ImageView imageView1,imageView2,imageView3;
-    private Card card1,card2,card3;
+    public ImageView imageView1,imageView2,imageView3;
+    public Card card1,card2,card3;
 
     private Properties properties = new Properties();
     private InputStream input = null;
@@ -45,6 +45,8 @@ public class Game {
     @FXML
     private GridPane grid;
 
+    public Boolean played;
+
 
     public Game(){
         gameMode = new GameMode();
@@ -53,6 +55,7 @@ public class Game {
         foundCards = new ArrayList<>();
         seenImageViews = new ArrayList<>();
         seenCards = new ArrayList<>();
+        played = false;
     }
 
     public void initialize() {
@@ -86,6 +89,7 @@ public class Game {
     }
 
     public void clickEvent(ImageView imageView,Card card){
+        played = false;
         clicks++;
         imageView.setDisable(true);
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.4),imageView);
@@ -196,6 +200,7 @@ public class Game {
                 clicks=0;
             }
         }
+        played = true;
     }
 
     public void eraseCards(){

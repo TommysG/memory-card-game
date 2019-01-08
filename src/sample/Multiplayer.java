@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,10 +28,13 @@ public class Multiplayer extends Game {
     @FXML
     private Button back;
 
+    private Timeline multiInitialize;
+
 
     private double secs;
 
     public Multiplayer(){
+        multiInitialize = new Timeline();
     }
 
     @Override
@@ -41,12 +45,96 @@ public class Multiplayer extends Game {
         createImages();
         setImages();
 
-        player();
+        //player();
+
+        multiInitialize = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            if(clicks == 0 ){
+                System.out.println("THOMAS IS PLAYING");
+                enableAll();
+                player();
+            }
+            else if(clicks == 2){
+                if(gameMode.getPlayer1().equals("Goldfish")){
+                    goldfish();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 1){
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer1().equals("Human")){
+                    System.out.println("HUMAN 1 IS PLAYING");
+                   // System.out.println(clicks);
+                    enableAll();
+                    player();
+                }
+                else if(gameMode.getPlayer1().equals("Elephant")){
+                    elephant();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 1){
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+            }
+            else if(clicks == 4){
+                if(gameMode.getPlayer2().equals("Goldfish")){
+                    goldfish();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 2){
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer2().equals("Human")){
+                    System.out.println("HUMAN 2 IS PLAYING");
+                   // System.out.println(clicks);
+                    enableAll();
+                    player();
+                }
+                else if(gameMode.getPlayer2().equals("Elephant")){
+                    elephant();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 2){
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+            }
+            else if(clicks == 6){
+                if(gameMode.getPlayer3().equals("Goldfish")){
+                    goldfish();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 3){
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+                else if(gameMode.getPlayer3().equals("Human")){
+                    System.out.println("HUMAN 2 IS PLAYING");
+                    // System.out.println(clicks);
+                    enableAll();
+                    player();
+                }
+                else if(gameMode.getPlayer3().equals("Elephant")){
+                    elephant();
+                    clicks = clicks +2;
+                    if(gameMode.getPlayersNumber() == 3){
+                        enableAll();
+                        clicks = 0;
+                    }
+                }
+            }
+
+        }));
+        multiInitialize.setCycleCount(Timeline.INDEFINITE);
+        multiInitialize.play();
     }
 
      @Override
      public void player() {
          super.player();
+
      }
 
     @Override
@@ -55,95 +143,12 @@ public class Multiplayer extends Game {
 
         clicks++;
 
-
-        Timeline player1 = new Timeline(new KeyFrame(Duration.seconds(1.5),event -> {
-
-            if(clicks == 2){
-                if(gameMode.getPlayer1().equals("Goldfish")){
-                    goldfish();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 1) {
-                        enableAll();
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer1().equals("Human")){
-                        enableAll();
-                    if(gameMode.getPlayersNumber() == 1) {
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer1().equals("Elephant")){
-                    elephant();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 1) {
-                        enableAll();
-                        clicks = 0;
-                    }
-                }
-            }
-        }));
-        player1.play();
-        System.out.println(clicks);
-
-        Timeline player2 = new Timeline(new KeyFrame(Duration.seconds(3),event -> {
-            if(clicks == 4){
-                if(gameMode.getPlayer2().equals("Goldfish")){
-                    goldfish();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 2) {
-                        enableAll();
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer2().equals("Human")){
-                    enableAll();
-                    if(gameMode.getPlayersNumber() == 2) {
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer2().equals("Elephant")){
-                    elephant();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 2) {
-                        enableAll();
-                        clicks = 0;
-                    }
-                }
-            }
-        }));
-        player2.play();
-        System.out.println(clicks);
-
-        Timeline player3 = new Timeline(new KeyFrame(Duration.seconds(4.5),event -> {
-            if(clicks == 6){
-                if(gameMode.getPlayer3().equals("Goldfish")){
-                    goldfish();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 3) {
-                        enableAll();
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer3().equals("Human")){
-                    enableAll();
-                    if(gameMode.getPlayersNumber() == 3) {
-                        clicks = 0;
-                    }
-                }
-                else if(gameMode.getPlayer3().equals("Elephant")){
-                    elephant();
-                    clicks = clicks +2;
-                    if(gameMode.getPlayersNumber() == 3) {
-                        enableAll();
-                        clicks = 0;
-                    }
-                }
-            }
-        }));
-        player3.play();
-        System.out.println(clicks);
-
+        if(gameMode.getPlayersNumber() == 1 && clicks == 4)
+            clicks = 0;
+        if(gameMode.getPlayersNumber() == 2 && clicks == 6)
+            clicks = 0;
+        if(gameMode.getPlayersNumber() == 3 && clicks == 8)
+            clicks = 0;
 
     }
 
@@ -298,6 +303,8 @@ public class Multiplayer extends Game {
 
     @Override
     public void backClicked() throws IOException {
+        clicks = 0;
+        multiInitialize.stop();
         Parent root = FXMLLoader.load(getClass().getResource("MultiplayerSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
