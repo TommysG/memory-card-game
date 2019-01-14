@@ -7,33 +7,50 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #0e2944; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #000000; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SettingsPane">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #0e2944; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #000000; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SettingsPane">
     <children>
-        <Label layoutX="163.0" layoutY="14.0" prefHeight="30.0" prefWidth="75.0" text="Settings" textFill="WHITE">
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
-        <ToggleButton layoutX="163.0" layoutY="63.0" mnemonicParsing="false" text="Sounds" />
-        <HBox layoutX="12.0" layoutY="12.0" maxWidth="1.7976931348623157E308" prefHeight="53.0" prefWidth="235.0" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="157.0" AnchorPane.topAnchor="8.0">
-            <children>
-                <MenuButton fx:id="resolution" mnemonicParsing="false" text="Resolution" HBox.hgrow="ALWAYS">
-                    <items>
-                        <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
-                        <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720" fx:id="x1024" />
-                        <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
-                        <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x400" fx:id="x64" />
-                    </items>
-                </MenuButton>
-            </children>
-        </HBox>
-        <BorderPane layoutX="232.0" layoutY="12.0" prefHeight="86.0" prefWidth="164.0" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="228.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0">
+        <BorderPane layoutX="278.0" layoutY="16.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
-                <Button fx:id="close" mnemonicParsing="false" onAction="#closeSettings" text="Close" BorderPane.alignment="TOP_RIGHT" />
+                <Button fx:id="close" mnemonicParsing="false" onAction="#closeSettings" prefWidth="0.0" text="×" BorderPane.alignment="TOP_RIGHT">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font></Button>
             </top>
+         <center>
+            <GridPane prefWidth="392.0" vgap="20.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                      <MenuButton fx:id="resolution" mnemonicParsing="false" text="Resolution" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                          <items>
+                              <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
+                              <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720" fx:id="x1024" />
+                              <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
+                              <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x400" fx:id="x64" />
+                          </items>
+                      </MenuButton>
+                    <ToggleButton mnemonicParsing="false" text="Sounds" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                    <Label prefHeight="30.0" prefWidth="75.0" text="Settings" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                        <font>
+                            <Font size="20.0" />
+                        </font>
+                    </Label>
+               </children>
+            </GridPane>
+         </center>
         </BorderPane>
     </children>
 </AnchorPane>

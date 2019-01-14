@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.BattleSettings">
+   <children>
+      <GridPane alignment="CENTER" layoutX="280.0" layoutY="222.0" prefHeight="600.0" prefWidth="800.0" vgap="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="385.0" minHeight="10.0" prefHeight="204.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="330.0" minHeight="10.0" prefHeight="173.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="173.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Rival" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="25.0" right="25.0" />
+               </GridPane.margin>
+            </Label>
+            <Button fx:id="back" focusTraversable="false" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Images/back.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="battle" maxHeight="60.0" maxWidth="350.0" mnemonicParsing="false" onAction="#battleClicked" prefHeight="50.0" prefWidth="220.0" text="Let's Battle" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </GridPane.margin>
+            </Button>
+            <MenuButton fx:id="rivalSelector" maxHeight="60.0" maxWidth="350.0" minHeight="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="220.0" text="Goldfish" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+              <items>
+                <MenuItem fx:id="goldfish" mnemonicParsing="false" onAction="#goldfishSelected" text="Goldfish" />
+                <MenuItem fx:id="kangaroo" mnemonicParsing="false" onAction="#kangarooSelected" text="Kangaroo" />
+                  <MenuItem fx:id="elephant" mnemonicParsing="false" onAction="#elephantSelected" text="Elephant" />
+              </items>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </MenuButton>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

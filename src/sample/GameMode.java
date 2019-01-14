@@ -13,18 +13,17 @@ public class GameMode {
     private int size;
     private int columns,rows;
     private int selectCards;
-    private String globalMode,player1,player2,player3,player4;
+    private String globalMode,rival1,rival2,rival3;
     private Properties properties = new Properties();
     private InputStream input = null;
-    private int width,playersNumber;
+    private int width,rivalsNumber;
     private double imWidth = 90,imHeight = 130;
 
     public GameMode(){
-        player1 = "";
-        player2 = "";
-        player3 = "";
-        player4 = "";
-        playersNumber = 0;
+        rival1 = "Goldfish";
+        rival2 = "Goldfish";
+        rival3 = "Goldfish";
+        rivalsNumber = 0;
     }
 
     public void CreateMode(){
@@ -48,6 +47,13 @@ public class GameMode {
                 rows = 6;
                 selectCards = 3;
                 break;
+        }
+
+        if(globalMode.equals("Battle")){
+            size = 24;
+            rows = 6;
+            columns = 4;
+            selectCards =1;
         }
     }
 
@@ -106,44 +112,36 @@ public class GameMode {
 
     }
 
-    public int getPlayersNumber() {
-        return playersNumber;
+    public String getRival1() {
+        return rival1;
     }
 
-    public void setPlayersNumber(int playersNumber) {
-        this.playersNumber = playersNumber;
+    public void setRival1(String rival1) {
+        this.rival1 = rival1;
     }
 
-    public String getPlayer1() {
-        return player1;
+    public String getRival2() {
+        return rival2;
     }
 
-    public void setPlayer1(String player1) {
-        this.player1 = player1;
+    public void setRival2(String rival2) {
+        this.rival2 = rival2;
     }
 
-    public String getPlayer2() {
-        return player2;
+    public String getRival3() {
+        return rival3;
     }
 
-    public void setPlayer2(String player2) {
-        this.player2 = player2;
+    public void setRival3(String rival3) {
+        this.rival3 = rival3;
     }
 
-    public String getPlayer3() {
-        return player3;
+    public int getRivalsNumber() {
+        return rivalsNumber;
     }
 
-    public void setPlayer3(String player3) {
-        this.player3 = player3;
-    }
-
-    public String getPlayer4() {
-        return player4;
-    }
-
-    public void setPlayer4(String player4) {
-        this.player4 = player4;
+    public void setRivalsNumber(int rivalsNumber) {
+        this.rivalsNumber = rivalsNumber;
     }
 
     public int getColumns() { return columns; }

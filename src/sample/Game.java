@@ -3,6 +3,7 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -26,8 +29,8 @@ public class Game {
     public GameMode gameMode;
     @FXML
     private AnchorPane Game;
-    public ArrayList<ImageView> imageViews,foundCards,seenImageViews;
-    public ArrayList<Card> cards,seenCards;
+    public ArrayList<ImageView> imageViews,foundCards,seenImageViewsElephant,seenImageViewsKangaroo;
+    public ArrayList<Card> cards,seenCardsElephant,seenCardsKangaroo;
 
     private Image theme;
     private int clicks = 0;
@@ -45,7 +48,7 @@ public class Game {
     @FXML
     private GridPane grid;
 
-    public Boolean played;
+    public Boolean cardsMatch;
 
 
     public Game(){
@@ -53,13 +56,14 @@ public class Game {
         imageViews = new ArrayList<>();
         cards = new ArrayList<>();
         foundCards = new ArrayList<>();
-        seenImageViews = new ArrayList<>();
-        seenCards = new ArrayList<>();
-        played = false;
+        seenImageViewsElephant = new ArrayList<>();
+        seenCardsElephant = new ArrayList<>();
+        seenImageViewsKangaroo = new ArrayList<>();
+        seenCardsKangaroo = new ArrayList<>();
+        cardsMatch = false;
     }
 
     public void initialize() {
-        winLabel.setVisible(false);
     }
 
     public void setMode(GameMode gameMode,Image theme) throws IOException{
@@ -72,10 +76,10 @@ public class Game {
     }
 
     public void gameStart(){
-        createImageViews(grid);
-        createImages();
+        createImageViews(grid,imageViews);
+        createImages(cards);
         //shuffleCards();
-        setImages();
+        setImages(imageViews,cards);
 
         player();
     }
@@ -89,7 +93,7 @@ public class Game {
     }
 
     public void clickEvent(ImageView imageView,Card card){
-        played = false;
+        cardsMatch = false;
         clicks++;
         imageView.setDisable(true);
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.4),imageView);
@@ -102,28 +106,35 @@ public class Game {
             id1 = card.getId();
             imageView1 = imageView;
             card1 = card;
-            if(!seenImageViews.contains(imageView1)) {
-                seenImageViews.add(imageView1);
-                seenCards.add(card1);
+            if(!seenImageViewsElephant.contains(imageView1)) {
+                seenImageViewsElephant.add(imageView1);
+                seenCardsElephant.add(card1);
+            }
+            if(!seenImageViewsKangaroo.contains(imageView1)){
+                seenImageViewsKangaroo.add(imageView1);
+                seenCardsKangaroo.add(card1);
             }
         }
         if(clicks == 2) {
             id2 = card.getId();
             imageView2 = imageView;
             card2 = card;
-            if(!seenImageViews.contains(imageView2)) {
-                seenImageViews.add(imageView2);
-                seenCards.add(card2);
+            if(!seenImageViewsElephant.contains(imageView2)) {
+                seenImageViewsElephant.add(imageView2);
+                seenCardsElephant.add(card2);
             }
             if (gameMode.getMode() != 3) {
                 disableAll();
                 if (id1 == id2) {
+                    cardsMatch = true;
                     foundCards.add(imageView1);
                     foundCards.add(imageView2);
-                    seenImageViews.remove(imageView1);
-                    seenImageViews.remove(imageView2);
-                    seenCards.remove(card1);
-                    seenCards.remove(card2);
+                    seenImageViewsElephant.remove(imageView1);
+                    seenImageViewsElephant.remove(imageView2);
+                    seenImageViewsKangaroo.remove(imageView1);
+                    seenCardsElephant.remove(card1);
+                    seenCardsElephant.remove(card2);
+                    seenCardsKangaroo.remove(card1);
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.6),event -> {
                         imageView1.setDisable(true);
                         imageView2.setDisable(true);
@@ -137,10 +148,11 @@ public class Game {
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2),event -> {
                         imageView1.setImage(card1.getBackground());
                         imageView2.setImage(card2.getBackground());
-                        imageView1.setDisable(false);
-                        imageView2.setDisable(false);
-                        if(gameMode.getGlobalMode().equals("SingleMode"))
+                        if(gameMode.getGlobalMode().equals("SingleMode")) {
+                            imageView1.setDisable(false);
+                            imageView2.setDisable(false);
                             enableAll();
+                        }
                     }));
                     timeline.play();
                 }
@@ -148,8 +160,8 @@ public class Game {
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
                     timeline.play();
                     timeline.setOnFinished(event -> {
-                        eraseCards();
-                        winLabel.setVisible(true);
+                        eraseCards(grid);
+                        //winLabel.setVisible(true);
                     });
                 }
                 clicks = 0;
@@ -161,11 +173,25 @@ public class Game {
                 imageView3 = imageView;
                 card3 = card;
 
+                if(!seenImageViewsElephant.contains(imageView3)) {
+                    seenImageViewsElephant.add(imageView3);
+                    seenCardsElephant.add(card3);
+                }
+
                 disableAll();
                 if (id1 == id2 && id2 == id3) {
+                    cardsMatch = true;
                     foundCards.add(imageView1);
                     foundCards.add(imageView2);
                     foundCards.add(imageView3);
+                    seenImageViewsElephant.remove(imageView1);
+                    seenImageViewsElephant.remove(imageView2);
+                    seenImageViewsElephant.remove(imageView3);
+                    seenImageViewsKangaroo.remove(imageView1);
+                    seenCardsElephant.remove(card1);
+                    seenCardsElephant.remove(card2);
+                    seenCardsElephant.remove(card3);
+                    seenCardsKangaroo.remove(card1);
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.6),event -> {
                         imageView1.setDisable(true);
                         imageView2.setDisable(true);
@@ -173,7 +199,8 @@ public class Game {
                         imageView1.setOpacity(0.6);
                         imageView2.setOpacity(0.6);
                         imageView3.setOpacity(0.6);
-                        enableAll();
+                        if(gameMode.getGlobalMode().equals("SingleMode"))
+                            enableAll();
                     }));
                     timeline.play();
                 }
@@ -182,10 +209,12 @@ public class Game {
                         imageView1.setImage(card1.getBackground());
                         imageView2.setImage(card2.getBackground());
                         imageView3.setImage(card3.getBackground());
-                        imageView1.setDisable(false);
-                        imageView2.setDisable(false);
-                        imageView3.setDisable(false);
-                        enableAll();
+                        if(gameMode.getGlobalMode().equals("SingleMode")) {
+                            imageView1.setDisable(false);
+                            imageView2.setDisable(false);
+                            imageView3.setDisable(false);
+                            enableAll();
+                        }
                     }));
                     timeline.play();
                 }
@@ -193,17 +222,16 @@ public class Game {
                     Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
                     timeline.play();
                     timeline.setOnFinished(event -> {
-                        eraseCards();
-                        winLabel.setVisible(true);
+                        eraseCards(grid);
+                        //winLabel.setVisible(true);
                     });
                 }
                 clicks=0;
             }
         }
-        played = true;
     }
 
-    public void eraseCards(){
+    public void eraseCards(GridPane grid){
         for(int i = 0;i<imageViews.size();i++){
             grid.getChildren().remove(imageViews.get(i));
         }
@@ -232,7 +260,7 @@ public class Game {
     }
 
 
-    public void createImageViews(GridPane grid){
+    public void createImageViews(GridPane grid,ArrayList<ImageView> imageViews){
 
         grid.setHgap(10);
         grid.setVgap(10);
@@ -264,7 +292,7 @@ public class Game {
 
     }
 
-    public void createImages() {
+    public void createImages(ArrayList<Card> cards) {
         int times = 0;
         int j = 0;
         for(int i =1; i<=gameMode.getSize();i++) {
@@ -278,13 +306,13 @@ public class Game {
         }
     }
 
-    public void setImages(){
+    public void setImages(ArrayList<ImageView> imageViews,ArrayList<Card> cards){
         for(int i = 0;i<imageViews.size();i++){
             imageViews.get(i).setImage(cards.get(i).getBackground());
         }
     }
 
-    public void shuffleCards(){
+    public void shuffleCards(ArrayList<ImageView> imageViews){
         Collections.shuffle(imageViews);
     }
 

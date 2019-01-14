@@ -1,30 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="multiplayer" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Multiplayer">
+<AnchorPane fx:id="multiplayer" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Multiplayer">
     <children>
-        <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
         <Label fx:id="winLabel" layoutX="316.0" layoutY="275.0" prefHeight="71.0" prefWidth="188.0" text="YOU WIN" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="42.0" />
             </font>
         </Label>
-        <Button fx:id="back" focusTraversable="false" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0">
-            <graphic>
-                <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@/Images/back.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Button>
+      <SplitPane dividerPositions="0.65" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #123456;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #123456;">
+               <children>
+                    <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" layoutX="13.0" layoutY="10.0" prefHeight="698.0" prefWidth="815.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                    <Button fx:id="back" focusTraversable="false" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0">
+                        <graphic>
+                            <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@/Images/back.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                    </Button>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="1103.0" style="-fx-background-color: #123456;">
+               <children>
+                  <GridPane fx:id="gridTable" alignment="CENTER_RIGHT" gridLinesVisible="true" prefHeight="718.0" prefWidth="188.0" style="-fx-border-color: #000000; -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="player3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 3:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="player1" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 1:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nextTurn" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Next Turn:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="turn" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Turn:" textFill="WHITE" GridPane.hgrow="ALWAYS">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="player2" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 2:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="player4" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 4:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                        <Button maxHeight="150.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="71.0" prefWidth="172.0" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                           <GridPane.margin>
+                              <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
     </children>
 </AnchorPane>
-

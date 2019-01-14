@@ -88,6 +88,12 @@ public class MainMenu {
         stage.getScene().setRoot(root);
     }
 
+    public void battleClicked() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("BattleSettings.fxml"));
+        Stage stage = (Stage) playMenu.getScene().getWindow();
+        stage.getScene().setRoot(root);
+    }
+
     public void settingsClicked() throws IOException{
         Stage primaryStage = (Stage) exit.getScene().getWindow();
         GaussianBlur blur = new GaussianBlur(3);
@@ -96,9 +102,9 @@ public class MainMenu {
         Parent root = FXMLLoader.load(getClass().getResource("SettingsPane.fxml"));
 
         Stage dialog = new Stage();
-        dialog.setTitle("QuickStart");
+        dialog.setTitle("Settings");
 
-        Scene scene = new Scene(root,450,350);
+        Scene scene = new Scene(root,primaryStage.getWidth()/2,primaryStage.getHeight()/2);
         scene.setFill(Color.TRANSPARENT);
         dialog.setScene(scene);
         dialog.initModality(Modality.WINDOW_MODAL);

@@ -70,6 +70,8 @@ public class SettingsPane {
         stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         double centerXPosition = stage.getX() + stage.getWidth()/2d;
         double centerYPosition = stage.getY() + stage.getHeight()/2d;
+        settingsPane.setWidth(stage.getWidth()/2);
+        settingsPane.setHeight(stage.getHeight()/2);
         settingsPane.setX(centerXPosition - settingsPane.getWidth()/2d);
         settingsPane.setY(centerYPosition - settingsPane.getHeight()/2d);
         settingsPane.show();
@@ -95,6 +97,8 @@ public class SettingsPane {
         settings.setEffect(blur);
         double centerXPosition = stage.getX() + stage.getWidth()/2d;
         double centerYPosition = stage.getY() + stage.getHeight()/2d;
+        settingsPane.setWidth(stage.getWidth()/2);
+        settingsPane.setHeight(stage.getHeight()/2);
         settingsPane.setX(centerXPosition - settingsPane.getWidth()/2d);
         settingsPane.setY(centerYPosition - settingsPane.getHeight()/2d);
         settingsPane.show();
@@ -119,6 +123,8 @@ public class SettingsPane {
         settings.setEffect(blur);
         double centerXPosition = stage.getX() + stage.getWidth()/2d;
         double centerYPosition = stage.getY() + stage.getHeight()/2d;
+        settingsPane.setWidth(stage.getWidth()/2);
+        settingsPane.setHeight(stage.getHeight()/2);
         settingsPane.setX(centerXPosition - settingsPane.getWidth()/2d);
         settingsPane.setY(centerYPosition - settingsPane.getHeight()/2d);
         settingsPane.show();
@@ -143,7 +149,8 @@ public class SettingsPane {
         settings.setEffect(blur);
         double centerXPosition = stage.getX() + stage.getWidth()/2d;
         double centerYPosition = stage.getY() + stage.getHeight()/2d;
-
+        settingsPane.setWidth(stage.getWidth()/2);
+        settingsPane.setHeight(stage.getHeight()/2);
         settingsPane.setX(centerXPosition - settingsPane.getWidth()/2d);
         settingsPane.setY(centerYPosition - settingsPane.getHeight()/2d);
         settingsPane.show();

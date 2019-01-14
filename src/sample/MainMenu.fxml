@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainMenu" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenu">
+<AnchorPane fx:id="mainMenu" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenu">
     <children>
-        <BorderPane layoutX="538.0" layoutY="1.0" prefHeight="56.0" prefWidth="60.0" AnchorPane.bottomAnchor="385.0" AnchorPane.leftAnchor="538.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="1.0">
+        <BorderPane layoutX="91.0" layoutY="1.0" prefHeight="171.0" prefWidth="707.0" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="1.0">
             <top>
                 <ImageView fx:id="settings" fitHeight="51.0" fitWidth="67.0" onMouseClicked="#settingsClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
                     <image>
@@ -75,21 +75,21 @@
         </HBox>
         <VBox alignment="CENTER" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
             <children>
-                <MenuButton fx:id="playMenu" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="63.0" maxWidth="400.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="179.0" stylesheets="@/css/menuButton.css" text="PLAY" VBox.vgrow="ALWAYS">
+                <MenuButton fx:id="playMenu" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="179.0" text="PLAY" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin>
                     <items>
                         <MenuItem fx:id="singleMode" mnemonicParsing="false" onAction="#playClicked" style="-fx-font-size: 20;" text="Single Mode" />
                         <MenuItem fx:id="multiplayerItem" mnemonicParsing="false" onAction="#multiplayerClicked" text="Multiplayer" />
-                        <MenuItem mnemonicParsing="false" text="Battle" />
+                        <MenuItem fx:id="battle" mnemonicParsing="false" onAction="#battleClicked" text="Battle" />
                     </items>
                 </MenuButton>
-                <Button fx:id="credits" focusTraversable="false" maxHeight="63.0" maxWidth="400.0" mnemonicParsing="false" onAction="#creditsClicked" prefHeight="53.0" prefWidth="179.0" text="CREDITS" VBox.vgrow="ALWAYS">
+                <Button fx:id="credits" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" onAction="#creditsClicked" prefHeight="53.0" prefWidth="179.0" text="CREDITS" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin></Button>
-                <Button fx:id="exit" focusTraversable="false" maxHeight="63.0" maxWidth="400.0" mnemonicParsing="false" onAction="#exitClicked" prefHeight="53.0" prefWidth="179.0" text="EXIT" VBox.vgrow="ALWAYS">
+                <Button fx:id="exit" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" onAction="#exitClicked" prefHeight="53.0" prefWidth="179.0" text="EXIT" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin></Button>

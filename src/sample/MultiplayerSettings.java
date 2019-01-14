@@ -107,26 +107,30 @@ public class MultiplayerSettings {
         Multiplayer multi = Loader.getController();
         Stage stage = (Stage) multiplayer.getScene().getWindow();
         multi.setMode(mode,theme);
+        multi.multiplayerStart();
         stage.getScene().setRoot(Loader.getRoot());
     }
     public void number1Clicked(){
-        mode.setPlayersNumber(1);
+        mode.setRivalsNumber(1);
         number.setText("1");
+        mode.setRival2("");
+        mode.setRival3("");
         player1.setDisable(false);
         player2.setDisable(true);
         player3.setDisable(true);
     }
 
     public void number2Clicked(){
-        mode.setPlayersNumber(2);
+        mode.setRivalsNumber(2);
         number.setText("2");
+        mode.setRival3("");
         player1.setDisable(false);
         player2.setDisable(false);
         player3.setDisable(true);
     }
 
     public void number3Clicked(){
-        mode.setPlayersNumber(3);
+        mode.setRivalsNumber(3);
         number.setText("3");
         player1.setDisable(false);
         player2.setDisable(false);
@@ -212,60 +216,60 @@ public class MultiplayerSettings {
 
     public void H1()
     {
-        mode.setPlayer1("Human");
+        mode.setRival1("Human");
         player1.setText("Human");
     }
     public void E1()
     {
-        mode.setPlayer1("Elephant");
+        mode.setRival1("Elephant");
         player1.setText("Elephant");
     }
     public void G1()
     {
-        mode.setPlayer1("Goldfish");
+        mode.setRival1("Goldfish");
         player1.setText("Goldfish");
     }
     public void K1()
     {
-        mode.setPlayer1("Kangaroo");
+        mode.setRival1("Kangaroo");
         player1.setText("Kangaroo");
     }
     public void h2(){
-        mode.setPlayer2("Human");
+        mode.setRival2("Human");
         player2.setText("Human");
 
     }
     public void g2(){
-        mode.setPlayer2("Goldfish");
+        mode.setRival2("Goldfish");
         player2.setText("Goldfish");
 
     }
     public void k2(){
-        mode.setPlayer2("Kangaroo");
+        mode.setRival2("Kangaroo");
         player2.setText("Kangaroo");
 
     }
     public void e2(){
-        mode.setPlayer2("Elephant");
+        mode.setRival2("Elephant");
         player2.setText("Elephant");
 
     }
     public void h3(){
-        mode.setPlayer3("Human");
+        mode.setRival3("Human");
         player3.setText("Human");
 
     }
     public void g3(){
-        mode.setPlayer3("Goldfish");
+        mode.setRival3("Goldfish");
         player3.setText("Goldfish");
 
     }
     public void k3(){
-        mode.setPlayer3("Kangaroo");
+        mode.setRival3("Kangaroo");
         player3.setText("Kangaroo");
     }
     public void e3(){
-        mode.setPlayer3("Elephant");
+        mode.setRival3("Elephant");
         player3.setText("Elephant");
     }
 
