@@ -39,6 +39,7 @@ public class Battle extends Multiplayer {
     private ArrayList<ImageView> foundCards;
 
     private boolean flag;
+    private int count=0;
 
 
     @Override
@@ -78,12 +79,34 @@ public class Battle extends Multiplayer {
         clicks++;
 
         flipAnimation(imageView, card);
-
-        nextButton.setOnAction(event -> {
-        });
-
         playerImageview = imageView;
         playerCard = card;
+
+        nextButton.setOnAction(event -> {
+            if (clicks==0 )
+            {
+                enableAll();
+
+            }
+            else if (clicks==1 ) {
+                this.goldfish();
+                compare(playerImageview,playerCard);
+                clicks++;
+            }
+            else if (clicks==2)
+            {
+                this.goldfish();
+                clicks++;
+            }
+            else
+            {
+                enableAll();
+                compare(playerImageview,playerCard);
+                clicks=0;
+            }
+        });
+
+
 
         disableAll();
     }
