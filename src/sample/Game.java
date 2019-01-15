@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Properties;
 
-public class Game {
+public class  Game {
 
     @FXML
     private Button back;
@@ -44,6 +44,9 @@ public class Game {
 
     @FXML
     private GridPane grid;
+    private Score score;
+    @FXML
+    private Label Moves;
 
     public Boolean cardsMatch;
 
@@ -57,6 +60,7 @@ public class Game {
         seenCardsElephant = new ArrayList<>();
         seenImageViewsKangaroo = new ArrayList<>();
         seenCardsKangaroo = new ArrayList<>();
+        score= new Score();
         cardsMatch = false;
     }
 
@@ -113,6 +117,8 @@ public class Game {
             }
         }
         if(clicks == 2) {
+            score.updateMoves();
+            Moves.setText(""+score.getMoves());
             id2 = card.getId();
             imageView2 = imageView;
             card2 = card;
@@ -166,6 +172,7 @@ public class Game {
         }
         if (gameMode.getMode()==3) {
             if (clicks == 3) {
+                score.updateMoves();
                 id3 = card.getId();
                 imageView3 = imageView;
                 card3 = card;

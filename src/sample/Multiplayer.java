@@ -25,7 +25,7 @@ public class Multiplayer extends Game {
     @FXML
     private GridPane grid,gridTable;
     @FXML
-    private Button back;
+    private Button back,next;
     private Timeline multiInitialize;
     @FXML
     private Label turn,nextTurn,player1,player2,player3,player4;
@@ -39,6 +39,7 @@ public class Multiplayer extends Game {
         clicks = 0;
         clickedImageView = null;
     }
+
 
     @Override
     public void setMode(GameMode gameMode, Image theme) throws IOException {
@@ -79,6 +80,10 @@ public class Multiplayer extends Game {
             if (clicks == 2 && cardsMatch) {
                 clicks = 0;
                 // enableAll();
+            }
+            else
+            {
+                next.setDisable(false);
             }
             if (clicks == 2 && foundCards.size() == gameMode.getSize())
                 return;
@@ -195,6 +200,7 @@ public class Multiplayer extends Game {
                     imageView2.setImage(card2.getBackground());
                     // imageView1.setDisable(false);
                     // imageView2.setDisable(false);
+
                 })).play();
             }
 
