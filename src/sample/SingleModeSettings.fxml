@@ -70,15 +70,15 @@
                         <Insets left="50.0" top="200.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                 </CheckBox>
                 <CheckBox fx:id="red" focusTraversable="false" mnemonicParsing="false" onAction="#redCheckClicked" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="RED" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
-                        <Insets left="20.0" />
+                        <Insets />
                     </GridPane.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                 </CheckBox>
                 <CheckBox fx:id="black" focusTraversable="false" mnemonicParsing="false" onAction="#blackCheckClicked" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="BLACK" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
@@ -86,7 +86,7 @@
                         <Insets right="10.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                 </CheckBox>
                 <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css" GridPane.halignment="LEFT" GridPane.valignment="TOP">
@@ -106,7 +106,7 @@
                         <Insets top="200.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                 </CheckBox>
                 <Label fx:id="themesLabel" prefHeight="44.0" prefWidth="148.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="THEMES" textFill="#d5d5d5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
@@ -122,7 +122,7 @@
                         <Insets top="200.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="18.0" />
+                  <Font name="System Bold" size="18.0" />
                </font>
                 </CheckBox>
                 <Label fx:id="gamemodeLabel" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="GAMEMODE" textFill="#d5d5d5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">

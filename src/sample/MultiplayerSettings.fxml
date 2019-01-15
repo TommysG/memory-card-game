@@ -68,28 +68,28 @@
                         <Image url="@/Images/GameModes/Game3.png" />
                     </image>
                 </ImageView>
-                <CheckBox fx:id="normal" focusTraversable="false" mnemonicParsing="false" onAction="#normalClicked" prefHeight="25.0" prefWidth="103.0" stylesheets="@/css/checkbox.css" text="NORMAL" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <CheckBox fx:id="normal" focusTraversable="false" mnemonicParsing="false" onAction="#normalClicked" prefHeight="25.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="NORMAL" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets left="50.0" top="200.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                 </CheckBox>
-                <CheckBox fx:id="red" focusTraversable="false" mnemonicParsing="false" onAction="#redCheckClicked" stylesheets="@/css/checkbox.css" text="RED" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <CheckBox fx:id="red" focusTraversable="false" mnemonicParsing="false" onAction="#redCheckClicked" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="RED" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets left="52.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                 </CheckBox>
-                <CheckBox fx:id="black" alignment="CENTER_RIGHT" focusTraversable="false" mnemonicParsing="false" onAction="#blackCheckClicked" stylesheets="@/css/checkbox.css" text="BLACK" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <CheckBox fx:id="black" alignment="CENTER_RIGHT" focusTraversable="false" mnemonicParsing="false" onAction="#blackCheckClicked" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="BLACK" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                 </CheckBox>
                 <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css" GridPane.halignment="LEFT" GridPane.valignment="TOP">
@@ -104,12 +104,12 @@
                   <Insets left="2.0" top="2.0" />
                </GridPane.margin>
                 </Button>
-                <CheckBox fx:id="doublesize" focusTraversable="false" mnemonicParsing="false" onAction="#doubleClicked" stylesheets="@/css/checkbox.css" text="DOUBLE" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <CheckBox fx:id="doublesize" focusTraversable="false" mnemonicParsing="false" onAction="#doubleClicked" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="DOUBLE" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets top="200.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                 </CheckBox>
                 <Label fx:id="themesLabel" prefWidth="129.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="THEMES" textFill="#d5d5d5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
@@ -120,12 +120,12 @@
                         <Insets left="50.0" />
                     </GridPane.margin>
                 </Label>
-                <CheckBox fx:id="trio" focusTraversable="false" mnemonicParsing="false" onAction="#trioClicked" stylesheets="@/css/checkbox.css" text="TRIO" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <CheckBox fx:id="trio" focusTraversable="false" mnemonicParsing="false" onAction="#trioClicked" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" stylesheets="@/css/checkbox.css" text="TRIO" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets top="200.0" />
                     </GridPane.margin>
                <font>
-                  <Font size="16.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                 </CheckBox>
                 <Label fx:id="gamemodeLabel" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="GAMEMODE" textFill="#d5d5d5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
