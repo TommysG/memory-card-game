@@ -21,9 +21,9 @@
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="194.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="299.0" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="227.0" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="47.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="331.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="173.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="75.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
                 <Button fx:id="start" focusTraversable="false" maxHeight="60.0" maxWidth="400.0" mnemonicParsing="false" onAction="#startClicked" prefHeight="40.0" prefWidth="150.0" stylesheets="@/css/buttons.css" text="SINGLE MODE" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -35,11 +35,17 @@
                     <image>
                         <Image url="@/Images/Cards/backgroundBig.png" />
                     </image>
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
                 </ImageView>
                 <ImageView fx:id="blackImage" fitHeight="115.0" fitWidth="80.0" onMouseClicked="#blackClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                     <image>
                         <Image url="@/Images/Cards/background1Big.png" />
                     </image>
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
                 </ImageView>
                 <ImageView fx:id="doubleMode" fitHeight="100.0" fitWidth="100.0" onMouseClicked="#doubleModeClicked" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                     <image>

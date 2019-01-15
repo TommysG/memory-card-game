@@ -77,6 +77,7 @@ public class MultiplayerSettings {
             }
         }
 
+        multiplayer.setDisable(true);
         normal.setSelected(true);
         red.setSelected(true);
         normalMode.setEffect(glow);
@@ -111,6 +112,7 @@ public class MultiplayerSettings {
         stage.getScene().setRoot(Loader.getRoot());
     }
     public void number1Clicked(){
+        multiplayer.setDisable(false);
         mode.setRivalsNumber(1);
         number.setText("1");
         mode.setRival1("Goldfish");
@@ -122,6 +124,7 @@ public class MultiplayerSettings {
     }
 
     public void number2Clicked(){
+        multiplayer.setDisable(false);
         mode.setRivalsNumber(2);
         number.setText("2");
         mode.setRival1("Goldfish");
@@ -133,6 +136,7 @@ public class MultiplayerSettings {
     }
 
     public void number3Clicked(){
+        multiplayer.setDisable(false);
         mode.setRivalsNumber(3);
         number.setText("3");
         mode.setRival1("Goldfish");

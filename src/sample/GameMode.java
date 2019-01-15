@@ -81,6 +81,11 @@ public class GameMode {
                         imHeight = 90;
                         break;
                 }
+
+                if(globalMode.equals("Battle")){
+                    imWidth = 64;
+                    imHeight = 90;
+                }
             }
             else if(width == 1280){
                 imWidth = 80;

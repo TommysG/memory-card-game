@@ -34,9 +34,9 @@
          <center>
             <GridPane prefWidth="397.0" vgap="20.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="121.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="139.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -44,12 +44,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                      <MenuButton fx:id="resolution" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" prefWidth="185.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                      <MenuButton fx:id="resolution" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" prefWidth="124.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                           <items>
                               <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
-                              <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720" fx:id="x1024" />
+                              <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720(Recommended)" fx:id="x1024" />
                               <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
-                              <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x500" fx:id="x64" />
+                              <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x600" fx:id="x64" />
                           </items>
                      <GridPane.margin>
                         <Insets right="20.0" top="50.0" />
@@ -64,12 +64,12 @@
                             <Font size="20.0" />
                         </font>
                     </Label>
-                  <Label layoutX="169.0" layoutY="10.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Resolution" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label layoutX="169.0" layoutY="10.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Resolution" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Sounds" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Sounds" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font size="20.0" />
                      </font>

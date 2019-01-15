@@ -67,8 +67,8 @@ public class MainMenu {
                 VBox.setMargin(cards,new Insets(0,0,100,0));
             }
             else if(width == 600){
-                cards.setFitWidth(424);
-                cards.setFitHeight(98);
+                cards.setFitWidth(446);
+                cards.setFitHeight(149);
             }
             else if(width == 1280){
                 cards.setFitWidth(531);
@@ -235,14 +235,14 @@ public class MainMenu {
 
     public void x64Selected() throws IOException{
         output = new FileOutputStream("config.properties");
-        properties.setProperty("resolution","600x500");
+        properties.setProperty("resolution","600x600");
         properties.setProperty("fullScreen","false");
         properties.setProperty("width","600");
-        properties.setProperty("height","500");
+        properties.setProperty("height","600");
         properties.store(output,null);
 
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) resolution.getScene().getWindow();
-        stage.setScene(new Scene(root,600,500));
+        stage.setScene(new Scene(root,600,600));
     }
 }
