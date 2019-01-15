@@ -43,9 +43,6 @@ public class Game {
     private InputStream input = null;
 
     @FXML
-    private Label winLabel;
-
-    @FXML
     private GridPane grid;
 
     public Boolean cardsMatch;

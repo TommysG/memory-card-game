@@ -12,19 +12,19 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="multiplayer" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Multiplayer">
+<AnchorPane fx:id="multiplayer" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Multiplayer">
     <children>
         <Label fx:id="winLabel" layoutX="316.0" layoutY="275.0" prefHeight="71.0" prefWidth="188.0" text="YOU WIN" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="42.0" />
             </font>
         </Label>
-      <SplitPane dividerPositions="0.65" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #123456;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.65" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #303030;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #123456;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303030;">
                <children>
                     <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" layoutX="13.0" layoutY="10.0" prefHeight="698.0" prefWidth="815.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
-                    <Button fx:id="back" focusTraversable="false" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0">
+                    <Button fx:id="back" focusTraversable="false" layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css">
                         <graphic>
                             <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
@@ -34,7 +34,7 @@
                         </graphic>
                     </Button>
                </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="1103.0" style="-fx-background-color: #123456;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="1103.0" style="-fx-background-color: #252525;">
                <children>
                   <GridPane fx:id="gridTable" alignment="CENTER_RIGHT" gridLinesVisible="true" prefHeight="718.0" prefWidth="188.0" style="-fx-border-color: #000000; -fx-border-width: 3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
@@ -80,7 +80,7 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Button maxHeight="150.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="71.0" prefWidth="172.0" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                        <Button maxHeight="150.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="71.0" prefWidth="172.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                            <GridPane.margin>
                               <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
                            </GridPane.margin>

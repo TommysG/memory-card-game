@@ -7,39 +7,57 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainMenu" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenu">
+<AnchorPane fx:id="mainMenu" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MainMenu">
     <children>
-        <BorderPane layoutX="91.0" layoutY="1.0" prefHeight="171.0" prefWidth="707.0" AnchorPane.bottomAnchor="428.0" AnchorPane.leftAnchor="91.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="1.0">
-            <top>
-                <ImageView fx:id="settings" fitHeight="51.0" fitWidth="67.0" onMouseClicked="#settingsClicked" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
-                    <image>
-                        <Image url="@/Images/settings.png" />
-                    </image>
-                    <BorderPane.margin>
-                        <Insets right="5.0" top="5.0" />
-                    </BorderPane.margin>
-                </ImageView>
-            </top>
-        </BorderPane>
-        <HBox maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="535.0" AnchorPane.bottomAnchor="413.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <MenuButton fx:id="resolution" mnemonicParsing="false" text="Resolution" HBox.hgrow="ALWAYS">
+      <GridPane layoutX="300.0" layoutY="73.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="228.0" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="340.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="232.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="236.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="260.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="57.0" vgrow="ALWAYS" />
+        </rowConstraints>
+         <children>
+                <MenuButton fx:id="resolution" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                     <items>
                         <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
                         <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720" fx:id="x1024" />
                         <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
                         <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x400" fx:id="x64" />
                     </items>
+               <GridPane.margin>
+                  <Insets left="2.0" top="2.0" />
+               </GridPane.margin>
                 </MenuButton>
-            </children>
-        </HBox>
+            <Button mnemonicParsing="false" onAction="#settingsClicked" stylesheets="@/css/buttons.css" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <graphic>
+                      <ImageView fx:id="settings" fitHeight="51.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@/Images/settings.png" />
+                          </image>
+                      </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets right="2.0" top="2.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
         <HBox alignment="BOTTOM_RIGHT" layoutX="96.0" layoutY="297.0" prefHeight="103.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="297.0">
             <children>
-                <MenuButton fx:id="language" focusTraversable="false" maxWidth="250.0" mnemonicParsing="false" popupSide="TOP" prefHeight="41.0" prefWidth="179.0" text="English" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
+                <MenuButton fx:id="language" focusTraversable="false" maxWidth="250.0" mnemonicParsing="false" popupSide="TOP" prefHeight="41.0" prefWidth="179.0" stylesheets="@/css/menuButton.css" text="English" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#greek" text="Greek">
                             <graphic>
@@ -68,14 +86,22 @@
                         </ImageView>
                     </graphic>
                     <HBox.margin>
-                        <Insets left="400.0" />
+                        <Insets bottom="2.0" left="400.0" right="2.0" />
                     </HBox.margin>
                 </MenuButton>
             </children>
         </HBox>
-        <VBox alignment="CENTER" layoutY="69.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="69.0">
+        <VBox fx:id="vbox" alignment="CENTER" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="800.0" spacing="20.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0">
             <children>
-                <MenuButton fx:id="playMenu" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="179.0" text="PLAY" VBox.vgrow="ALWAYS">
+            <ImageView fx:id="cards" fitHeight="173.0" fitWidth="531.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/Images/cards.png" />
+               </image>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ImageView>
+                <MenuButton fx:id="playMenu" alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="179.0" stylesheets="@/css/menuButton.css" text="PLAY" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin>
@@ -85,11 +111,11 @@
                         <MenuItem fx:id="battle" mnemonicParsing="false" onAction="#battleClicked" text="Battle" />
                     </items>
                 </MenuButton>
-                <Button fx:id="credits" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" onAction="#creditsClicked" prefHeight="53.0" prefWidth="179.0" text="CREDITS" VBox.vgrow="ALWAYS">
+                <Button fx:id="credits" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" onAction="#creditsClicked" prefHeight="53.0" prefWidth="179.0" stylesheets="@/css/buttons.css" text="CREDITS" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin></Button>
-                <Button fx:id="exit" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" onAction="#exitClicked" prefHeight="53.0" prefWidth="179.0" text="EXIT" VBox.vgrow="ALWAYS">
+                <Button fx:id="exit" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" mnemonicParsing="false" onAction="#exitClicked" prefHeight="53.0" prefWidth="179.0" stylesheets="@/css/buttons.css" text="EXIT" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin></Button>

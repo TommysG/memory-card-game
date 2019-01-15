@@ -20,9 +20,9 @@ public class GameMode {
     private double imWidth = 90,imHeight = 130;
 
     public GameMode(){
-        rival1 = "Goldfish";
-        rival2 = "Goldfish";
-        rival3 = "Goldfish";
+        rival1 = "None";
+        rival2 = "None";
+        rival3 = "None";
         rivalsNumber = 0;
     }
 

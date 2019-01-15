@@ -113,6 +113,7 @@ public class MultiplayerSettings {
     public void number1Clicked(){
         mode.setRivalsNumber(1);
         number.setText("1");
+        mode.setRival1("Goldfish");
         mode.setRival2("");
         mode.setRival3("");
         player1.setDisable(false);
@@ -123,6 +124,8 @@ public class MultiplayerSettings {
     public void number2Clicked(){
         mode.setRivalsNumber(2);
         number.setText("2");
+        mode.setRival1("Goldfish");
+        mode.setRival2("Goldfish");
         mode.setRival3("");
         player1.setDisable(false);
         player2.setDisable(false);
@@ -132,6 +135,9 @@ public class MultiplayerSettings {
     public void number3Clicked(){
         mode.setRivalsNumber(3);
         number.setText("3");
+        mode.setRival1("Goldfish");
+        mode.setRival2("Goldfish");
+        mode.setRival3("Goldfish");
         player1.setDisable(false);
         player2.setDisable(false);
         player3.setDisable(false);

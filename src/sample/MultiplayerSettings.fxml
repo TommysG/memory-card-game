@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #123456;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MultiplayerSettings">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MultiplayerSettings">
     <children>
-        <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" minWidth="0.0" style="-fx-background-color: #123456;" vgap="10.0" HBox.hgrow="ALWAYS">
+        <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" minWidth="0.0" style="-fx-background-color: #303030;" vgap="10.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="214.0" />
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="181.0" />
@@ -29,9 +29,9 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="32.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <Button fx:id="multiplayer" focusTraversable="false" maxHeight="60.0" maxWidth="400.0" mnemonicParsing="false" onAction="#multiplayerClicked" prefHeight="40.0" prefWidth="150.0" text="MULTIPLAYER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <Button fx:id="multiplayer" focusTraversable="false" maxHeight="60.0" maxWidth="400.0" mnemonicParsing="false" onAction="#multiplayerClicked" prefHeight="40.0" prefWidth="150.0" stylesheets="@/css/buttons.css" text="MULTIPLAYER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets bottom="10.0" left="45.0" right="45.0" />
+                        <Insets bottom="10.0" left="50.0" right="45.0" />
                     </GridPane.margin>
                 </Button>
                 <ImageView fx:id="redImage" fitHeight="115.0" fitWidth="191.0" onMouseClicked="#redClicked" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
@@ -83,7 +83,7 @@
                         <Insets right="10.0" />
                     </GridPane.margin>
                 </CheckBox>
-                <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="60.0" prefWidth="60.0" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                     <graphic>
                         <ImageView fitHeight="29.0" fitWidth="28.0">
                             <image>
@@ -91,13 +91,16 @@
                             </image>
                         </ImageView>
                     </graphic>
+               <GridPane.margin>
+                  <Insets left="2.0" top="2.0" />
+               </GridPane.margin>
                 </Button>
                 <CheckBox fx:id="doublesize" focusTraversable="false" mnemonicParsing="false" onAction="#doubleClicked" text="DOUBLE" textFill="WHITE" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets top="110.0" />
                     </GridPane.margin>
                 </CheckBox>
-                <Label fx:id="themesLabel" prefWidth="129.0" text="THEMES" textFill="#d5d5d5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                <Label fx:id="themesLabel" prefWidth="129.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="THEMES" textFill="#d5d5d5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                     <font>
                         <Font name="Comic Sans MS" size="30.0" />
                     </font>
@@ -110,14 +113,14 @@
                         <Insets top="110.0" />
                     </GridPane.margin>
                 </CheckBox>
-                <Label fx:id="gamemodeLabel" text="GAMEMODE" textFill="#d5d5d5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                <Label fx:id="gamemodeLabel" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="GAMEMODE" textFill="#d5d5d5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                     <font>
                         <Font name="Comic Sans MS" size="30.0" />
                     </font>
                 </Label>
                 <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <MenuButton fx:id="number" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="NUMBER" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="number" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="NUMBER" VBox.vgrow="ALWAYS">
                             <items>
                                 <MenuItem fx:id="number1" mnemonicParsing="false" onAction="#number1Clicked" text="1" />
                                 <MenuItem fx:id="number2" mnemonicParsing="false" onAction="#number2Clicked" text="2" />
@@ -127,7 +130,7 @@
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                         </MenuButton>
-                        <MenuButton fx:id="player1" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Goldfish" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="player1" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Goldfish" VBox.vgrow="ALWAYS">
                             <items>
                                 <MenuItem fx:id="Human1" mnemonicParsing="false" onAction="#H1" text="Human" />
                                 <MenuItem fx:id="Goldfish1" mnemonicParsing="false" onAction="#G1" text="Goldfish" />
@@ -138,7 +141,7 @@
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                         </MenuButton>
-                        <MenuButton fx:id="player2" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Goldfish" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="player2" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Goldfish" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
@@ -149,7 +152,7 @@
                                 <MenuItem fx:id="e2" mnemonicParsing="false" onAction="#e2" text="Elephant" />
                             </items>
                         </MenuButton>
-                        <MenuButton fx:id="player3" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Goldfish" VBox.vgrow="ALWAYS">
+                        <MenuButton fx:id="player3" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Goldfish" VBox.vgrow="ALWAYS">
                             <VBox.margin>
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
@@ -162,7 +165,7 @@
                         </MenuButton>
                     </children>
                 </VBox>
-                  <Label fx:id="themesLabel1" prefHeight="42.0" prefWidth="133.0" text="RIVALS" textFill="#d5d5d5" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                  <Label fx:id="themesLabel1" prefHeight="42.0" prefWidth="133.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="RIVALS" textFill="#d5d5d5" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                       <font>
                           <Font name="Comic Sans MS" size="30.0" />
                       </font>

@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -27,7 +29,7 @@ public class MainMenu {
     @FXML
     private MenuButton language,resolution,playMenu;
     @FXML
-    private ImageView flag,settings;
+    private ImageView flag,settings,cards;
     @FXML
     private AnchorPane mainMenu;
     @FXML
@@ -54,6 +56,25 @@ public class MainMenu {
             properties.load(input);
 
             resolution.setText(properties.getProperty("resolution"));
+            int width = Integer.parseInt(properties.getProperty("width"));
+            if(width == 800){
+                cards.setFitWidth(583);
+                cards.setFitHeight(173);
+            }
+            else if(width == 999 ){
+                cards.setFitWidth(596);
+                cards.setFitHeight(372);
+                VBox.setMargin(cards,new Insets(0,0,100,0));
+            }
+            else if(width == 600){
+                cards.setFitWidth(424);
+                cards.setFitHeight(98);
+            }
+            else if(width == 1280){
+                cards.setFitWidth(531);
+                cards.setFitHeight(205);
+
+            }
         }
         else{
             output = new FileOutputStream("config.properties");
@@ -65,15 +86,11 @@ public class MainMenu {
 
             resolution.setText(properties.getProperty("resolution"));
         }
-
     }
 
     public void playClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SingleModeSettings.fxml"));
         Stage stage = (Stage) playMenu.getScene().getWindow();
-        //double width = Double.parseDouble(properties.getProperty("width"));
-        // double height = Double.parseDouble(properties.getProperty("height"));
-        // boolean fullScreen = Boolean.parseBoolean(properties.getProperty("fullScreen"));
         stage.getScene().setRoot(root);
 
     }
@@ -82,9 +99,6 @@ public class MainMenu {
     public void multiplayerClicked() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MultiplayerSettings.fxml"));
         Stage stage = (Stage) playMenu.getScene().getWindow();
-        //double width = Double.parseDouble(properties.getProperty("width"));
-        // double height = Double.parseDouble(properties.getProperty("height"));
-        // boolean fullScreen = Boolean.parseBoolean(properties.getProperty("fullScreen"));
         stage.getScene().setRoot(root);
     }
 
@@ -150,7 +164,7 @@ public class MainMenu {
         Stage dialog = new Stage();
         dialog.setTitle("Exit");
 
-        Scene scene = new Scene(root,400,200);
+        Scene scene = new Scene(root,425,200);
         scene.setFill(Color.TRANSPARENT);
         dialog.setScene(scene);
         dialog.initModality(Modality.WINDOW_MODAL);
@@ -180,6 +194,7 @@ public class MainMenu {
         properties.setProperty("height","999");
         properties.setProperty("resolution","FullScreen");
         properties.store(output,null);
+
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) resolution.getScene().getWindow();
         stage.setScene(new Scene(root));

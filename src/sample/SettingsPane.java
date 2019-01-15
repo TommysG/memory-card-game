@@ -157,8 +157,6 @@ public class SettingsPane {
 
     }
 
-
-
     public void closeSettings(){
         Stage settingsPane = (Stage) close.getScene().getWindow();
         Parent mainMenu = settingsPane.getOwner().getScene().getRoot();
