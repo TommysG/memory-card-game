@@ -6,6 +6,8 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -17,10 +19,17 @@
     <children>
         <BorderPane layoutX="278.0" layoutY="16.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
-                <Button fx:id="close" mnemonicParsing="false" onAction="#closeSettings" prefWidth="0.0" stylesheets="@/css/buttons.css" text="×" BorderPane.alignment="TOP_RIGHT">
+                <Button fx:id="close" mnemonicParsing="false" onAction="#closeSettings" prefWidth="0.0" stylesheets="@/css/buttons.css" BorderPane.alignment="TOP_RIGHT">
                <font>
                   <Font name="Arial Black" size="12.0" />
-               </font></Button>
+               </font>
+               <graphic>
+                  <ImageView fitHeight="43.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/Images/close.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             </top>
          <center>
             <GridPane prefWidth="397.0" vgap="20.0" BorderPane.alignment="CENTER">

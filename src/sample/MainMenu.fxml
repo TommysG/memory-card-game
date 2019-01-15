@@ -40,7 +40,7 @@
                 </MenuButton>
             <Button mnemonicParsing="false" onAction="#settingsClicked" stylesheets="@/css/buttons.css" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <graphic>
-                      <ImageView fx:id="settings" fitHeight="51.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                      <ImageView fx:id="settings" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                           <image>
                               <Image url="@/Images/settings.png" />
                           </image>
