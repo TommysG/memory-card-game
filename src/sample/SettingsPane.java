@@ -133,17 +133,17 @@ public class SettingsPane {
     public void x64Selected() throws IOException{
         resolution.setText("600x400");
         output = new FileOutputStream("config.properties");
-        properties.setProperty("resolution","600x400");
+        properties.setProperty("resolution","600x500");
         properties.setProperty("fullScreen","false");
         properties.setProperty("width","600");
-        properties.setProperty("height","400");
+        properties.setProperty("height","500");
         properties.store(output,null);
 
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage settingsPane = (Stage) resolution.getScene().getWindow();
 
         Stage stage = (Stage) settingsPane.getOwner().getScene().getWindow();
-        stage.setScene(new Scene(root,600,400));
+        stage.setScene(new Scene(root,600,500));
         GaussianBlur blur = new GaussianBlur(3);
         Parent settings = settingsPane.getOwner().getScene().getRoot();
         settings.setEffect(blur);

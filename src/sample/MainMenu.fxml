@@ -30,9 +30,9 @@
                 <MenuButton fx:id="resolution" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                     <items>
                         <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
-                        <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720" fx:id="x1024" />
+                        <MenuItem mnemonicParsing="false" onAction="#x1280Selected" text="1280x720" fx:id="x1280" />
                         <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
-                        <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x400" fx:id="x64" />
+                        <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x500" fx:id="x64" />
                     </items>
                <GridPane.margin>
                   <Insets left="2.0" top="2.0" />

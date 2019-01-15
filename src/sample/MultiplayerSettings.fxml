@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MultiplayerSettings">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MultiplayerSettings">
     <children>
         <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" minWidth="0.0" style="-fx-background-color: #303030;" vgap="10.0" HBox.hgrow="ALWAYS">
             <columnConstraints>
@@ -24,9 +24,9 @@
                 <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="184.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="196.0" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="151.0" vgrow="ALWAYS" />
-                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="32.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="277.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="174.0" vgrow="ALWAYS" />
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="40.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
                 <Button fx:id="multiplayer" focusTraversable="false" maxHeight="60.0" maxWidth="400.0" mnemonicParsing="false" onAction="#multiplayerClicked" prefHeight="40.0" prefWidth="150.0" stylesheets="@/css/buttons.css" text="MULTIPLAYER" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -68,20 +68,29 @@
                         <Image url="@/Images/GameModes/Game3.png" />
                     </image>
                 </ImageView>
-                <CheckBox fx:id="normal" focusTraversable="false" mnemonicParsing="false" onAction="#normalClicked" prefHeight="24.0" prefWidth="71.0" text="NORMAL" textFill="WHITE" visible="false" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <CheckBox fx:id="normal" focusTraversable="false" mnemonicParsing="false" onAction="#normalClicked" prefHeight="25.0" prefWidth="103.0" stylesheets="@/css/checkbox.css" text="NORMAL" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets left="50.0" top="110.0" />
+                        <Insets left="50.0" top="200.0" />
                     </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
                 </CheckBox>
-                <CheckBox fx:id="red" focusTraversable="false" mnemonicParsing="false" onAction="#redCheckClicked" text="RED" textFill="WHITE" visible="false" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <CheckBox fx:id="red" focusTraversable="false" mnemonicParsing="false" onAction="#redCheckClicked" stylesheets="@/css/checkbox.css" text="RED" textFill="WHITE" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets left="52.0" />
                     </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
                 </CheckBox>
-                <CheckBox fx:id="black" focusTraversable="false" mnemonicParsing="false" onAction="#blackCheckClicked" text="BLACK" textFill="WHITE" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                <CheckBox fx:id="black" alignment="CENTER_RIGHT" focusTraversable="false" mnemonicParsing="false" onAction="#blackCheckClicked" stylesheets="@/css/checkbox.css" text="BLACK" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
                 </CheckBox>
                 <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                     <graphic>
@@ -95,10 +104,13 @@
                   <Insets left="2.0" top="2.0" />
                </GridPane.margin>
                 </Button>
-                <CheckBox fx:id="doublesize" focusTraversable="false" mnemonicParsing="false" onAction="#doubleClicked" text="DOUBLE" textFill="WHITE" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <CheckBox fx:id="doublesize" focusTraversable="false" mnemonicParsing="false" onAction="#doubleClicked" stylesheets="@/css/checkbox.css" text="DOUBLE" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets top="110.0" />
+                        <Insets top="200.0" />
                     </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
                 </CheckBox>
                 <Label fx:id="themesLabel" prefWidth="129.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="THEMES" textFill="#d5d5d5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                     <font>
@@ -108,10 +120,13 @@
                         <Insets left="50.0" />
                     </GridPane.margin>
                 </Label>
-                <CheckBox fx:id="trio" focusTraversable="false" mnemonicParsing="false" onAction="#trioClicked" text="TRIO" textFill="WHITE" visible="false" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                <CheckBox fx:id="trio" focusTraversable="false" mnemonicParsing="false" onAction="#trioClicked" stylesheets="@/css/checkbox.css" text="TRIO" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <GridPane.margin>
-                        <Insets top="110.0" />
+                        <Insets top="200.0" />
                     </GridPane.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
                 </CheckBox>
                 <Label fx:id="gamemodeLabel" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );;" text="GAMEMODE" textFill="#d5d5d5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                     <font>

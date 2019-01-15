@@ -23,7 +23,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 
-        double width = 800,height =600;
+        double width = 1280,height =720;
         boolean fullScreen;
 
         File f = new File("config.properties");

@@ -40,13 +40,13 @@
                               <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
                               <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720" fx:id="x1024" />
                               <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
-                              <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x400" fx:id="x64" />
+                              <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x500" fx:id="x64" />
                           </items>
                      <GridPane.margin>
                         <Insets right="20.0" top="50.0" />
                      </GridPane.margin>
                       </MenuButton>
-                    <ToggleButton maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" text="Sounds" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                    <ToggleButton maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" stylesheets="@/css/toggleButton.css" text="Sounds" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets bottom="50.0" right="20.0" />
                      </GridPane.margin></ToggleButton>

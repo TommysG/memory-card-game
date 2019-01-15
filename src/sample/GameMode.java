@@ -106,6 +106,11 @@ public class GameMode {
                         imHeight = 62;
                         break;
                 }
+
+                if(globalMode.equals("Battle")){
+                    imWidth = 43;
+                    imHeight = 62;
+                }
             }
 
         }

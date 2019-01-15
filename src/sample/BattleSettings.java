@@ -28,6 +28,10 @@ public class BattleSettings {
         gameMode = new GameMode();
     }
 
+    public void initialize(){
+       gameMode.setRival1("Goldfish");
+    }
+
     public void goldfishSelected(){
         rivalSelector.setText("Goldfish");
         gameMode.setRival1("Goldfish");

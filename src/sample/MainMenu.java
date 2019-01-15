@@ -78,11 +78,14 @@ public class MainMenu {
         }
         else{
             output = new FileOutputStream("config.properties");
-            properties.setProperty("width","800");
-            properties.setProperty("height","600");
-            properties.setProperty("resolution", "800x600");
+            properties.setProperty("width","1280");
+            properties.setProperty("height","720");
+            properties.setProperty("resolution", "1280x720");
             properties.setProperty("fullScreen","false");
             properties.store(output,null);
+
+            cards.setFitWidth(531);
+            cards.setFitHeight(205);
 
             resolution.setText(properties.getProperty("resolution"));
         }
@@ -204,7 +207,7 @@ public class MainMenu {
         stage.show();
     }
 
-    public void x1024Selected() throws IOException{
+    public void x1280Selected() throws IOException{
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","1280x720");
         properties.setProperty("fullScreen","false");
@@ -232,14 +235,14 @@ public class MainMenu {
 
     public void x64Selected() throws IOException{
         output = new FileOutputStream("config.properties");
-        properties.setProperty("resolution","600x400");
+        properties.setProperty("resolution","600x500");
         properties.setProperty("fullScreen","false");
         properties.setProperty("width","600");
-        properties.setProperty("height","400");
+        properties.setProperty("height","500");
         properties.store(output,null);
 
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) resolution.getScene().getWindow();
-        stage.setScene(new Scene(root,600,400));
+        stage.setScene(new Scene(root,600,500));
     }
 }

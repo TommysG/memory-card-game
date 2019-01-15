@@ -43,7 +43,7 @@ public class Battle extends Multiplayer {
 
 
     @Override
-    public void initialize() {
+    public void initialize()  {
     }
 
     public Battle(){
@@ -61,6 +61,8 @@ public class Battle extends Multiplayer {
         super.setMode(gameMode, theme);
         this.theme = theme;
         this.gameMode = gameMode;
+
+        gameMode.gameResolution();
 
         createImageViews(gridTable1,imageViews);
         createImages(cards);
