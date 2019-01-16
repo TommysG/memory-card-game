@@ -34,8 +34,8 @@
          <center>
             <GridPane prefWidth="397.0" vgap="20.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="121.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="136.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="105.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="139.0" />
               </columnConstraints>
               <rowConstraints>
@@ -44,7 +44,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                      <MenuButton fx:id="resolution" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" prefWidth="124.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                      <MenuButton fx:id="resolution" alignment="CENTER" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" prefWidth="124.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                           <items>
                               <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
                               <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720(Recommended)" fx:id="x1024" />
@@ -68,11 +68,29 @@
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
                   </Label>
                   <Label layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Sounds" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button fx:id="clearProgress" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" onAction="#clearProgressClicked" prefHeight="42.0" prefWidth="129.0" stylesheets="@/css/buttons.css" text="Clear Progress" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets bottom="50.0" right="20.0" />
+                     </GridPane.margin></Button>
+                  <Label layoutX="10.0" layoutY="99.0" prefHeight="30.0" prefWidth="133.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Clear Progress" textFill="WHITE" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
                   </Label>
                </children>
             </GridPane>

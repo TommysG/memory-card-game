@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="multiplayer" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Multiplayer">
+<AnchorPane fx:id="multiplayer" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #303030;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Multiplayer">
     <children>
         <Label fx:id="winLabel" layoutX="316.0" layoutY="275.0" prefHeight="71.0" prefWidth="188.0" text="YOU WIN" textFill="WHITE">
             <font>
@@ -50,12 +50,12 @@
                       <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="player3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 3:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
+                        <Label fx:id="player3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 3: 0" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
                            <font>
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player1" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 1:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                        <Label fx:id="player1" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 1: 0" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
                            <font>
                               <Font size="26.0" />
                            </font>
@@ -70,12 +70,12 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player2" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 2:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
+                        <Label fx:id="player2" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 2: 0" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
                            <font>
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label fx:id="player4" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 4:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
+                        <Label fx:id="player4" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 4: 0" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
                            <font>
                               <Font size="26.0" />
                            </font>

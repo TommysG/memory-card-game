@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -33,7 +34,7 @@ public class  Game {
     public ArrayList<Card> cards,seenCardsElephant,seenCardsKangaroo;
 
     private Image theme;
-    private int clicks = 0;
+    private int clicks = 0,moves1,moves2,moves3;
     public int id1,id2,id3;
 
     public ImageView imageView1,imageView2,imageView3;
@@ -41,12 +42,13 @@ public class  Game {
 
     private Properties properties = new Properties();
     private InputStream input = null;
+    private OutputStream output = null;
 
     @FXML
     private GridPane grid;
-    private Score score;
+    public Score score;
     @FXML
-    private Label Moves;
+    private Label Moves,foundCardsLabel;
 
     public Boolean cardsMatch;
 
@@ -64,7 +66,18 @@ public class  Game {
         cardsMatch = false;
     }
 
-    public void initialize() {
+    public void initialize() throws IOException{
+        File f2 =new File("score.properties");
+
+        if(f2.exists()){
+            input = new FileInputStream("score.properties");
+            properties.load(input);
+
+            moves1 = Integer.parseInt(properties.getProperty("SingleModeHighScore1"));
+            moves2 = Integer.parseInt(properties.getProperty("SingleModeHighScore2"));
+            moves3 = Integer.parseInt(properties.getProperty("SingleModeHighScore3"));
+        }
+
     }
 
     public void setMode(GameMode gameMode,Image theme) throws IOException{
@@ -117,8 +130,6 @@ public class  Game {
             }
         }
         if(clicks == 2) {
-            score.updateMoves();
-            Moves.setText(""+score.getMoves());
             id2 = card.getId();
             imageView2 = imageView;
             card2 = card;
@@ -127,8 +138,14 @@ public class  Game {
                 seenCardsElephant.add(card2);
             }
             if (gameMode.getMode() != 3) {
+                score.updateMoves();
+                if(gameMode.getGlobalMode().equals("SingleMode"))
+                    Moves.setText("Moves: "+score.getMoves());
                 disableAll();
                 if (id1 == id2) {
+                    score.updateFoundCards();
+                    if(gameMode.getGlobalMode().equals("SingleMode"))
+                        foundCardsLabel.setText("Found Pairs:"+score.getFoundCards());
                     cardsMatch = true;
                     foundCards.add(imageView1);
                     foundCards.add(imageView2);
@@ -160,12 +177,28 @@ public class  Game {
                     timeline.play();
                 }
                 if (foundCards.size() == gameMode.getSize() && gameMode.getGlobalMode().equals("SingleMode")) {
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2),event -> eraseCards(grid)));
                     timeline.play();
-                    timeline.setOnFinished(event -> {
-                        eraseCards(grid);
-                        //winLabel.setVisible(true);
-                    });
+                    if(gameMode.getMode() == 1){
+                        if(score.getMoves()<moves1){
+                            properties.setProperty("SingleModeHighScore1", Integer.toString(score.getMoves()));
+                        }
+                    }
+                    else if(gameMode.getMode() == 2){
+                        if(score.getMoves()<moves2){
+                            properties.setProperty("SingleModeHighScore2", Integer.toString(score.getMoves()));
+                        }
+                    }
+                    try {
+                        output = new FileOutputStream("score.properties");
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        properties.store(output,null);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 clicks = 0;
             }
@@ -173,6 +206,8 @@ public class  Game {
         if (gameMode.getMode()==3) {
             if (clicks == 3) {
                 score.updateMoves();
+                if(gameMode.getGlobalMode().equals("SingleMode"))
+                    Moves.setText("Moves: " + score.getMoves());
                 id3 = card.getId();
                 imageView3 = imageView;
                 card3 = card;
@@ -184,6 +219,9 @@ public class  Game {
 
                 disableAll();
                 if (id1 == id2 && id2 == id3) {
+                    score.updateFoundCards();
+                    if(gameMode.getGlobalMode().equals("SingleMode"))
+                        foundCardsLabel.setText("Found Pairs:"+score.getFoundCards());
                     cardsMatch = true;
                     foundCards.add(imageView1);
                     foundCards.add(imageView2);
@@ -222,13 +260,22 @@ public class  Game {
                     }));
                     timeline.play();
                 }
-                if (foundCards.size() == gameMode.getSize()) {
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2)));
+                if (foundCards.size() == gameMode.getSize() && gameMode.getGlobalMode().equals("SingleMode")) {
+                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.2),event -> eraseCards(grid)));
                     timeline.play();
-                    timeline.setOnFinished(event -> {
-                        eraseCards(grid);
-                        //winLabel.setVisible(true);
-                    });
+                    if(score.getMoves()<moves3){
+                        try {
+                            output = new FileOutputStream("score.properties");
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        properties.setProperty("SingleModeHighScore3",Integer.toString(score.getMoves()));
+                        try {
+                            properties.store(output,null);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
                 clicks=0;
             }

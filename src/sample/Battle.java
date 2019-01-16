@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,9 +18,10 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Properties;
 import java.util.Random;
 import javafx.event.*;
 
@@ -31,7 +33,7 @@ public class Battle extends Multiplayer {
     private GridPane gridTable1,gridTable2;
     private Image theme;
 
-    private ArrayList<ImageView> imageViews2;
+    private ArrayList<ImageView> imageViews2,foundCards2;
     private ArrayList<Card> cards2;
 
     private int clicks,random1;
@@ -41,14 +43,31 @@ public class Battle extends Multiplayer {
     private boolean flag,boolRan;
     private GameMode gameMode;
 
+    private int botScore,playerScore,wins;
+    private Properties properties = new Properties();
+    private InputStream input = null;
+    private OutputStream output = null;
+
+    @FXML
+    private Label player1,player2,turn,nextTurn;
+
 
     @Override
-    public void initialize()  {
+    public void initialize() throws IOException {
+        nextButton.setDisable(true);
+        File f =new File("score.properties");
+
+        if(f.exists()){
+            input = new FileInputStream("score.properties");
+            properties.load(input);
+            wins = Integer.parseInt(properties.getProperty("BattleWins"));
+        }
     }
 
     public Battle(){
         imageViews2 = new ArrayList<>();
         foundCards = new ArrayList<>();
+        foundCards2 =new ArrayList<>();
         cards2 = new ArrayList<>();
         gameMode = new GameMode();
         flag = false;
@@ -75,24 +94,36 @@ public class Battle extends Multiplayer {
         // shuffleCards();
         setImages(imageViews2,cards2);
 
+        turn.setText("Turn: Player1(You)");
+        nextTurn.setText("Next Turn:"+gameMode.getRival1());
     }
-
-
 
     @Override
     public void clickEvent(ImageView imageView, Card card) {
-        System.out.println("ONE CARD CLICKED");
+        if(foundCards.size() == gameMode.getSize()*2) {
+            findWinner();
+            nextButton.setDisable(true);
+            return;
+        }
         clicks++;
 
         flipAnimation(imageView, card);
         playerImageview = imageView;
         playerCard = card;
 
+        if(clicks == 1){
+            nextButton.setDisable(false);
+        }
+
         nextButton.setOnAction(event -> {
             if (clicks==0 ) {
+                turn.setText("Turn: Player1(You)");
+                nextTurn.setText("Next Turn: "+gameMode.getRival1());
                 enableAll();
             }
             else if (clicks==1 ) {
+                turn.setText("Turn: "+gameMode.getRival1());
+                nextTurn.setText("Next Turn: Player1(You)");
                 if(gameMode.getRival1().equals("Goldfish")){
                     this.goldfish();
                     compareGoldfish(playerImageview,playerCard);
@@ -142,6 +173,8 @@ public class Battle extends Multiplayer {
                 }
             }
             else if(clicks == 3) {
+                turn.setText("Turn: Player1(You)");
+                nextTurn.setText("Next Turn: "+gameMode.getRival1());
                 enableAll();
             }
             else{
@@ -203,6 +236,12 @@ public class Battle extends Multiplayer {
     }
 
     public void goldfish() {
+        nextButton.setDisable(true);
+        if(foundCards.size() == gameMode.getSize()*2) {
+            findWinner();
+            nextButton.setDisable(true);
+            return;
+        }
         Random random = new Random();
         random1 = random.nextInt(imageViews2.size());
         boolRan = random.nextBoolean();
@@ -226,10 +265,16 @@ public class Battle extends Multiplayer {
         }
 
         flipAnimation(botImageView,botCard);
+        nextButton.setDisable(false);
     }
 
     private void elephant(Card card){
-
+        nextButton.setDisable(true);
+        if(foundCards.size() == gameMode.getSize()*2) {
+            findWinner();
+            nextButton.setDisable(true);
+            return;
+        }
         flag = false;
         ImageView seenImageView1 = imageViews2.get(0);
         Card seenCard1 = cards2.get(0);
@@ -246,10 +291,16 @@ public class Battle extends Multiplayer {
 
         botImageView = seenImageView1;
         botCard = seenCard1;
+        nextButton.setDisable(false);
     }
 
     private void kangaroo(Card card){
-
+        nextButton.setDisable(true);
+        if(foundCards.size() == gameMode.getSize()*2) {
+            findWinner();
+            nextButton.setDisable(true);
+            return;
+        }
         flag = false;
         ImageView seenImageView1 = imageViews2.get(0);
         Card seenCard1 = cards2.get(0);
@@ -266,11 +317,21 @@ public class Battle extends Multiplayer {
 
         botImageView = seenImageView1;
         botCard = seenCard1;
-
+        nextButton.setDisable(false);
     }
 
     private void compareKangaroo(ImageView playerImageview,Card playerCard){
+        nextButton.setDisable(true);
         if(flag){
+            if(clicks == 1){
+                botScore++;
+                player2.setText("Player2: "+botScore);
+            }
+            else if(clicks == 4){
+                playerScore++;
+                player1.setText("Player1: "+playerScore);
+            }
+
             foundCards.add(botImageView);
             foundCards.add(playerImageview);
             seenImageViewsKangaroo.remove(botImageView);
@@ -283,12 +344,22 @@ public class Battle extends Multiplayer {
                 playerImageview.setDisable(true);
                 botImageView.setOpacity(0.6);
                 playerImageview.setOpacity(0.6);
+                nextButton.setDisable(false);
             })).play();
         }
     }
 
     private void compareGoldfish(ImageView playerImageview,Card playerCard){
+        nextButton.setDisable(true);
         if(botCard.getId() == playerCard.getId()){
+            if(clicks == 1){
+                botScore++;
+                player2.setText("Player2: "+botScore);
+            }
+            else if(clicks == 4){
+                playerScore++;
+                player1.setText("Player1: "+playerScore);
+            }
             foundCards.add(botImageView);
             foundCards.add(playerImageview);
             seenImageViewsElephant.remove(botImageView);
@@ -300,18 +371,25 @@ public class Battle extends Multiplayer {
                 playerImageview.setDisable(true);
                 botImageView.setOpacity(0.6);
                 playerImageview.setOpacity(0.6);
+                nextButton.setDisable(false);
             })).play();
         }
         else {
             new Timeline(new KeyFrame(Duration.seconds(1.5), event -> {
                 botImageView.setImage(botCard.getBackground());
                 playerImageview.setImage(playerCard.getBackground());
+                nextButton.setDisable(false);
             })).play();
         }
     }
 
     private void compareElephant(ImageView playerImageview,Card playerCard){
+        nextButton.setDisable(true);
         if(flag){
+            if(clicks == 1){
+                botScore++;
+                player2.setText("Player2: "+botScore);
+            }
             foundCards.add(botImageView);
             foundCards.add(playerImageview);
             seenImageViewsElephant.remove(botImageView);
@@ -324,7 +402,25 @@ public class Battle extends Multiplayer {
                 playerImageview.setDisable(true);
                 botImageView.setOpacity(0.6);
                 playerImageview.setOpacity(0.6);
+                nextButton.setDisable(false);
             })).play();
+        }
+    }
+
+    private void findWinner(){
+        if (playerScore>botScore){
+            wins++;
+            try {
+                output = new FileOutputStream("score.properties");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            properties.setProperty("BattleWins",Integer.toString(wins));
+            try {
+                properties.store(output,null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

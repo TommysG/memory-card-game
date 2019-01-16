@@ -13,15 +13,12 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
 
 public class Multiplayer extends Game {
 
-    private int clicks,random1,random2,random3;
+    private int clicks,random1,random2,random3,wins1,wins2,wins3;
     @FXML
     private GridPane grid,gridTable;
     @FXML
@@ -32,12 +29,30 @@ public class Multiplayer extends Game {
 
     private ImageView clickedImageView;
 
+    private int[] scoreBots = new int[3];
+
+    private Properties properties = new Properties();
+    private InputStream input = null;
+    private OutputStream output = null;
+
     private final Object PAUSE_KEY = new Object();
 
     public Multiplayer(){
         multiInitialize = new Timeline();
         clicks = 0;
         clickedImageView = null;
+    }
+
+    public void initialize()throws IOException{
+        File f =new File("score.properties");
+
+        if(f.exists()){
+            input = new FileInputStream("score.properties");
+            properties.load(input);
+            wins1 = Integer.parseInt(properties.getProperty("MultiplayerWins1"));
+            wins2 = Integer.parseInt(properties.getProperty("MultiplayerWins2"));
+            wins3 = Integer.parseInt(properties.getProperty("MultiplayerWins3"));
+        }
     }
 
 
@@ -64,26 +79,23 @@ public class Multiplayer extends Game {
 
      }
 
-    public void disablePlayer(){
-        for(int i = 0; i<imageViews.size();i++){
-            imageViews.get(i).setOnMouseClicked(null);
-        }
-    }
 
     @Override
     public void clickEvent(ImageView imageView, Card card) {
         super.clickEvent(imageView,card);
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
+            return;
+        }
+        player1.setText("Player1:"+score.getFoundCards());
         clickedImageView = imageView;
         clicks++;
 
         if(gameMode.getMode()!= 3) {
+
             if (clicks == 2 && cardsMatch) {
                 clicks = 0;
                 // enableAll();
-            }
-            else
-            {
-                next.setDisable(false);
             }
             if (clicks == 2 && foundCards.size() == gameMode.getSize())
                 return;
@@ -132,8 +144,11 @@ public class Multiplayer extends Game {
     }
 
     public void goldfish(){
-        if(foundCards.size() == gameMode.getSize())
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
             return;
+        }
+
         disableAll();
         Random random = new Random();
         random1 = random.nextInt(imageViews.size());
@@ -178,6 +193,7 @@ public class Multiplayer extends Game {
         scale2.setOnFinished(event -> {imageView2.setScaleX(1); imageView2.setImage(card2.getValue());});
 
         if (cards.get(random1).getId() == cards.get(random2).getId()) {
+                botUpdateScore1_2();
                 foundCards.add(imageView1);
                 foundCards.add(imageView2);
                 seenImageViewsElephant.remove(imageView1);
@@ -207,8 +223,11 @@ public class Multiplayer extends Game {
     }
 
     public void goldfish3(){
-        if(foundCards.size() == gameMode.getSize())
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
             return;
+        }
+
         disableAll();
         Random random = new Random();
         random1 = random.nextInt(imageViews.size());
@@ -268,6 +287,7 @@ public class Multiplayer extends Game {
         scale3.setOnFinished(event -> {imageView3.setScaleX(1); imageView3.setImage(card3.getValue());});
 
         if (cards.get(random1).getId() == cards.get(random2).getId() && cards.get(random2).getId() == cards.get(random3).getId()) {
+                botUpdateScore3();
                 foundCards.add(imageView1);
                 foundCards.add(imageView2);
                 foundCards.add(imageView3);
@@ -301,8 +321,10 @@ public class Multiplayer extends Game {
     }
 
     public void kangaroo(){
-        if(foundCards.size() == gameMode.getSize())
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
             return;
+        }
 
         disableAll();
         boolean flag = false;
@@ -330,6 +352,18 @@ public class Multiplayer extends Game {
         final Card c2 = seenCard2;
 
         if(flag){
+            if(gameMode.getRival1().equals("Kangaroo") && (clicks == 4 || clicks == 0)){
+                scoreBots[0]++;
+                player2.setText("Player2: "+scoreBots[0]);
+            }
+            else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 6 || gameMode.getRivalsNumber() == 2)){
+                scoreBots[1]++;
+                player3.setText("Player3: "+scoreBots[1]);
+            }
+            else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
+                scoreBots[2]++;
+                player4.setText("Player4: "+scoreBots[2]);
+            }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
             seenCardsElephant.remove(c1);
@@ -356,8 +390,10 @@ public class Multiplayer extends Game {
     }
 
     public void kangaroo3(){
-        if(foundCards.size() == gameMode.getSize())
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
             return;
+        }
 
         disableAll();
         boolean flag = false;
@@ -393,6 +429,18 @@ public class Multiplayer extends Game {
         final Card c3 = seenCard3;
 
         if(flag){
+            if(gameMode.getRival1().equals("Kangaroo") && (clicks == 6 ||gameMode.getRivalsNumber()==1)){
+                scoreBots[0]++;
+                player2.setText("Player2: "+scoreBots[0]);
+            }
+            else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 9 ||gameMode.getRivalsNumber()==2)){
+                scoreBots[1]++;
+                player3.setText("Player3: "+scoreBots[1]);
+            }
+            else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
+                scoreBots[2]++;
+                player4.setText("Player4: "+scoreBots[2]);
+            }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
             seenImageViewsElephant.remove(i3);
@@ -424,8 +472,10 @@ public class Multiplayer extends Game {
     }
 
     public void elephant(){
-        if(foundCards.size() == gameMode.getSize())
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
             return;
+        }
 
         disableAll();
         boolean flag = false;
@@ -453,6 +503,18 @@ public class Multiplayer extends Game {
         final Card c2 = seenCard2;
 
         if(flag){
+            if(gameMode.getRival1().equals("Elephant") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
+                scoreBots[0]++;
+                player2.setText("Player2: "+scoreBots[0]);
+            }
+            else if(gameMode.getRival2().equals("Elephant") && (clicks == 6 || gameMode.getRivalsNumber() == 2)){
+                scoreBots[1]++;
+                player3.setText("Player3: "+scoreBots[1]);
+            }
+            else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
+                scoreBots[2]++;
+                player4.setText("Player4: "+scoreBots[2]);
+            }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
             seenCardsElephant.remove(c1);
@@ -477,8 +539,10 @@ public class Multiplayer extends Game {
     }
 
     public void elephant3(){
-        if(foundCards.size() == gameMode.getSize())
+        if(foundCards.size() == gameMode.getSize()) {
+            findWinner();
             return;
+        }
 
         disableAll();
         boolean flag = false;
@@ -513,6 +577,18 @@ public class Multiplayer extends Game {
         final Card c3 = seenCard3;
 
         if(flag){
+            if(gameMode.getRival1().equals("Elephant") && (clicks == 6 ||gameMode.getRivalsNumber()==1)){
+                scoreBots[0]++;
+                player2.setText("Player2: "+scoreBots[0]);
+            }
+            else if(gameMode.getRival2().equals("Elephant") && (clicks == 9 ||gameMode.getRivalsNumber()==2)){
+                scoreBots[1]++;
+                player3.setText("Player3: "+scoreBots[1]);
+            }
+            else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
+                scoreBots[2]++;
+                player4.setText("Player4: "+scoreBots[2]);
+            }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
             seenImageViewsElephant.remove(i3);
@@ -636,7 +712,6 @@ public class Multiplayer extends Game {
             multiInitialize.stop();
             return;
         }
-
         if(clicks == 0){
             turn.setText("Turn: Player1(You)");
             nextTurn.setText("Next Turn: Player 2"+"("+gameMode.getRival1()+")");
@@ -660,7 +735,9 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival1().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {elephant();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {
+                    elephant();
+                }));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 1){
@@ -768,7 +845,7 @@ public class Multiplayer extends Game {
                     clicks = 0;
                 }
             }
-            else if(gameMode.getRival2().equals("Elephant")){
+            else if(gameMode.getRival1().equals("Elephant")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {elephant3();}));
                 bot.play();
                 clicks = clicks +3;
@@ -848,6 +925,84 @@ public class Multiplayer extends Game {
         }
     }
 
+    private void botUpdateScore1_2(){
+        if(gameMode.getRival1().equals("Goldfish") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
+            scoreBots[0]++;
+            player2.setText("Player2: "+scoreBots[0]);
+        }
+        else if(gameMode.getRival2().equals("Goldfish") && (clicks == 6 || gameMode.getRivalsNumber() ==2)){
+            scoreBots[1]++;
+            player3.setText("Player3: "+scoreBots[1]);
+        }
+        else if(gameMode.getRival3().equals("Goldfish") && clicks == 0){
+            scoreBots[2]++;
+            player4.setText("Player4: "+scoreBots[2]);
+        }
+        else if(gameMode.getRival1().equals("Kangaroo") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
+            scoreBots[0]++;
+            player2.setText("Player2: "+scoreBots[0]);
+        }
+        else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 6 || gameMode.getRivalsNumber() ==2)){
+            scoreBots[1]++;
+            player3.setText("Player3: "+scoreBots[1]);
+        }
+        else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
+            scoreBots[2]++;
+            player4.setText("Player4: "+scoreBots[2]);
+        }
+        else if(gameMode.getRival1().equals("Elephant") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
+            scoreBots[0]++;
+            player2.setText("Player2: "+scoreBots[0]);
+        }
+        else if(gameMode.getRival2().equals("Elephant") && (clicks == 6 || gameMode.getRivalsNumber() ==2)){
+            scoreBots[1]++;
+            player3.setText("Player3: "+scoreBots[1]);
+        }
+        else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
+            scoreBots[2]++;
+            player4.setText("Player4: "+scoreBots[2]);
+        }
+    }
+
+    private void botUpdateScore3(){
+        if(gameMode.getRival1().equals("Goldfish") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
+            scoreBots[0]++;
+            player2.setText("Player2: "+scoreBots[0]);
+        }
+        else if(gameMode.getRival2().equals("Goldfish") && (clicks == 9 ||gameMode.getRivalsNumber()==2)){
+            scoreBots[1]++;
+            player3.setText("Player3: "+scoreBots[1]);
+        }
+        else if(gameMode.getRival3().equals("Goldfish") && clicks == 0){
+            scoreBots[2]++;
+            player4.setText("Player4: "+scoreBots[2]);
+        }
+        else if(gameMode.getRival1().equals("Kangaroo") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
+            scoreBots[0]++;
+            player2.setText("Player2: "+scoreBots[0]);
+        }
+        else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 9||gameMode.getRivalsNumber()==2)){
+            scoreBots[1]++;
+            player3.setText("Player3: "+scoreBots[1]);
+        }
+        else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
+            scoreBots[2]++;
+            player4.setText("Player4: "+scoreBots[2]);
+        }
+        else if(gameMode.getRival1().equals("Elephant") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
+            scoreBots[0]++;
+            player2.setText("Player2: "+scoreBots[0]);
+        }
+        else if(gameMode.getRival2().equals("Elephant") && (clicks == 9 || gameMode.getRivalsNumber()==2)){
+            scoreBots[1]++;
+            player3.setText("Player3: "+scoreBots[1]);
+        }
+        else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
+            scoreBots[2]++;
+            player4.setText("Player4: "+scoreBots[2]);
+        }
+    }
+
     public void nextClicked(){
 
         if(gameMode.getMode()!=3)
@@ -858,5 +1013,41 @@ public class Multiplayer extends Game {
 
     }
 
+    private void findWinner(){
+        int count = 0;
+        boolean playerWon = false;
+
+        for(int i = 0;i<scoreBots.length;i++){
+            if(score.getFoundCards()> scoreBots[i]){
+                count++;
+            }
+        }
+        if(count == 3){
+            playerWon = true;
+            if(gameMode.getMode() == 1){
+                wins1++;
+                properties.setProperty("MultiplayerWins1",Integer.toString(wins1));
+            }
+            else if(gameMode.getMode() == 2){
+                wins2++;
+                properties.setProperty("MultiplayerWins2",Integer.toString(wins2));
+            }
+            else if(gameMode.getMode() == 3){
+                wins3++;
+                properties.setProperty("MultiplayerWins3",Integer.toString(wins3));
+            }
+            try {
+                output = new FileOutputStream("score.properties");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                properties.store(output,null);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
 
 }

@@ -23,4 +23,8 @@ public class Score {
     public void updateMoves(){
         moves++;
     }
+
+    public void updateFoundCards(){
+        foundCards++;
+    }
 }

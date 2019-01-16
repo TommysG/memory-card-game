@@ -28,9 +28,12 @@ public class SettingsPane {
     private MenuItem fullScreen,x86;
 
     private Properties properties = new Properties();
+    private Properties properties2 = new Properties();
     private ResourceBundle bundle;
     private OutputStream output = null;
+    private OutputStream output2 = null;
     private InputStream input = null;
+    private InputStream input2 = null;
 
     @FXML
     private Button close;
@@ -163,5 +166,25 @@ public class SettingsPane {
         mainMenu.setEffect(null);
 
         settingsPane.close();
+    }
+
+    public void clearProgressClicked() throws IOException{
+        File f2 =new File("score.properties");
+
+        if(f2.exists()){
+            input = new FileInputStream("score.properties");
+            properties.load(input);
+
+            output2 = new FileOutputStream("score.properties");
+            properties2.setProperty("MultiplayerWins1","0");
+            properties2.setProperty("MultiplayerWins2","0");
+            properties2.setProperty("MultiplayerWins3","0");
+            properties2.setProperty("SingleModeHighScore1","99999");
+            properties2.setProperty("SingleModeHighScore2","99999");
+            properties2.setProperty("SingleModeHighScore3","99999");
+            properties2.setProperty("BattleWins","0");
+            properties2.store(output2,null);
+        }
+
     }
 }

@@ -56,32 +56,22 @@
                                     <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="player3" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 3:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
+                                    <Label fx:id="player1" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 1: 0" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="player1" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 1:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                                    <Label fx:id="nextTurn" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Next Turn: " textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="nextTurn" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Next Turn:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                    <Label fx:id="turn" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Turn: " textFill="WHITE" GridPane.hgrow="ALWAYS">
                                        <font>
                                           <Font size="26.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="turn" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Turn:" textFill="WHITE" GridPane.hgrow="ALWAYS">
-                                       <font>
-                                          <Font size="26.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="player2" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 2:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
-                                       <font>
-                                          <Font size="26.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="player4" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 4:" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5">
+                                    <Label fx:id="player2" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="250.0" text="Player 2: 0" textFill="WHITE" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
                                        <font>
                                           <Font size="26.0" />
                                        </font>

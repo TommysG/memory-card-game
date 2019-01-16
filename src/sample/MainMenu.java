@@ -38,9 +38,10 @@ public class MainMenu {
     private MenuItem fullScreen,x86,singleMode,multiplayerMode;
 
     private Properties properties = new Properties();
+    private Properties properties2 = new Properties();
     private ResourceBundle bundle;
-    private OutputStream output = null;
-    private InputStream input = null;
+    private OutputStream output = null,output2 = null;
+    private InputStream input = null,input2 = null;
 
     private Image greece = new Image("Images/el.png");
     private Image uk = new Image("Images/en.png");
@@ -50,6 +51,23 @@ public class MainMenu {
 
     public void initialize() throws IOException{
         File f = new File("config.properties");
+        File f2 =new File("score.properties");
+
+        if(f2.exists()){
+            input2 = new FileInputStream("score.properties");
+            properties2.load(input2);
+        }
+        else{
+            output2 = new FileOutputStream("score.properties");
+            properties2.setProperty("MultiplayerWins1","0");
+            properties2.setProperty("MultiplayerWins2","0");
+            properties2.setProperty("MultiplayerWins3","0");
+            properties2.setProperty("SingleModeHighScore1","99999");
+            properties2.setProperty("SingleModeHighScore2","99999");
+            properties2.setProperty("SingleModeHighScore3","99999");
+            properties2.setProperty("BattleWins","0");
+            properties2.store(output2,null);
+        }
 
         if(f.exists()) {
             input = new FileInputStream("config.properties");
