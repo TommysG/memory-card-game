@@ -5,12 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -29,10 +31,13 @@ public class SingleModeSettings {
     private Properties properties = new Properties();
     private OutputStream output = null;
     private InputStream input = null;
+    @FXML
+    private Label gamemodeLabel,themesLabel;
 
     private boolean fullScreen;
 
     private ResourceBundle bundle;
+    private Locale locale;
     private Glow glow = new Glow(0.6);
 
 
@@ -46,6 +51,9 @@ public class SingleModeSettings {
         if(f.exists()) {
             input = new FileInputStream("config.properties");
             properties.load(input);
+
+            String lang = properties.getProperty("flag");
+            loadLang(lang);
 
             width = Double.parseDouble(properties.getProperty("width"));
             height = Double.parseDouble(properties.getProperty("height"));
@@ -181,6 +189,22 @@ public class SingleModeSettings {
         normal.setSelected(false);
         doublesize.setSelected(false);
         trio.setSelected(true);
+    }
+
+    private void loadLang(String lang) {
+        locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("sample.lang",locale);
+
+        gamemodeLabel.setText(bundle.getString("gameMode"));
+        themesLabel.setText(bundle.getString("themes"));
+        normal.setText(bundle.getString("normal"));
+        doublesize.setText(bundle.getString("doubleSize"));
+        trio.setText(bundle.getString("trio"));
+        red.setText(bundle.getString("red"));
+        black.setText(bundle.getString("black"));
+        start.setText(bundle.getString("singleMode"));
+
+
     }
 
 }

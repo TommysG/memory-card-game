@@ -19,13 +19,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.*;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class MainMenu {
 
     @FXML
-    private Button exit,credits;
+    private Button exit,highScore;
     @FXML
     private MenuButton language,resolution,playMenu;
     @FXML
@@ -35,7 +36,7 @@ public class MainMenu {
     @FXML
     private VBox vbox;
     @FXML
-    private MenuItem fullScreen,x86,singleMode,multiplayerMode;
+    private MenuItem fullScreen,x86,singleMode,multiplayerMod,englishMenu,greekMenu;
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
@@ -46,7 +47,7 @@ public class MainMenu {
     private Image greece = new Image("Images/el.png");
     private Image uk = new Image("Images/en.png");
 
-    private Label label;
+    private Locale locale;
 
 
     public void initialize() throws IOException{
@@ -72,6 +73,15 @@ public class MainMenu {
         if(f.exists()) {
             input = new FileInputStream("config.properties");
             properties.load(input);
+
+            String string1 = properties.getProperty("flag");
+            String string2 = properties.getProperty("language");
+            System.out.println(string1);
+            System.out.println(string2);
+
+            language.setText(string2);
+            flag.setImage(new Image("Images/" + string1 + ".png"));
+            loadLang(string1);
 
             resolution.setText(properties.getProperty("resolution"));
             int width = Integer.parseInt(properties.getProperty("width"));
@@ -100,7 +110,14 @@ public class MainMenu {
             properties.setProperty("height","720");
             properties.setProperty("resolution", "1280x720");
             properties.setProperty("fullScreen","false");
+            Locale currentLocale = Locale.getDefault();
+            loadLang(currentLocale.getLanguage());
+            language.setText(currentLocale.getDisplayLanguage());
+            flag.setImage(new Image("Images/" + locale.getLanguage() +".png"));
+            properties.setProperty("language",currentLocale.getDisplayLanguage());
+            properties.setProperty("flag",locale.getLanguage());
             properties.store(output,null);
+
 
             cards.setFitWidth(531);
             cards.setFitHeight(205);
@@ -161,17 +178,11 @@ public class MainMenu {
         dialog.show();
     }
 
-    public void english(){
-        flag.setImage(uk);
-        language.setText("English");
-    }
 
-    public void greek(){
-        flag.setImage(greece);
-        language.setText("Greek");
-    }
-
-    public void creditsClicked(){
+    public void highScoreClicked() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("HighScore.fxml"));
+        Stage stage = (Stage) highScore.getScene().getWindow();
+        stage.getScene().setRoot(root);
 
     }
 
@@ -263,4 +274,40 @@ public class MainMenu {
         Stage stage = (Stage) resolution.getScene().getWindow();
         stage.setScene(new Scene(root,600,600));
     }
+
+    public void greek() throws IOException{
+        loadLang("el");
+        flag.setImage(greece);
+        language.setText("Ελληνικά");
+
+        output = new FileOutputStream("config.properties");
+        properties.setProperty("language","Ελληνικά");
+        properties.setProperty("flag","el");
+        properties.store(output,null);
+    }
+
+    public void english() throws IOException{
+        loadLang("en");
+        flag.setImage(uk);
+        language.setText("English");
+
+        output = new FileOutputStream("config.properties");
+        properties.setProperty("language","English");
+        properties.setProperty("flag","en");
+        properties.store(output,null);
+    }
+
+
+    private void loadLang(String lang) {
+        locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("sample.lang",locale);
+        playMenu.setText(bundle.getString("play"));
+        highScore.setText(bundle.getString("credits"));
+        exit.setText(bundle.getString("exit"));
+
+        greekMenu.setText(bundle.getString("menuGreek"));
+        englishMenu.setText(bundle.getString("menuEnglish"));
+
+    }
+
 }

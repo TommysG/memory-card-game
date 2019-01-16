@@ -19,9 +19,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Properties;
+import java.util.*;
 
 public class  Game {
 
@@ -41,8 +39,12 @@ public class  Game {
     public Card card1,card2,card3;
 
     private Properties properties = new Properties();
-    private InputStream input = null;
-    private OutputStream output = null;
+    private Properties properties2 = new Properties();
+    private InputStream input = null,input2 =null;
+    private OutputStream output = null,output2 =null;
+    private ResourceBundle bundle;
+    private Locale locale;
+    private String word1,word2;
 
     @FXML
     private GridPane grid;
@@ -68,14 +70,32 @@ public class  Game {
 
     public void initialize() throws IOException{
         File f2 =new File("score.properties");
+        File f1 =new File("config.properties");
 
-        if(f2.exists()){
-            input = new FileInputStream("score.properties");
+        if(f1.exists()){
+            input = new FileInputStream("config.properties");
             properties.load(input);
 
-            moves1 = Integer.parseInt(properties.getProperty("SingleModeHighScore1"));
-            moves2 = Integer.parseInt(properties.getProperty("SingleModeHighScore2"));
-            moves3 = Integer.parseInt(properties.getProperty("SingleModeHighScore3"));
+            String lang = properties.getProperty("flag");
+            loadLang(lang);
+
+            if(lang.equals("el")) {
+                word1 = "Κινήσεις: ";
+                word2 = "Βρέθηκαν: ";
+            }
+            else if(lang.equals("en")) {
+                word1 = "Moves: ";
+                word2 = "Found Pairs: ";
+            }
+        }
+
+        if(f2.exists()){
+            input2 = new FileInputStream("score.properties");
+            properties2.load(input2);
+
+            moves1 = Integer.parseInt(properties2.getProperty("SingleModeHighScore1"));
+            moves2 = Integer.parseInt(properties2.getProperty("SingleModeHighScore2"));
+            moves3 = Integer.parseInt(properties2.getProperty("SingleModeHighScore3"));
         }
 
     }
@@ -140,12 +160,12 @@ public class  Game {
             if (gameMode.getMode() != 3) {
                 score.updateMoves();
                 if(gameMode.getGlobalMode().equals("SingleMode"))
-                    Moves.setText("Moves: "+score.getMoves());
+                    Moves.setText(word1+score.getMoves());
                 disableAll();
                 if (id1 == id2) {
                     score.updateFoundCards();
                     if(gameMode.getGlobalMode().equals("SingleMode"))
-                        foundCardsLabel.setText("Found Pairs:"+score.getFoundCards());
+                        foundCardsLabel.setText(word2+score.getFoundCards());
                     cardsMatch = true;
                     foundCards.add(imageView1);
                     foundCards.add(imageView2);
@@ -181,12 +201,12 @@ public class  Game {
                     timeline.play();
                     if(gameMode.getMode() == 1){
                         if(score.getMoves()<moves1){
-                            properties.setProperty("SingleModeHighScore1", Integer.toString(score.getMoves()));
+                            properties2.setProperty("SingleModeHighScore1", Integer.toString(score.getMoves()));
                         }
                     }
                     else if(gameMode.getMode() == 2){
                         if(score.getMoves()<moves2){
-                            properties.setProperty("SingleModeHighScore2", Integer.toString(score.getMoves()));
+                            properties2.setProperty("SingleModeHighScore2", Integer.toString(score.getMoves()));
                         }
                     }
                     try {
@@ -195,7 +215,7 @@ public class  Game {
                         e.printStackTrace();
                     }
                     try {
-                        properties.store(output,null);
+                        properties2.store(output,null);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -207,7 +227,7 @@ public class  Game {
             if (clicks == 3) {
                 score.updateMoves();
                 if(gameMode.getGlobalMode().equals("SingleMode"))
-                    Moves.setText("Moves: " + score.getMoves());
+                    Moves.setText(word1 + score.getMoves());
                 id3 = card.getId();
                 imageView3 = imageView;
                 card3 = card;
@@ -221,7 +241,7 @@ public class  Game {
                 if (id1 == id2 && id2 == id3) {
                     score.updateFoundCards();
                     if(gameMode.getGlobalMode().equals("SingleMode"))
-                        foundCardsLabel.setText("Found Pairs:"+score.getFoundCards());
+                        foundCardsLabel.setText(word2+score.getFoundCards());
                     cardsMatch = true;
                     foundCards.add(imageView1);
                     foundCards.add(imageView2);
@@ -269,9 +289,9 @@ public class  Game {
                         } catch (FileNotFoundException e) {
                             e.printStackTrace();
                         }
-                        properties.setProperty("SingleModeHighScore3",Integer.toString(score.getMoves()));
+                        properties2.setProperty("SingleModeHighScore3",Integer.toString(score.getMoves()));
                         try {
-                            properties.store(output,null);
+                            properties2.store(output,null);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -365,6 +385,15 @@ public class  Game {
 
     public void shuffleCards(ArrayList<ImageView> imageViews){
         Collections.shuffle(imageViews);
+    }
+
+    private void loadLang(String lang) {
+        locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("sample.lang",locale);
+
+        Moves.setText(bundle.getString("moves"));
+        foundCardsLabel.setText(bundle.getString("foundPairs"));
+
     }
 
 }

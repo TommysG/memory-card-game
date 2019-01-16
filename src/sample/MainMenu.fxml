@@ -59,7 +59,7 @@
             <children>
                 <MenuButton fx:id="language" focusTraversable="false" maxWidth="250.0" mnemonicParsing="false" popupSide="TOP" prefHeight="41.0" prefWidth="179.0" stylesheets="@/css/menuButton.css" text="English" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#greek" text="Greek">
+                        <MenuItem fx:id="greekMenu" mnemonicParsing="false" onAction="#greek" text="Greek">
                             <graphic>
                                 <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -68,7 +68,7 @@
                                 </ImageView>
                             </graphic>
                         </MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#english" text="English(UK)">
+                        <MenuItem fx:id="englishMenu" mnemonicParsing="false" onAction="#english" text="English(UK)">
                             <graphic>
                                 <ImageView fitHeight="25.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -91,7 +91,7 @@
                 </MenuButton>
             </children>
         </HBox>
-        <VBox fx:id="vbox" alignment="CENTER" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="800.0" spacing="20.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0">
+        <VBox fx:id="vbox" alignment="CENTER" layoutY="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="800.0" spacing="20.0" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0">
             <children>
             <ImageView fx:id="cards" fitHeight="173.0" fitWidth="446.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -111,7 +111,7 @@
                         <MenuItem fx:id="battle" mnemonicParsing="false" onAction="#battleClicked" text="Battle" />
                     </items>
                 </MenuButton>
-                <Button fx:id="credits" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" minWidth="200.0" mnemonicParsing="false" onAction="#creditsClicked" prefHeight="53.0" prefWidth="179.0" stylesheets="@/css/buttons.css" text="CREDITS" VBox.vgrow="ALWAYS">
+                <Button fx:id="highScore" focusTraversable="false" maxHeight="80.0" maxWidth="400.0" minWidth="200.0" mnemonicParsing="false" onAction="#highScoreClicked" prefHeight="53.0" prefWidth="179.0" stylesheets="@/css/buttons.css" text="HIGHSCORES" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets left="200.0" right="200.0" />
                     </VBox.margin></Button>

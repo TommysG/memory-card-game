@@ -49,7 +49,7 @@ public class Battle extends Multiplayer {
     private OutputStream output = null;
 
     @FXML
-    private Label player1,player2,turn,nextTurn;
+    private Label player1,player2,turn,nextTurn,winLabel;
 
 
     @Override
@@ -421,6 +421,10 @@ public class Battle extends Multiplayer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            winLabel.setText("YOU WIN");
+        }
+        else{
+            winLabel.setText(gameMode.getRival1() + " WON");
         }
     }
 }

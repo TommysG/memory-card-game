@@ -81,6 +81,11 @@
                                           <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                                        </GridPane.margin>
                                     </Button>
+                                    <Label fx:id="winLabel" prefHeight="73.0" prefWidth="336.0" textFill="WHITE" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font size="50.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </GridPane>
                            </children></AnchorPane>

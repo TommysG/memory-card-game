@@ -23,35 +23,50 @@ public class Multiplayer extends Game {
     private GridPane grid,gridTable;
     @FXML
     private Button back,next;
-    private Timeline multiInitialize;
     @FXML
-    private Label turn,nextTurn,player1,player2,player3,player4;
+    private Label turn,nextTurn,player1,player2,player3,player4,winLabel;
+
+    private String t,nt,p1,p2,p3,p4;
+    private String pl1,pl2,pl3,pl4,you;
+    private String playerTurn1,playerTurn2,playerTurn3,playerTurn4;
 
     private ImageView clickedImageView;
 
     private int[] scoreBots = new int[3];
 
     private Properties properties = new Properties();
-    private InputStream input = null;
-    private OutputStream output = null;
+    private Properties properties2 = new Properties();
+    private InputStream input = null,input2 = null;
+    private OutputStream output = null,output2 = null;
+
+    private ResourceBundle bundle;
 
     private final Object PAUSE_KEY = new Object();
 
     public Multiplayer(){
-        multiInitialize = new Timeline();
         clicks = 0;
         clickedImageView = null;
     }
 
     public void initialize()throws IOException{
         File f =new File("score.properties");
+        File f2 =new File("config.properties");
+
+        if(f2.exists()) {
+            input = new FileInputStream("config.properties");
+            properties.load(input);
+
+            String lang = properties.getProperty("flag");
+            loadLang(lang);
+
+        }
 
         if(f.exists()){
-            input = new FileInputStream("score.properties");
-            properties.load(input);
-            wins1 = Integer.parseInt(properties.getProperty("MultiplayerWins1"));
-            wins2 = Integer.parseInt(properties.getProperty("MultiplayerWins2"));
-            wins3 = Integer.parseInt(properties.getProperty("MultiplayerWins3"));
+            input2 = new FileInputStream("score.properties");
+            properties2.load(input2);
+            wins1 = Integer.parseInt(properties2.getProperty("MultiplayerWins1"));
+            wins2 = Integer.parseInt(properties2.getProperty("MultiplayerWins2"));
+            wins3 = Integer.parseInt(properties2.getProperty("MultiplayerWins3"));
         }
     }
 
@@ -59,7 +74,10 @@ public class Multiplayer extends Game {
     @Override
     public void setMode(GameMode gameMode, Image theme) throws IOException {
         super.setMode(gameMode, theme);
+    }
 
+    public void fixLang() throws IOException{
+        playersLang();
     }
 
     public void multiplayerStart(){
@@ -69,8 +87,8 @@ public class Multiplayer extends Game {
         setImages(imageViews,cards);
 
         player();
-        turn.setText("Turn: Player1(You)");
-        nextTurn.setText("Next Turn: Player 2"+"("+gameMode.getRival1()+")");
+        turn.setText(t + playerTurn1 + you);
+        nextTurn.setText(nt + playerTurn2 + "(" + p2 + ")");
     }
 
     @Override
@@ -87,7 +105,7 @@ public class Multiplayer extends Game {
             findWinner();
             return;
         }
-        player1.setText("Player1:"+score.getFoundCards());
+        player1.setText(pl1+score.getFoundCards());
         clickedImageView = imageView;
         clicks++;
 
@@ -354,15 +372,15 @@ public class Multiplayer extends Game {
         if(flag){
             if(gameMode.getRival1().equals("Kangaroo") && (clicks == 4 || clicks == 0)){
                 scoreBots[0]++;
-                player2.setText("Player2: "+scoreBots[0]);
+                player2.setText(pl2+scoreBots[0]);
             }
             else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 6 || gameMode.getRivalsNumber() == 2)){
                 scoreBots[1]++;
-                player3.setText("Player3: "+scoreBots[1]);
+                player3.setText(pl3+scoreBots[1]);
             }
             else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
                 scoreBots[2]++;
-                player4.setText("Player4: "+scoreBots[2]);
+                player4.setText(pl4+scoreBots[2]);
             }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
@@ -431,15 +449,15 @@ public class Multiplayer extends Game {
         if(flag){
             if(gameMode.getRival1().equals("Kangaroo") && (clicks == 6 ||gameMode.getRivalsNumber()==1)){
                 scoreBots[0]++;
-                player2.setText("Player2: "+scoreBots[0]);
+                player2.setText(pl2+scoreBots[0]);
             }
             else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 9 ||gameMode.getRivalsNumber()==2)){
                 scoreBots[1]++;
-                player3.setText("Player3: "+scoreBots[1]);
+                player3.setText(pl3+scoreBots[1]);
             }
             else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
                 scoreBots[2]++;
-                player4.setText("Player4: "+scoreBots[2]);
+                player4.setText(pl4+scoreBots[2]);
             }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
@@ -505,15 +523,15 @@ public class Multiplayer extends Game {
         if(flag){
             if(gameMode.getRival1().equals("Elephant") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
                 scoreBots[0]++;
-                player2.setText("Player2: "+scoreBots[0]);
+                player2.setText(pl2+scoreBots[0]);
             }
             else if(gameMode.getRival2().equals("Elephant") && (clicks == 6 || gameMode.getRivalsNumber() == 2)){
                 scoreBots[1]++;
-                player3.setText("Player3: "+scoreBots[1]);
+                player3.setText(pl3+scoreBots[1]);
             }
             else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
                 scoreBots[2]++;
-                player4.setText("Player4: "+scoreBots[2]);
+                player4.setText(pl4+scoreBots[2]);
             }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
@@ -579,15 +597,15 @@ public class Multiplayer extends Game {
         if(flag){
             if(gameMode.getRival1().equals("Elephant") && (clicks == 6 ||gameMode.getRivalsNumber()==1)){
                 scoreBots[0]++;
-                player2.setText("Player2: "+scoreBots[0]);
+                player2.setText(pl2+scoreBots[0]);
             }
             else if(gameMode.getRival2().equals("Elephant") && (clicks == 9 ||gameMode.getRivalsNumber()==2)){
                 scoreBots[1]++;
-                player3.setText("Player3: "+scoreBots[1]);
+                player3.setText(pl3+scoreBots[1]);
             }
             else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
                 scoreBots[2]++;
-                player4.setText("Player4: "+scoreBots[2]);
+                player4.setText(pl4+scoreBots[2]);
             }
             seenImageViewsElephant.remove(i1);
             seenImageViewsElephant.remove(i2);
@@ -700,7 +718,6 @@ public class Multiplayer extends Game {
     @Override
     public void backClicked() throws IOException {
         clicks = 0;
-        multiInitialize.stop();
         Parent root = FXMLLoader.load(getClass().getResource("MultiplayerSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
@@ -709,20 +726,20 @@ public class Multiplayer extends Game {
     private void multiplayerInitialize1_2(){
         if(foundCards.size() == gameMode.getSize()) {
             System.out.println("STOPPED");
-            multiInitialize.stop();
+
             return;
         }
         if(clicks == 0){
-            turn.setText("Turn: Player1(You)");
-            nextTurn.setText("Next Turn: Player 2"+"("+gameMode.getRival1()+")");
+            turn.setText(t + playerTurn1 + you);
+            nextTurn.setText(nt + playerTurn2 + "(" + p2 + ")");
             enableAll();
             player();
         }
         else if(clicks == 1)
             enable(clickedImageView);
         else if(clicks == 2){
-            turn.setText("Turn: Player2"+"("+gameMode.getRival1()+")");
-            nextTurn.setText("Next Turn: Player3"+"("+gameMode.getRival2()+")");
+            turn.setText(t + playerTurn2 + "(" + p2 + ")");
+            nextTurn.setText(nt + playerTurn3 + "(" + p3 + ")");
             if(gameMode.getRival1().equals("Goldfish")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {
                     goldfish();
@@ -730,7 +747,7 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 1){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -741,7 +758,7 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 1){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -750,20 +767,20 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 1){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
         }
         else if(clicks == 4){
-            turn.setText("Turn: Player3"+"("+gameMode.getRival2()+")");
-            nextTurn.setText("Next Turn: Player4"+"("+gameMode.getRival3()+")");
+            turn.setText(t + playerTurn3 + "(" + p3 + ")");
+            nextTurn.setText(nt + playerTurn4 + "(" + p4 + ")");
             if(gameMode.getRival2().equals("Goldfish")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {goldfish();}));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 2){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -772,7 +789,7 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 2){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -781,14 +798,14 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 2){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
         }
         else if(clicks == 6){
-            turn.setText("Turn: Player4"+"("+gameMode.getRival3()+")");
-            nextTurn.setText("Next Turn: Player1(You)");
+            turn.setText(t + playerTurn4 + "(" + p4 + ")");
+            nextTurn.setText(nt + playerTurn1 + you);
             if(gameMode.getRival3().equals("Goldfish")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> goldfish()));
                 bot.play();
@@ -819,21 +836,20 @@ public class Multiplayer extends Game {
     private void multiplayerInitialize3(){
         if(foundCards.size() == gameMode.getSize()) {
             System.out.println("STOPPED");
-            multiInitialize.stop();
             return;
         }
 
         if(clicks == 0){
-            turn.setText("Turn: Player1(You)");
-            nextTurn.setText("Next Turn: Player 2"+"("+gameMode.getRival1()+")");
+            turn.setText(t + playerTurn1 + you);
+            nextTurn.setText(nt + playerTurn2 + "(" + p2 + ")");
             enableAll();
             player();
         }
         else if(clicks == 1)
             enable(clickedImageView);
         else if(clicks == 3){
-            turn.setText("Turn: Player2"+"("+gameMode.getRival1()+")");
-            nextTurn.setText("Next Turn: Player3"+"("+gameMode.getRival2()+")");
+            turn.setText(t + playerTurn2 + "(" + p2 + ")");
+            nextTurn.setText(nt + playerTurn3 + "(" + p3 + ")");
             if(gameMode.getRival1().equals("Goldfish")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {
                     goldfish3();
@@ -841,7 +857,7 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 1){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -850,7 +866,7 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 1){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -859,20 +875,20 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 1){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
         }
         else if(clicks == 6){
-            turn.setText("Turn: Player3"+"("+gameMode.getRival2()+")");
-            nextTurn.setText("Next Turn: Player4"+"("+gameMode.getRival3()+")");
+            turn.setText(t + playerTurn3 + "(" + p3 + ")");
+            nextTurn.setText(nt + playerTurn4 + "(" + p4 + ")");
             if(gameMode.getRival2().equals("Goldfish")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {goldfish3();}));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 2){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -881,7 +897,7 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 2){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
@@ -890,14 +906,14 @@ public class Multiplayer extends Game {
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 2){
-                    nextTurn.setText("Next Turn: Player1(You)");
+                    nextTurn.setText(nt + playerTurn1 + you);
                     clicks = 0;
                 }
             }
         }
         else if(clicks == 9){
-            turn.setText("Turn: Player4"+"("+gameMode.getRival3()+")");
-            nextTurn.setText("Next Turn: Player1(You)");
+            turn.setText(t + playerTurn4 + "(" + p4 + ")");
+            nextTurn.setText(nt + playerTurn1 + you);
             if(gameMode.getRival3().equals("Goldfish")){
                 Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> goldfish3()));
                 bot.play();
@@ -928,78 +944,78 @@ public class Multiplayer extends Game {
     private void botUpdateScore1_2(){
         if(gameMode.getRival1().equals("Goldfish") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
             scoreBots[0]++;
-            player2.setText("Player2: "+scoreBots[0]);
+            player2.setText(pl2+scoreBots[0]);
         }
         else if(gameMode.getRival2().equals("Goldfish") && (clicks == 6 || gameMode.getRivalsNumber() ==2)){
             scoreBots[1]++;
-            player3.setText("Player3: "+scoreBots[1]);
+            player3.setText(pl3+scoreBots[1]);
         }
         else if(gameMode.getRival3().equals("Goldfish") && clicks == 0){
             scoreBots[2]++;
-            player4.setText("Player4: "+scoreBots[2]);
+            player4.setText(pl4+scoreBots[2]);
         }
         else if(gameMode.getRival1().equals("Kangaroo") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
             scoreBots[0]++;
-            player2.setText("Player2: "+scoreBots[0]);
+            player2.setText(pl2+scoreBots[0]);
         }
         else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 6 || gameMode.getRivalsNumber() ==2)){
             scoreBots[1]++;
-            player3.setText("Player3: "+scoreBots[1]);
+            player3.setText(pl3+scoreBots[1]);
         }
         else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
             scoreBots[2]++;
-            player4.setText("Player4: "+scoreBots[2]);
+            player4.setText(pl4+scoreBots[2]);
         }
         else if(gameMode.getRival1().equals("Elephant") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
             scoreBots[0]++;
-            player2.setText("Player2: "+scoreBots[0]);
+            player2.setText(pl2+scoreBots[0]);
         }
         else if(gameMode.getRival2().equals("Elephant") && (clicks == 6 || gameMode.getRivalsNumber() ==2)){
             scoreBots[1]++;
-            player3.setText("Player3: "+scoreBots[1]);
+            player3.setText(pl3+scoreBots[1]);
         }
         else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
             scoreBots[2]++;
-            player4.setText("Player4: "+scoreBots[2]);
+            player4.setText(pl4+scoreBots[2]);
         }
     }
 
     private void botUpdateScore3(){
         if(gameMode.getRival1().equals("Goldfish") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
             scoreBots[0]++;
-            player2.setText("Player2: "+scoreBots[0]);
+            player2.setText(pl2+scoreBots[0]);
         }
         else if(gameMode.getRival2().equals("Goldfish") && (clicks == 9 ||gameMode.getRivalsNumber()==2)){
             scoreBots[1]++;
-            player3.setText("Player3: "+scoreBots[1]);
+            player3.setText(pl3+scoreBots[1]);
         }
         else if(gameMode.getRival3().equals("Goldfish") && clicks == 0){
             scoreBots[2]++;
-            player4.setText("Player4: "+scoreBots[2]);
+            player4.setText(pl4+scoreBots[2]);
         }
         else if(gameMode.getRival1().equals("Kangaroo") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
             scoreBots[0]++;
-            player2.setText("Player2: "+scoreBots[0]);
+            player2.setText(pl2+scoreBots[0]);
         }
         else if(gameMode.getRival2().equals("Kangaroo") && (clicks == 9||gameMode.getRivalsNumber()==2)){
             scoreBots[1]++;
-            player3.setText("Player3: "+scoreBots[1]);
+            player3.setText(pl3+scoreBots[1]);
         }
         else if(gameMode.getRival3().equals("Kangaroo") && clicks == 0){
             scoreBots[2]++;
-            player4.setText("Player4: "+scoreBots[2]);
+            player4.setText(pl4+scoreBots[2]);
         }
         else if(gameMode.getRival1().equals("Elephant") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
             scoreBots[0]++;
-            player2.setText("Player2: "+scoreBots[0]);
+            player2.setText(pl2+scoreBots[0]);
         }
         else if(gameMode.getRival2().equals("Elephant") && (clicks == 9 || gameMode.getRivalsNumber()==2)){
             scoreBots[1]++;
-            player3.setText("Player3: "+scoreBots[1]);
+            player3.setText(pl3+scoreBots[1]);
         }
         else if(gameMode.getRival3().equals("Elephant") && clicks == 0){
             scoreBots[2]++;
-            player4.setText("Player4: "+scoreBots[2]);
+            player4.setText(pl4+scoreBots[2]);
         }
     }
 
@@ -1026,15 +1042,15 @@ public class Multiplayer extends Game {
             playerWon = true;
             if(gameMode.getMode() == 1){
                 wins1++;
-                properties.setProperty("MultiplayerWins1",Integer.toString(wins1));
+                properties2.setProperty("MultiplayerWins1",Integer.toString(wins1));
             }
             else if(gameMode.getMode() == 2){
                 wins2++;
-                properties.setProperty("MultiplayerWins2",Integer.toString(wins2));
+                properties2.setProperty("MultiplayerWins2",Integer.toString(wins2));
             }
             else if(gameMode.getMode() == 3){
                 wins3++;
-                properties.setProperty("MultiplayerWins3",Integer.toString(wins3));
+                properties2.setProperty("MultiplayerWins3",Integer.toString(wins3));
             }
             try {
                 output = new FileOutputStream("score.properties");
@@ -1042,12 +1058,133 @@ public class Multiplayer extends Game {
                 e.printStackTrace();
             }
             try {
-                properties.store(output,null);
+                properties2.store(output,null);
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            winLabel.setText("YOU WIN");
         }
+        else{
+            int max = scoreBots[0],pos = 0;
+            for(int i = 0;i<scoreBots.length;i++){
+                if(max<scoreBots[i]){
+                    pos = i;
+                    max = scoreBots[i];
+                }
+            }
+            if(pos == 0){
+                winLabel.setText(gameMode.getRival1() +"1 WON");
+            }
+            else if(pos ==1){
+                winLabel.setText(gameMode.getRival2() + "2 WON");
+            }
+            else if(pos == 2){
+                winLabel.setText(gameMode.getRival3() + "3 WON");
+            }
+        }
+
+    }
+
+    private void loadLang(String lang) {
+        Locale locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("sample.lang", locale);
+
+        next.setText(bundle.getString("next"));
+
+        turn.setText(bundle.getString("turn"));
+        t = (bundle.getString("turn"));
+        nextTurn.setText(bundle.getString("nextTurn"));
+        nt = bundle.getString("nextTurn");
+        player1.setText(bundle.getString("player1") + "0");
+        player2.setText(bundle.getString("player2")+ "0");
+        player3.setText(bundle.getString("player3")+ "0");
+        player4.setText(bundle.getString("player4")+ "0");
+
+
+        pl1 = bundle.getString("player1");
+        pl2 = bundle.getString("player2");
+        pl3 = bundle.getString("player3");
+        pl4 = bundle.getString("player4");
+
+        playerTurn1 = bundle.getString("player1T");
+        playerTurn2 = bundle.getString("player2T");
+        playerTurn3 = bundle.getString("player3T");
+        playerTurn4 = bundle.getString("player4T");
+
+        you = bundle.getString("you");
+
+    }
+
+    private void playersLang() throws IOException{
+        File f2 =new File("config.properties");
+
+        if(f2.exists()) {
+            input = new FileInputStream("config.properties");
+            properties.load(input);
+
+            String lang = properties.getProperty("flag");
+            loadLang(lang);
+
+            if (lang.equals("el")) {
+                if(gameMode.getRival1().equals("Goldfish")){
+                    p2 = "Χρυσόψαρο";
+                }
+                else if(gameMode.getRival1().equals("Kangaroo")){
+                    p2 = "Καγκουρό";
+                }
+                else if(gameMode.getRival1().equals("Elephant")){
+                    p2 = "Ελέφαντας";
+                }
+                if(gameMode.getRival2().equals("Goldfish")){
+                    p3 = "Χρυσόψαρο";
+                }
+                else if(gameMode.getRival2().equals("Kangaroo")){
+                    p3 = "Καγκουρό";
+                }
+                else if(gameMode.getRival2().equals("Elephant")){
+                    p3 = "Ελέφαντας";
+                }
+                if(gameMode.getRival3().equals("Goldfish")){
+                    p4 = "Χρυσόψαρο";
+                }
+                else if(gameMode.getRival3().equals("Kangaroo")){
+                    p4 = "Καγκουρό";
+                }
+                else if(gameMode.getRival3().equals("Elephant")){
+                    p4 = "Ελέφαντας";
+                }
+            } else if (lang.equals("en")) {
+                if(gameMode.getRival1().equals("Goldfish")){
+                    p2 = "Goldfish";
+                }
+                else if(gameMode.getRival1().equals("Kangaroo")){
+                    p2 = "Kangaroo";
+                }
+                else if(gameMode.getRival1().equals("Elephant")){
+                    p2 = "Elephant";
+                }
+                if(gameMode.getRival2().equals("Goldfish")){
+                    p3 = "Goldfish";
+                }
+                else if(gameMode.getRival2().equals("Kangaroo")){
+                    p3 = "Kangaroo";
+                }
+                else if(gameMode.getRival2().equals("Elephant")){
+                    p3 = "Elephant";
+                }
+                if(gameMode.getRival3().equals("Goldfish")){
+                    p4 = "Goldfish";
+                }
+                else if(gameMode.getRival3().equals("Kangaroo")){
+                    p4 = "Kangaroo";
+                }
+                else if(gameMode.getRival3().equals("Elephant")){
+                    p4 = "Elephant";
+                }
+            }
+        }
+
+
     }
 
 }

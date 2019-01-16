@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -29,7 +30,11 @@ public class MultiplayerSettings {
     @FXML
     private MenuButton player1,player2,player3,number;
     @FXML
-    private MenuItem Human1,Goldfish1,Kangaroo1,Elephant1;
+    private MenuItem Human1,Goldfish1,Kangaroo1,Elephant1,g2,k2,e2,g3,k3,e3;
+    @FXML
+    private Label gamemodeLabel,themesLabel,rivalsLabel;
+
+    private String goldfish,kangaroo,elephant;
 
 
     private Properties properties = new Properties();
@@ -52,6 +57,20 @@ public class MultiplayerSettings {
         if(f.exists()) {
             input = new FileInputStream("config.properties");
             properties.load(input);
+
+            String lang = properties.getProperty("flag");
+            loadLang(lang);
+
+            if(lang.equals("el")) {
+                goldfish = "Χρυσόψαρο";
+                kangaroo = "Καγκουρό";
+                elephant = "Ελέφαντας";
+            }
+            else if(lang.equals("en")) {
+                goldfish = "Goldfish";
+                kangaroo = "Kangaroo";
+                elephant = "Elephnat";
+            }
 
             width = Double.parseDouble(properties.getProperty("width"));
             height = Double.parseDouble(properties.getProperty("height"));
@@ -108,9 +127,11 @@ public class MultiplayerSettings {
         Multiplayer multi = Loader.getController();
         Stage stage = (Stage) multiplayer.getScene().getWindow();
         multi.setMode(mode,theme);
+        multi.fixLang();
         multi.multiplayerStart();
         stage.getScene().setRoot(Loader.getRoot());
     }
+
     public void number1Clicked(){
         multiplayer.setDisable(false);
         mode.setRivalsNumber(1);
@@ -163,6 +184,7 @@ public class MultiplayerSettings {
         doublesize.setSelected(false);
         trio.setSelected(false);
     }
+
     @FXML
     public void doubleModeClicked(){
         normalMode.setEffect(null);
@@ -172,6 +194,7 @@ public class MultiplayerSettings {
         doublesize.setSelected(true);
         trio.setSelected(false);
     }
+
     @FXML
     public void trioModeClicked(){
         trioMode.setEffect(glow);
@@ -181,6 +204,7 @@ public class MultiplayerSettings {
         doublesize.setSelected(false);
         trio.setSelected(true);
     }
+
     @FXML
     public void redClicked(){
         redImage.setEffect(glow);
@@ -188,6 +212,7 @@ public class MultiplayerSettings {
         red.setSelected(true);
         black.setSelected(false);
     }
+
     @FXML
     public void blackClicked(){
         redImage.setEffect(null);
@@ -195,28 +220,33 @@ public class MultiplayerSettings {
         red.setSelected(false);
         black.setSelected(true);
     }
+
     @FXML
     public void redCheckClicked(){
         red.setSelected(true);
         black.setSelected(false);
     }
+
     @FXML
     public void blackCheckClicked(){
         red.setSelected(false);
         black.setSelected(true);
     }
+
     @FXML
     public void normalClicked(){
         normal.setSelected(true);
         doublesize.setSelected(false);
         trio.setSelected(false);
     }
+
     @FXML
     public void doubleClicked(){
         normal.setSelected(false);
         doublesize.setSelected(true);
         trio.setSelected(false);
     }
+
     @FXML
     public void trioClicked(){
         normal.setSelected(false);
@@ -232,17 +262,17 @@ public class MultiplayerSettings {
     public void E1()
     {
         mode.setRival1("Elephant");
-        player1.setText("Elephant");
+        player1.setText(elephant);
     }
     public void G1()
     {
         mode.setRival1("Goldfish");
-        player1.setText("Goldfish");
+        player1.setText(goldfish);
     }
     public void K1()
     {
         mode.setRival1("Kangaroo");
-        player1.setText("Kangaroo");
+        player1.setText(kangaroo);
     }
     public void h2(){
         mode.setRival2("Human");
@@ -251,17 +281,17 @@ public class MultiplayerSettings {
     }
     public void g2(){
         mode.setRival2("Goldfish");
-        player2.setText("Goldfish");
+        player2.setText(goldfish);
 
     }
     public void k2(){
         mode.setRival2("Kangaroo");
-        player2.setText("Kangaroo");
+        player2.setText(kangaroo);
 
     }
     public void e2(){
         mode.setRival2("Elephant");
-        player2.setText("Elephant");
+        player2.setText(elephant);
 
     }
     public void h3(){
@@ -271,16 +301,46 @@ public class MultiplayerSettings {
     }
     public void g3(){
         mode.setRival3("Goldfish");
-        player3.setText("Goldfish");
+        player3.setText(goldfish);
 
     }
     public void k3(){
         mode.setRival3("Kangaroo");
-        player3.setText("Kangaroo");
+        player3.setText(kangaroo);
     }
     public void e3(){
         mode.setRival3("Elephant");
-        player3.setText("Elephant");
+        player3.setText(elephant);
+    }
+
+    private void loadLang(String lang) {
+        Locale locale = new Locale(lang);
+        bundle = ResourceBundle.getBundle("sample.lang", locale);
+
+        gamemodeLabel.setText(bundle.getString("gameMode"));
+        themesLabel.setText(bundle.getString("themes"));
+        rivalsLabel.setText(bundle.getString("rivals"));
+        normal.setText(bundle.getString("normal"));
+        doublesize.setText(bundle.getString("doubleSize"));
+        trio.setText(bundle.getString("trio"));
+        red.setText(bundle.getString("red"));
+        black.setText(bundle.getString("black"));
+        multiplayer.setText(bundle.getString("multiplayer"));
+        number.setText(bundle.getString("number"));
+        player1.setText(bundle.getString("goldfish"));
+        player2.setText(bundle.getString("goldfish"));
+        player3.setText(bundle.getString("goldfish"));
+        Goldfish1.setText(bundle.getString("goldfish"));
+        Kangaroo1.setText(bundle.getString("kangaroo"));
+        Elephant1.setText(bundle.getString("elephant"));
+        g2.setText(bundle.getString("goldfish"));
+        k2.setText(bundle.getString("kangaroo"));
+        e2.setText(bundle.getString("elephant"));
+        g3.setText(bundle.getString("goldfish"));
+        k3.setText(bundle.getString("kangaroo"));
+        e3.setText(bundle.getString("elephant"));
+
+
     }
 
 }
