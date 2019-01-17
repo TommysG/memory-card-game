@@ -16,7 +16,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <H1>Η κλάση των επιδόσεων.</H1>
+ * <h1>Η κλάση των επιδόσεων.</h1>
  */
 public class HighScore {
 
@@ -31,8 +31,8 @@ public class HighScore {
     private Properties properties2 = new Properties();
 
     /**
-     * Φορτώνει τις επιδόσεις.
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     * Φορτώνει τις επιδόσεις απο το αρχείο που έχει δημιουργηθεί.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο.
      */
     public void initialize() throws IOException{
 
@@ -81,10 +81,11 @@ public class HighScore {
     }
 
     /**
-     * Το event handler του κουμπιού ΠΙΣΩ.
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχειό FXML.
+     * Το event handler του κουμπιού που σε πηγαίνει στην προήγουμενη σκηνή.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχειό FXML.
      */
-    public void backClicked() throws IOException {
+    @FXML
+    private void backClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
@@ -92,7 +93,7 @@ public class HighScore {
 
     /**
      * Φορτώνει τη γλώσσα που εμφανίζονται οι επιδόσεις.
-     * @param lang {@code String}
+     * @param lang {@code String} παίρνει δύο τιμές "el" και "en" ανάλογα την γλώσσα
      */
     private void loadLang(String lang) {
         Locale locale = new Locale(lang);

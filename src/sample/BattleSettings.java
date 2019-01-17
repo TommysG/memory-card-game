@@ -55,7 +55,7 @@ public class BattleSettings {
                 kang = "Καγκουρό";
                 ele = "Ελέφαντας";
             }
-            else if(lang.equals("em")){
+            else if(lang.equals("en")){
                 gold = "Goldfish";
                 kang = "Kangaroo";
                 ele = "Elephant";
@@ -63,28 +63,32 @@ public class BattleSettings {
         }
     }
 
-    public void goldfishSelected(){
+    @FXML
+    private void goldfishSelected(){
         rivalSelector.setText(gold);
         gameMode.setRival1("Goldfish");
     }
 
-    public void kangarooSelected(){
+    @FXML
+    private void kangarooSelected(){
         rivalSelector.setText(kang);
         gameMode.setRival1("Kangaroo");
     }
 
-    public void elephantSelected(){
+    @FXML
+    private void elephantSelected(){
         rivalSelector.setText(ele);
         gameMode.setRival1("Elephant");
     }
-
-    public void backClicked() throws IOException {
+    @FXML
+    private void backClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
-    public void battleClicked() throws IOException{
+    @FXML
+    private void battleClicked() throws IOException{
         gameMode.setGlobalMode("Battle");
 
         FXMLLoader Loader = new FXMLLoader();

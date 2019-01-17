@@ -23,6 +23,9 @@ import java.util.*;
 
 import javafx.event.*;
 
+/**
+ * <h1>Η κλάση μονομαχία</h1>
+ */
 public class Battle extends Multiplayer {
 
     @FXML
@@ -53,7 +56,10 @@ public class Battle extends Multiplayer {
     private Label player1,player2,turn,nextTurn,winLabel,noteLabel;
     private boolean oneTime;
 
-
+    /**
+     * Φορτώνει τα αρχεία και θέτει αρχικές τιμές
+     * @throws IOException εαν αποτύχει να ανοίξει κάποιο αρχείο
+     */
     @Override
     public void initialize() throws IOException {
         oneTime = false;
@@ -76,6 +82,9 @@ public class Battle extends Multiplayer {
         }
     }
 
+    /**
+     * Ο κατασκευαστής της κλάσης
+     */
     public Battle(){
         imageViews2 = new ArrayList<>();
         foundCards = new ArrayList<>();
@@ -88,6 +97,12 @@ public class Battle extends Multiplayer {
         oneTime = false;
     }
 
+    /**
+     * Θέτει το GameMode ανάλογα με το τι έχει επιλέξει ο χρήστης, δημιουργεί τα ImageViews και τις κάρτες και για τα δύο πλέγματα.
+     * @param gameMode {@code GameMode}
+     * @param theme {@code Image}
+     * @throws IOException -
+     */
     @Override
     public void setMode(GameMode gameMode, Image theme) throws IOException {
         super.setMode(gameMode, theme);
@@ -109,12 +124,21 @@ public class Battle extends Multiplayer {
 
     }
 
+    /**
+     * Φτιάχνει τα ονόματα των παιχτών ανάλογα με την γλώσσα και ορίζει στα Labels την σειρά.
+     * @throws IOException -
+     */
     public void battleStart() throws IOException{
         playersLang();
         turn.setText(t+ playerTurn1+you);
         nextTurn.setText(nt + p2 );
     }
 
+    /**
+     * Ελέγχει την κάρτα που πάτησε ο χρήστης και την γυρνάει. Επίσης με βρίσκεται και ο Event Handler του κουμπιού ΕΠΟΜΕΝΟ που καθορίζει την σειρά με την οποία θα παίξουν οι παίχτες.
+     * @param imageView {@code ImageView}
+     * @param card {@code Card}
+     */
     @Override
     public void clickEvent(ImageView imageView, Card card) {
         if(foundCards.size() == gameMode.getSize()*2) {
@@ -153,7 +177,7 @@ public class Battle extends Multiplayer {
                         compareGoldfish(playerImageview,playerCard);
                     }
                     else{
-                        compareElephant(playerImageview,playerCard);
+                        compareElephant(playerImageview);
                     }
                     clicks++;
                 }
@@ -164,7 +188,7 @@ public class Battle extends Multiplayer {
                         compareGoldfish(playerImageview,playerCard);
                     }
                     else{
-                        compareKangaroo(playerImageview,playerCard);
+                        compareKangaroo(playerImageview);
                     }
                     clicks++;
                 }
@@ -204,7 +228,7 @@ public class Battle extends Multiplayer {
                         compareGoldfish(playerImageview,playerCard);
                     }
                     else{
-                        compareElephant(playerImageview,playerCard);
+                        compareElephant(playerImageview);
                     }
                     clicks = 0;
                 }
@@ -213,7 +237,7 @@ public class Battle extends Multiplayer {
                         compareGoldfish(playerImageview,playerCard);
                     }
                     else{
-                        compareKangaroo(playerImageview,playerCard);
+                        compareKangaroo(playerImageview);
                     }
                     clicks = 0;
                 }
@@ -229,6 +253,11 @@ public class Battle extends Multiplayer {
         disableAll();
     }
 
+    /**
+     * Το Animation του ImageView οταν πατηθεί.
+     * @param imageView {@code ImageView}
+     * @param card {@code Card}
+     */
     private void flipAnimation(ImageView imageView,Card card){
         imageView.setDisable(true);
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.4),imageView);
@@ -238,12 +267,20 @@ public class Battle extends Multiplayer {
         scaleTransition.setOnFinished(event -> {imageView.setScaleX(1);imageView.setImage(card.getValue());});
     }
 
+    /**
+     * Ο Event Handler του κουμπιού που σε πηγαίνει στην προηγούμενη σκηνή.
+     * @throws IOException εαν αποτύχει να φορτώσει το αρχείο FXML
+     */
     public void backClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("BattleSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
+    /**
+     * Δημιουργεί τις εικόνες
+     * @param cards {@code ArrayList<Card>}
+     */
     @Override
     public void createImages(ArrayList<Card> cards) {
         for(int i =1; i<=gameMode.getSize();i++) {
@@ -253,10 +290,10 @@ public class Battle extends Multiplayer {
         }
     }
 
-    public void nextClicked(){
 
-    }
-
+    /**
+     * Το μποτάκι Goldfish το διαλέγει έναν τυχαίο αριθμό στο μέγεθος του ArrayList με τα ImageView επιλέγει έναν επιτρεπτό αριθμό και γυρνάει αυτή την κάρτα.
+     */
     public void goldfish() {
         if(foundCards.size() == gameMode.getSize()*2) {
             findWinner();
@@ -290,6 +327,10 @@ public class Battle extends Multiplayer {
         nextButton.setDisable(false);
     }
 
+    /**
+     * Το μποτάκι Elephant που δέχεται την κάρτα που έχει σηκώσει εκείνη την στιγμή ο χρήστης και ελέγχει αν την έχει δει στο δίκο του πλέγμα.
+     * @param card {@code Card}
+     */
     private void elephant(Card card){
         if(foundCards.size() == gameMode.getSize()*2) {
             findWinner();
@@ -316,6 +357,10 @@ public class Battle extends Multiplayer {
         nextButton.setDisable(false);
     }
 
+    /**
+     * Το μποτάκι Kangaroo το οποίο δέχεται την κάρτα που έχει σηκώσει ο χρήστης και ελέγχει αν την έχει δει στο δίκο του πλέγμα.
+     * @param card {@code Card}
+     */
     private void kangaroo(Card card){
         if(foundCards.size() == gameMode.getSize()*2) {
             findWinner();
@@ -342,7 +387,11 @@ public class Battle extends Multiplayer {
         nextButton.setDisable(false);
     }
 
-    private void compareKangaroo(ImageView playerImageview,Card playerCard){
+    /**
+     * Σύγκριση των καρτών του παίχτη και του Kangaroo
+     * @param playerImageview {@code ImageView}
+     */
+    private void compareKangaroo(ImageView playerImageview){
         nextButton.setDisable(true);
         if(flag){
             if(clicks == 1){
@@ -371,6 +420,11 @@ public class Battle extends Multiplayer {
         }
     }
 
+    /**
+     * Σύγκριση των καρτών του παίχτη και του Goldfish
+     * @param playerImageview {@code ImageView}
+     * @param playerCard {@code Card}
+     */
     private void compareGoldfish(ImageView playerImageview,Card playerCard){
         nextButton.setDisable(true);
         if(botCard.getId() == playerCard.getId()){
@@ -405,7 +459,11 @@ public class Battle extends Multiplayer {
         }
     }
 
-    private void compareElephant(ImageView playerImageview,Card playerCard){
+    /**
+     * Σύγκριση των καρτών του παίχτη και του Elephant
+     * @param playerImageview {@code ImageView}
+     */
+    private void compareElephant(ImageView playerImageview){
         nextButton.setDisable(true);
         if(flag){
             if(clicks == 1){
@@ -429,6 +487,9 @@ public class Battle extends Multiplayer {
         }
     }
 
+    /**
+     * Ελέγχει ποιος είναι ο νικητής
+     */
     private void findWinner(){
         if (playerScore>botScore && !oneTime){
             oneTime = true;
@@ -453,6 +514,10 @@ public class Battle extends Multiplayer {
         }
     }
 
+    /**
+     * Φορτώνει την γλώσσα
+     * @param lang {@code String}
+     */
     private void loadLang(String lang) {
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);
@@ -471,6 +536,10 @@ public class Battle extends Multiplayer {
         noteLabel.setText(bundle.getString("noteLabel"));
     }
 
+    /**
+     * Φορτώνει τα ονόματα των παιχτών
+     * @throws IOException -
+     */
     private void playersLang() throws IOException{
         File f2 =new File("config.properties");
 

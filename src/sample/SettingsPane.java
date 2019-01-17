@@ -19,16 +19,16 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <Η1>Η κλάση των ρυθμίσεων.</Η1>
+ * <h1>Η κλάση των ρυθμίσεων.</h1>
  */
 
 public class SettingsPane {
 
 
     @FXML
-    private MenuButton language,resolution;
+    private MenuButton resolution;
     @FXML
-    private MenuItem fullScreen,x86,x1280;
+    private MenuItem fullScreen,x1280;
     @FXML
     private ToggleButton sounds;
     @FXML
@@ -48,8 +48,8 @@ public class SettingsPane {
     private String fs;
 
     /**
-     * Κάνει initialize.
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     * Φορτώνει τις τιμές απο το αρχείο.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο config.
      */
     public void initialize() throws IOException {
         File f = new File("config.properties");
@@ -77,9 +77,10 @@ public class SettingsPane {
 
     /**
      * Αλλάζει την ανάλυση σε πλήρης οθόνη.
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο FXML.
      */
-    public void fullScreenSelected() throws IOException{
+    @FXML
+    private void fullScreenSelected() throws IOException{
         resolution.setText(fs);
         output = new FileOutputStream("config.properties");
         properties.setProperty("fullScreen","true");
@@ -107,9 +108,10 @@ public class SettingsPane {
 
     /**
      * Αλλάζει την ανάλυση σε "1280x720".
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο FXML.
      */
-    public void x1024Selected() throws IOException{
+    @FXML
+    private void x1280Selected() throws IOException{
         resolution.setText("1280x720");
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","1280x720");
@@ -137,9 +139,10 @@ public class SettingsPane {
 
     /**
      * Αλλάζει την ανάλυση σε "800x600".
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο FXML.
      */
-    public void x86Selected() throws IOException {
+    @FXML
+    private void x86Selected() throws IOException {
         resolution.setText("800x600");
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","800x600");
@@ -167,9 +170,10 @@ public class SettingsPane {
 
     /**
      * Αλλάζει την ανάλυση σε "600x600".
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο FXML.
      */
-    public void x64Selected() throws IOException{
+    @FXML
+    private void x66Selected() throws IOException{
         resolution.setText("600x600");
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","600x600");
@@ -197,9 +201,10 @@ public class SettingsPane {
     }
 
     /**
-     * Το event handler του κουμιού εξόδου από τις ρυθμίσεις.
+     * Ο Event Handler του κουμιού εξόδου από τις ρυθμίσεις.
      */
-    public void closeSettings(){
+    @FXML
+    private void closeSettings(){
         Stage settingsPane = (Stage) close.getScene().getWindow();
         Parent mainMenu = settingsPane.getOwner().getScene().getRoot();
         mainMenu.setEffect(null);
@@ -208,10 +213,11 @@ public class SettingsPane {
     }
 
     /**
-     * Κάνει πλήρης εκκαθάριση των επιδόσεων του παίχτη.
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     * Κάνει πλήρης εκκαθάριση των επιδόσεων του παίχτη, ορίζοντας κάποιες αρχικές τιμές.
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο.
      */
-    public void clearProgressClicked() throws IOException{
+    @FXML
+    private void clearProgressClicked() throws IOException{
         File f2 =new File("score.properties");
 
         if(f2.exists()){

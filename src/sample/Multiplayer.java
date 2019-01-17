@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -68,7 +67,6 @@ public class Multiplayer extends Game {
         }
     }
 
-
     @Override
     public void setMode(GameMode gameMode, Image theme) throws IOException {
         super.setMode(gameMode, theme);
@@ -92,9 +90,7 @@ public class Multiplayer extends Game {
     @Override
     public void player() {
          super.player();
-
      }
-
 
     @Override
     public void clickEvent(ImageView imageView, Card card) {
@@ -336,6 +332,7 @@ public class Multiplayer extends Game {
             }
     }
 
+
     public void kangaroo(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -404,6 +401,7 @@ public class Multiplayer extends Game {
             new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish())).play();
         }
     }
+
 
     public void kangaroo3(){
         if(foundCards.size() == gameMode.getSize()) {
@@ -487,6 +485,7 @@ public class Multiplayer extends Game {
         }
     }
 
+
     public void elephant(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -553,6 +552,7 @@ public class Multiplayer extends Game {
             new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish())).play();
         }
     }
+
 
     public void elephant3(){
         if(foundCards.size() == gameMode.getSize()) {
@@ -631,6 +631,7 @@ public class Multiplayer extends Game {
         }
     }
 
+
     public void findAnimation(ImageView imageView1,ImageView imageView2,Card card1,Card card2){
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5),imageView1);
         scaleTransition.setFromX(1);
@@ -690,15 +691,6 @@ public class Multiplayer extends Game {
         });
     }
 
-    @Override
-    public void disableAll() {
-        super.disableAll();
-    }
-
-    @Override
-    public void enableAll() {
-        super.enableAll();
-    }
 
     public void enable(ImageView imageView){
         super.enableAll();
@@ -1009,14 +1001,12 @@ public class Multiplayer extends Game {
         }
     }
 
-    public void nextClicked(){
-
+    @FXML
+    private void nextClicked(){
         if(gameMode.getMode()!=3)
             multiplayerInitialize1_2();
         else
             multiplayerInitialize3();
-
-
     }
 
     private void findWinner(){
@@ -1176,5 +1166,6 @@ public class Multiplayer extends Game {
 
 
     }
+
 
 }

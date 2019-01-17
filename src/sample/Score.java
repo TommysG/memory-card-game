@@ -1,7 +1,7 @@
 package sample;
 
 /**
- * <H1>Η κλάση του σκορ.</H1>
+ * <h1>Η κλάση του σκορ.</h1>
  */
 public class Score {
     private int moves;
@@ -17,7 +17,7 @@ public class Score {
 
     /**
      * Θέτει τον αρχικό αριθμό των καρτών που έχουν βρεθεί.
-     * @param foundCards {@code int}
+     * @param foundCards {@code int} κάρτες που έχουν βρεθεί
      */
     public void setFoundCards(int foundCards) {
         this.foundCards = foundCards;
@@ -32,7 +32,7 @@ public class Score {
     }
     /**
      * Θέτει τον αρχικό αριθμό των κινήσεων του παίχτη.
-     * @param moves {@code int}
+     * @param moves {@code int} κινήσεις
      */
     public void setMoves(int moves) {
         this.moves = moves;

@@ -22,7 +22,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * <H1>Η κλάση του μονού παιχνιδιού.</H1>
+ * <h1>Η κλάση του μονού παιχνιδιού.</h1>
  */
 public class  Game {
 
@@ -74,8 +74,8 @@ public class  Game {
     }
 
     /**
-     * Κάνει initialize.
-     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     * Φορτώνει τιμές απο τα αρχεία score και config.
+     * @throws IOException εάν αποτύχει να φορτώσει τα αρχεία.
      */
     public void initialize() throws IOException{
         File f2 =new File("score.properties");
@@ -112,7 +112,7 @@ public class  Game {
     /**
      * Καθορίχει το είδος του παιχνιδιού και το θέμα των καρτών ανάλογα με το τι έχει επιλέξει ο χρήστης στις ρυθμίσεις.
      * @param gameMode {@code GameMode}
-     * @param theme {@code Image}
+     * @param theme {@code Image} φόντο της κάρτας
      * @throws IOException -
      */
     public void setMode(GameMode gameMode,Image theme) throws IOException{
@@ -125,7 +125,7 @@ public class  Game {
     }
 
     /**
-     * Δημιουργεί το ταμπλό και τις κάρτες και τις ανακατεύει.
+     * Δημιουργεί το ταμπλό και τις κάρτες και τις ανακατεύει.Έπειτα καλεί τον event handler των ImageView ώστε να ξεκινήσει ο παίχτης να παίζει.
      */
     public void gameStart(){
         createImageViews(grid,imageViews);
@@ -137,7 +137,7 @@ public class  Game {
     }
 
     /**
-     * Είναι το event handler των καρτών.
+     * Είναι ο event handler των καρτών.
      */
     public void player(){
         for(int i = 0; i<imageViews.size();i++){
@@ -148,9 +148,10 @@ public class  Game {
     }
 
     /**
-     * Είναι η λειτουργία του παιχνιδιού.
-     * @param imageView {@code ImageView}
-     * @param card {@code Card}
+     * Έαν πατηθεί κάποιο ImageView τότε καλείται αυτή η μέθοδος. Γυρνάει με την βοήθεια ενός ScaleTransition να γυρίσει την κάρτα που ο χρήστης έχει επιλέξει.Κρατάει την κάρτα που πάτησε πρώτη
+     * δεύτερη ή και τρίτη ανάλογα το GameMode και τις συγκρίνει ανάλογα,ενώ ταυτόχρονα αποθηκεύει σε ArrayList κάποιες κάρτες και ImageView.
+     * @param imageView {@code ImageView} το ImageView που φαίνεται στην οθόνη
+     * @param card {@code Card} κάρτα
      */
     public void clickEvent(ImageView imageView,Card card){
         cardsMatch = false;
@@ -329,7 +330,7 @@ public class  Game {
     }
 
     /**
-     * Διαγράφει τις κάρτες από την οθόνη όταν τελειώσει το παιχνίδι.
+     * Διαγράφει τις κάρτες από το GridPane όταν τελειώσει το παιχνίδι.
      * @param grid {@code GridPane}
      */
     public void eraseCards(GridPane grid){
@@ -339,7 +340,7 @@ public class  Game {
     }
 
     /**
-     * Ενεργοποιεί όλες τις κάρτες.
+     * Ενεργοποιεί όλες τις κάρτες εκτός απο αυτές που έχουν βρεθεί, ώστε ο χρήστης να μπορεί να τις πατήσει.
      */
     public void enableAll(){
         for(int i = 0;i<imageViews.size();i++){
@@ -361,7 +362,7 @@ public class  Game {
     }
 
     /**
-     * Το event handler του κουμπιού εξόδου από το παιχνίδι.
+     * Ο event handler του κουμπιού EXIT.
      * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
      */
     public void backClicked() throws IOException {
@@ -371,7 +372,8 @@ public class  Game {
     }
 
     /**
-     * Δημιουργεί τα αντικείμενα των image views.
+     * Παίρνει το GridPane που έχει δημιουργήθει στο αρχείο FXML, δημιουργεί σειρές και στήλες ανάλογα, αφήνοντας τα κατάλληλα κενά και ορίζοντας τις κατάλληλες διαστάσεις.Στην συνέχεια
+     * δημιουργεί τα αντικέιμενα ImageView και τα βάζει σε ArrayList.
      * @param grid {@code GridPane}
      * @param imageViews {@code ArrayList<ImageView>}
      */
@@ -408,7 +410,7 @@ public class  Game {
     }
 
     /**
-     * Παίρνει τις εικόνες από το φάκελο,δημιουργεί τις κάρτες και τις αποθηκεύει στο ArrayList.
+     * Παίρνει τις εικόνες από το φάκελο Images,δημιουργεί τις κάρτες και τις αποθηκεύει στο ArrayList.
      * @param cards {@code ArrayList<Card>}
      */
     public void createImages(ArrayList<Card> cards) {
@@ -426,7 +428,7 @@ public class  Game {
     }
 
     /**
-     * Βάζει στα ImageViews τις εικόνες των καρτών.
+     * Βάζει στα ImageViews τις εικόνες του πίσω μέρους των καρτών.
      * @param imageViews {@code ArrayList<ImageView>}
      * @param cards {@code ArrayList<Card>}
      */
@@ -437,7 +439,7 @@ public class  Game {
     }
 
     /**
-     * Ανακατεύει τις κάρτες για να βγουν σε τυχαία σειρά.
+     * Ανακατεύει τα ImageViews που βρίσκονται στο ArrayList για να βγουν σε τυχαία σειρά.
      * @param imageViews {@code (ArrayList<ImageView>}
      */
     public void shuffleCards(ArrayList<ImageView> imageViews){

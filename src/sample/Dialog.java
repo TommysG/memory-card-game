@@ -18,7 +18,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <H1>Η κλάση της εξόδου από το παιχνίδι.</H1>
+ * <h1>Η κλάση της εξόδου από το παιχνίδι.</h1>
  */
 public class Dialog  {
 
@@ -51,13 +51,15 @@ public class Dialog  {
     /**
      * Το event handler του κουμπιού NAI.
      */
-    public void yesClicked(){
+    @FXML
+    private void yesClicked(){
         Platform.exit();
     }
     /**
      * Το event handler του κουμπιού ΟΧΙ.
      */
-    public void noClicked() {
+    @FXML
+    private void noClicked() {
         Stage dialog = (Stage) no.getScene().getWindow();
 
         Parent root = dialog.getOwner().getScene().getRoot();

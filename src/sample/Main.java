@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * <H1>Η main κλάση είναι η κλάση από την οποία αρχίζει το παιχνίδι και ανοίγει το παράθυρο του παιχνιδιού.</H1>
+ * <h1>Η κλάση από την οποία αρχίζει το παιχνίδι.</h1>
  */
 public class Main extends Application {
 

@@ -76,7 +76,7 @@
                                           <Font size="26.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="nextButton" maxHeight="80.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="61.0" prefWidth="64.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                    <Button fx:id="nextButton" maxHeight="80.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="64.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                                        </GridPane.margin>

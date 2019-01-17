@@ -103,7 +103,8 @@ public class MultiplayerSettings {
         redImage.setEffect(glow);
     }
 
-    public void multiplayerClicked() throws IOException{
+    @FXML
+    private void multiplayerClicked() throws IOException{
         mode.setGlobalMode("Multiplayer");
 
         if(normal.isSelected()) {
@@ -132,7 +133,8 @@ public class MultiplayerSettings {
         stage.getScene().setRoot(Loader.getRoot());
     }
 
-    public void number1Clicked(){
+    @FXML
+    private void number1Clicked(){
         multiplayer.setDisable(false);
         mode.setRivalsNumber(1);
         number.setText("1");
@@ -144,7 +146,8 @@ public class MultiplayerSettings {
         player3.setDisable(true);
     }
 
-    public void number2Clicked(){
+    @FXML
+    private void number2Clicked(){
         multiplayer.setDisable(false);
         mode.setRivalsNumber(2);
         number.setText("2");
@@ -156,7 +159,8 @@ public class MultiplayerSettings {
         player3.setDisable(true);
     }
 
-    public void number3Clicked(){
+    @FXML
+    private void number3Clicked(){
         multiplayer.setDisable(false);
         mode.setRivalsNumber(3);
         number.setText("3");
@@ -169,14 +173,14 @@ public class MultiplayerSettings {
     }
 
     @FXML
-    public void backButtonClicked() throws IOException{
+    private void backButtonClicked() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
     @FXML
-    public void normalModeClicked(){
+    private void normalModeClicked(){
         normalMode.setEffect(glow);
         doubleMode.setEffect(null);
         trioMode.setEffect(null);
@@ -186,7 +190,7 @@ public class MultiplayerSettings {
     }
 
     @FXML
-    public void doubleModeClicked(){
+    private void doubleModeClicked(){
         normalMode.setEffect(null);
         trioMode.setEffect(null);
         doubleMode.setEffect(glow);
@@ -196,7 +200,7 @@ public class MultiplayerSettings {
     }
 
     @FXML
-    public void trioModeClicked(){
+    private void trioModeClicked(){
         trioMode.setEffect(glow);
         normalMode.setEffect(null);
         doubleMode.setEffect(null);
@@ -206,7 +210,7 @@ public class MultiplayerSettings {
     }
 
     @FXML
-    public void redClicked(){
+    private void redClicked(){
         redImage.setEffect(glow);
         blackImage.setEffect(null);
         red.setSelected(true);
@@ -214,7 +218,7 @@ public class MultiplayerSettings {
     }
 
     @FXML
-    public void blackClicked(){
+    private void blackClicked(){
         redImage.setEffect(null);
         blackImage.setEffect(glow);
         red.setSelected(false);
@@ -222,79 +226,87 @@ public class MultiplayerSettings {
     }
 
     @FXML
-    public void redCheckClicked(){
+    private void redCheckClicked(){
         red.setSelected(true);
         black.setSelected(false);
     }
 
     @FXML
-    public void blackCheckClicked(){
+    private void blackCheckClicked(){
         red.setSelected(false);
         black.setSelected(true);
     }
 
     @FXML
-    public void normalClicked(){
+    private void normalClicked(){
         normal.setSelected(true);
         doublesize.setSelected(false);
         trio.setSelected(false);
     }
 
     @FXML
-    public void doubleClicked(){
+    private void doubleClicked(){
         normal.setSelected(false);
         doublesize.setSelected(true);
         trio.setSelected(false);
     }
 
     @FXML
-    public void trioClicked(){
+    private void trioClicked(){
         normal.setSelected(false);
         doublesize.setSelected(false);
         trio.setSelected(true);
     }
 
 
-    public void E1()
+    @FXML
+    private void E1()
     {
         mode.setRival1("Elephant");
         player1.setText(elephant);
     }
-    public void G1()
+    @FXML
+    private void G1()
     {
         mode.setRival1("Goldfish");
         player1.setText(goldfish);
     }
-    public void K1()
+    @FXML
+    private void K1()
     {
         mode.setRival1("Kangaroo");
         player1.setText(kangaroo);
     }
-    public void g2(){
+    @FXML
+    private void g2(){
         mode.setRival2("Goldfish");
         player2.setText(goldfish);
 
     }
-    public void k2(){
+    @FXML
+    private void k2(){
         mode.setRival2("Kangaroo");
         player2.setText(kangaroo);
-
     }
-    public void e2(){
+
+    @FXML
+    private void e2(){
         mode.setRival2("Elephant");
         player2.setText(elephant);
-
     }
-    public void g3(){
+    @FXML
+    private void g3(){
         mode.setRival3("Goldfish");
         player3.setText(goldfish);
 
     }
-    public void k3(){
+    @FXML
+    private void k3(){
         mode.setRival3("Kangaroo");
         player3.setText(kangaroo);
     }
-    public void e3(){
+    @FXML
+    private void e3(){
         mode.setRival3("Elephant");
         player3.setText(elephant);
     }

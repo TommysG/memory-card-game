@@ -4,7 +4,7 @@ package sample;
 import javafx.scene.image.Image;
 
 /**
- * <H1>Η κλάση της κάρτας.</H1>
+ * <h1>Η κλάση της κάρτας.</h1>
  */
 public class Card {
     private Image value;
@@ -49,7 +49,7 @@ public class Card {
 
     /**
      * Θέτει τον αριθμό της καρτας.
-     * @param id
+     * @param id {@code int}
      */
     public void setId(int id) {
         this.id = id;

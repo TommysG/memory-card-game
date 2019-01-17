@@ -47,9 +47,9 @@
                       <MenuButton fx:id="resolution" alignment="CENTER" maxHeight="50.0" maxWidth="250.0" mnemonicParsing="false" prefWidth="124.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                           <items>
                               <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
-                              <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720(Recommended)" fx:id="x1280" />
+                              <MenuItem mnemonicParsing="false" onAction="#x1280Selected" text="1280x720(Recommended)" fx:id="x1280" />
                               <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
-                              <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x600" fx:id="x64" />
+                              <MenuItem mnemonicParsing="false" onAction="#x66Selected" text="600x600" fx:id="x66" />
                           </items>
                      <GridPane.margin>
                         <Insets right="20.0" top="50.0" />

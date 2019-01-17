@@ -115,14 +115,14 @@ public class SingleModeSettings {
 
 
     @FXML
-    public void backButtonClicked() throws IOException{
+    private void backButtonClicked() throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
     @FXML
-    public void normalModeClicked(){
+    private void normalModeClicked(){
         normalMode.setEffect(glow);
         doubleMode.setEffect(null);
         trioMode.setEffect(null);
@@ -131,7 +131,7 @@ public class SingleModeSettings {
         trio.setSelected(false);
     }
     @FXML
-    public void doubleModeClicked(){
+    private void doubleModeClicked(){
         normalMode.setEffect(null);
         trioMode.setEffect(null);
         doubleMode.setEffect(glow);
@@ -140,7 +140,7 @@ public class SingleModeSettings {
         trio.setSelected(false);
     }
     @FXML
-    public void trioModeClicked(){
+    private void trioModeClicked(){
         trioMode.setEffect(glow);
         normalMode.setEffect(null);
         doubleMode.setEffect(null);
@@ -149,43 +149,43 @@ public class SingleModeSettings {
         trio.setSelected(true);
     }
     @FXML
-    public void redClicked(){
+    private void redClicked(){
         redImage.setEffect(glow);
         blackImage.setEffect(null);
         red.setSelected(true);
         black.setSelected(false);
     }
     @FXML
-    public void blackClicked(){
+    private void blackClicked(){
         redImage.setEffect(null);
         blackImage.setEffect(glow);
         red.setSelected(false);
         black.setSelected(true);
     }
     @FXML
-    public void redCheckClicked(){
+    private void redCheckClicked(){
         red.setSelected(true);
         black.setSelected(false);
     }
     @FXML
-    public void blackCheckClicked(){
+    private void blackCheckClicked(){
         red.setSelected(false);
         black.setSelected(true);
     }
     @FXML
-    public void normalClicked(){
+    private void normalClicked(){
         normal.setSelected(true);
         doublesize.setSelected(false);
         trio.setSelected(false);
     }
     @FXML
-    public void doubleClicked(){
+    private void doubleClicked(){
         normal.setSelected(false);
         doublesize.setSelected(true);
         trio.setSelected(false);
     }
     @FXML
-    public void trioClicked(){
+    private void trioClicked(){
         normal.setSelected(false);
         doublesize.setSelected(false);
         trio.setSelected(true);
