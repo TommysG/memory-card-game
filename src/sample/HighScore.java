@@ -34,7 +34,8 @@ public class HighScore {
      * Φορτώνει τις επιδόσεις απο το αρχείο που έχει δημιουργηθεί.
      * @throws IOException εάν αποτύχει να φορτώσει το αρχείο.
      */
-    public void initialize() throws IOException{
+    @FXML
+    private void initialize() throws IOException{
 
         File f =new File("score.properties");
         File f2 = new File("config.properties");

@@ -71,7 +71,8 @@ public class MainMenu {
      * Δημιουργεί τα αρχεία αν δεν υπάρχουν, βάζοντας μέσα τις κατάλληλες τιμές, αν το αρχείο υπάρχει τότε φορτώνει αυτές τις τιμές.
      * @throws IOException εάν αποτύχει να φορτώσει το αρχείο.
      */
-    public void initialize() throws IOException{
+    @FXML
+    private void initialize() throws IOException{
         File f = new File("config.properties");
         File f2 =new File("score.properties");
 

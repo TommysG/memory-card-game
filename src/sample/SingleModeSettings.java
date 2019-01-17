@@ -45,7 +45,7 @@ public class SingleModeSettings {
         mode = new GameMode();
     }
     @FXML
-    public void initialize() throws IOException{
+    private void initialize() throws IOException{
         File f = new File("config.properties");
 
         if(f.exists()) {

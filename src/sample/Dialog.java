@@ -36,7 +36,8 @@ public class Dialog  {
      * Κάνει initialize.
      * @throws IOException Αν αποτύχει να φορτώσει το αρχειο.
      */
-    public void initialize() throws IOException{
+    @FXML
+    private void initialize() throws IOException{
         File f = new File("config.properties");
 
         if(f.exists()) {

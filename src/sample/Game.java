@@ -77,7 +77,8 @@ public class  Game {
      * Φορτώνει τιμές απο τα αρχεία score και config.
      * @throws IOException εάν αποτύχει να φορτώσει τα αρχεία.
      */
-    public void initialize() throws IOException{
+    @FXML
+    private void initialize() throws IOException{
         File f2 =new File("score.properties");
         File f1 =new File("config.properties");
 

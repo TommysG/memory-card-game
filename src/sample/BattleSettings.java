@@ -38,7 +38,8 @@ public class BattleSettings {
         gameMode = new GameMode();
     }
 
-    public void initialize() throws IOException{
+    @FXML
+    private void initialize() throws IOException{
        gameMode.setRival1("Goldfish");
 
         File f = new File("config.properties");

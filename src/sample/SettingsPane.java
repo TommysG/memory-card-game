@@ -51,7 +51,8 @@ public class SettingsPane {
      * Φορτώνει τις τιμές απο το αρχείο.
      * @throws IOException εάν αποτύχει να φορτώσει το αρχείο config.
      */
-    public void initialize() throws IOException {
+    @FXML
+    private void initialize() throws IOException {
         File f = new File("config.properties");
 
         properties.setProperty("width","800");
