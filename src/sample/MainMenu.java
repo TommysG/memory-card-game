@@ -27,6 +27,9 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * <H1>Είναι η κλάση του κυρίως μενού.</H1>
+ */
 public class MainMenu {
 
     @FXML
@@ -58,12 +61,18 @@ public class MainMenu {
     private Locale locale;
     private MediaPlayer mediaPlayer;
 
-
+    /**
+     * Ο κατασκευαστής της κλάσης.
+     */
     public MainMenu(){
         Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
         mediaPlayer = new MediaPlayer(buttonSound);
     }
 
+    /**
+     * Κάνει initialize.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void initialize() throws IOException{
         File f = new File("config.properties");
         File f2 =new File("score.properties");
@@ -138,6 +147,10 @@ public class MainMenu {
         }
     }
 
+    /**
+     * Το event handler του κουμπιού μονού παιχνιδιού.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void playClicked() throws IOException {
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -148,6 +161,10 @@ public class MainMenu {
 
     }
 
+    /**
+     * Το event handler του κουμπιού πολλαπλού παιχνιδιού.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void multiplayerClicked() throws IOException{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -157,6 +174,10 @@ public class MainMenu {
         stage.getScene().setRoot(root);
     }
 
+    /**
+     * Το event handler του κουμπιού μονομαχίας.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void battleClicked() throws IOException{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -166,6 +187,10 @@ public class MainMenu {
         stage.getScene().setRoot(root);
     }
 
+    /**
+     * Το event handler του κουμπιού ρυθμίσεων.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void settingsClicked() throws IOException{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -201,7 +226,10 @@ public class MainMenu {
         dialog.show();
     }
 
-
+    /**
+     * Το event handler του κουμπιού επιδόσεων.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void highScoreClicked() throws IOException{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -212,6 +240,10 @@ public class MainMenu {
 
     }
 
+    /**
+     * Το event handler του κουμπιού εξόδου.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void exitClicked() throws Exception{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -248,6 +280,10 @@ public class MainMenu {
 
     }
 
+    /**
+     * Το event handler της επιλογής γλώσσας για Ελληνικά.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void greek() throws IOException{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -262,6 +298,10 @@ public class MainMenu {
         properties.store(output,null);
     }
 
+    /**
+     * Το event handler της επιλογής γλώσσας για Αγγλικά.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void english() throws IOException{
         mediaPlayer.seek(Duration.ZERO);
         mediaPlayer.setVolume(0.3f);
@@ -276,7 +316,10 @@ public class MainMenu {
         properties.store(output,null);
     }
 
-
+    /**
+     * Φορτώνει τη γλώσσα που εμφανίζεται το μενου.
+     * @param lang {@code String}
+     */
     private void loadLang(String lang) {
         locale = new Locale(lang);
         bundle = ResourceBundle.getBundle("sample.lang",locale);

@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * <H1>Η κλάση του τύπου παιχνιδιού.</H1>
+ */
 public class GameMode {
 
     private int mode;
@@ -19,6 +22,9 @@ public class GameMode {
     private int width,rivalsNumber;
     private double imWidth = 90,imHeight = 130;
 
+    /**
+     * Ο κατασκευαστής της κλάσης.
+     */
     public GameMode(){
         rival1 = "None";
         rival2 = "None";
@@ -26,6 +32,9 @@ public class GameMode {
         rivalsNumber = 0;
     }
 
+    /**
+     * Η δημιουργία του παιχνιδιού ανάλογα τον τύπο(κανονικό,διπλό,τριπλό).
+     */
     public void CreateMode(){
 
         switch(mode){
@@ -57,6 +66,10 @@ public class GameMode {
         }
     }
 
+    /**
+     * Φτιάχνει την ανάλυση από τις κάρτες.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void gameResolution() throws IOException {
 
         File f = new File("config.properties");

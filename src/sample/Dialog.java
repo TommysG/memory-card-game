@@ -17,6 +17,9 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * <H1>Η κλάση της εξόδου από το παιχνίδι.</H1>
+ */
 public class Dialog  {
 
     @FXML
@@ -29,6 +32,10 @@ public class Dialog  {
     private OutputStream output = null;
     private InputStream input = null;
 
+    /**
+     * Κάνει initialize.
+     * @throws IOException Αν αποτύχει να φορτώσει το αρχειο.
+     */
     public void initialize() throws IOException{
         File f = new File("config.properties");
 
@@ -41,11 +48,16 @@ public class Dialog  {
         }
     }
 
+    /**
+     * Το event handler του κουμπιού NAI.
+     */
     public void yesClicked(){
         Platform.exit();
     }
-
-    public void noClicked() throws IOException {
+    /**
+     * Το event handler του κουμπιού ΟΧΙ.
+     */
+    public void noClicked() {
         Stage dialog = (Stage) no.getScene().getWindow();
 
         Parent root = dialog.getOwner().getScene().getRoot();
@@ -54,6 +66,10 @@ public class Dialog  {
         dialog.close();
     }
 
+    /**
+     * Φορτώνει τη γλώσσα του παιχνιδιού.
+     * @param lang {@code String}
+     */
     private void loadLang(String lang) {
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);

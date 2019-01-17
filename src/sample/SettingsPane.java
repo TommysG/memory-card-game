@@ -18,6 +18,10 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
+/**
+ * <Η1>Η κλάση των ρυθμίσεων.</Η1>
+ */
+
 public class SettingsPane {
 
 
@@ -43,7 +47,10 @@ public class SettingsPane {
 
     private String fs;
 
-
+    /**
+     * Κάνει initialize.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void initialize() throws IOException {
         File f = new File("config.properties");
 
@@ -68,6 +75,10 @@ public class SettingsPane {
 
     }
 
+    /**
+     * Αλλάζει την ανάλυση σε πλήρης οθόνη.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void fullScreenSelected() throws IOException{
         resolution.setText(fs);
         output = new FileOutputStream("config.properties");
@@ -94,6 +105,10 @@ public class SettingsPane {
 
     }
 
+    /**
+     * Αλλάζει την ανάλυση σε "1280x720".
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void x1024Selected() throws IOException{
         resolution.setText("1280x720");
         output = new FileOutputStream("config.properties");
@@ -120,6 +135,10 @@ public class SettingsPane {
         settingsPane.show();
     }
 
+    /**
+     * Αλλάζει την ανάλυση σε "800x600".
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void x86Selected() throws IOException {
         resolution.setText("800x600");
         output = new FileOutputStream("config.properties");
@@ -146,6 +165,10 @@ public class SettingsPane {
         settingsPane.show();
     }
 
+    /**
+     * Αλλάζει την ανάλυση σε "600x600".
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void x64Selected() throws IOException{
         resolution.setText("600x600");
         output = new FileOutputStream("config.properties");
@@ -173,6 +196,9 @@ public class SettingsPane {
 
     }
 
+    /**
+     * Το event handler του κουμιού εξόδου από τις ρυθμίσεις.
+     */
     public void closeSettings(){
         Stage settingsPane = (Stage) close.getScene().getWindow();
         Parent mainMenu = settingsPane.getOwner().getScene().getRoot();
@@ -181,6 +207,10 @@ public class SettingsPane {
         settingsPane.close();
     }
 
+    /**
+     * Κάνει πλήρης εκκαθάριση των επιδόσεων του παίχτη.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void clearProgressClicked() throws IOException{
         File f2 =new File("score.properties");
 
@@ -201,7 +231,10 @@ public class SettingsPane {
 
     }
 
-
+    /**
+     * Φορτώνει τη γλώσσα που εμφανίζονται οι επιλογές των ρυθμίσεων.
+     * @param lang {@code String}
+     */
     private void loadLang(String lang) {
         Locale locale = new Locale(lang);
         ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);

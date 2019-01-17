@@ -21,6 +21,9 @@ import javafx.util.Duration;
 import java.io.*;
 import java.util.*;
 
+/**
+ * <H1>Η κλάση του μονού παιχνιδιού.</H1>
+ */
 public class  Game {
 
     @FXML
@@ -54,7 +57,9 @@ public class  Game {
 
     public Boolean cardsMatch;
 
-
+    /**
+     * Ο κατασκευαστής της κλάσης.
+     */
     public Game(){
         gameMode = new GameMode();
         imageViews = new ArrayList<>();
@@ -68,6 +73,10 @@ public class  Game {
         cardsMatch = false;
     }
 
+    /**
+     * Κάνει initialize.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
+     */
     public void initialize() throws IOException{
         File f2 =new File("score.properties");
         File f1 =new File("config.properties");
@@ -100,6 +109,12 @@ public class  Game {
 
     }
 
+    /**
+     * Καθορίχει το είδος του παιχνιδιού και το θέμα των καρτών ανάλογα με το τι έχει επιλέξει ο χρήστης στις ρυθμίσεις.
+     * @param gameMode {@code GameMode}
+     * @param theme {@code Image}
+     * @throws IOException -
+     */
     public void setMode(GameMode gameMode,Image theme) throws IOException{
         this.gameMode = gameMode;
         this.theme = theme;
@@ -109,6 +124,9 @@ public class  Game {
 
     }
 
+    /**
+     * Δημιουργεί το ταμπλό και τις κάρτες και τις ανακατεύει.
+     */
     public void gameStart(){
         createImageViews(grid,imageViews);
         createImages(cards);
@@ -118,6 +136,9 @@ public class  Game {
         player();
     }
 
+    /**
+     * Είναι το event handler των καρτών.
+     */
     public void player(){
         for(int i = 0; i<imageViews.size();i++){
             final ImageView imageView = imageViews.get(i);
@@ -126,6 +147,11 @@ public class  Game {
         }
     }
 
+    /**
+     * Είναι η λειτουργία του παιχνιδιού.
+     * @param imageView {@code ImageView}
+     * @param card {@code Card}
+     */
     public void clickEvent(ImageView imageView,Card card){
         cardsMatch = false;
         clicks++;
@@ -302,12 +328,19 @@ public class  Game {
         }
     }
 
+    /**
+     * Διαγράφει τις κάρτες από την οθόνη όταν τελειώσει το παιχνίδι.
+     * @param grid {@code GridPane}
+     */
     public void eraseCards(GridPane grid){
         for(int i = 0;i<imageViews.size();i++){
             grid.getChildren().remove(imageViews.get(i));
         }
     }
 
+    /**
+     * Ενεργοποιεί όλες τις κάρτες.
+     */
     public void enableAll(){
         for(int i = 0;i<imageViews.size();i++){
             imageViews.get(i).setDisable(false);
@@ -318,19 +351,30 @@ public class  Game {
         }
     }
 
+    /**
+     * Απενεργοποιεί όλες τις κάρτες.
+     */
     public void disableAll(){
         for(int i = 0;i<imageViews.size();i++){
             imageViews.get(i).setDisable(true);
         }
     }
 
+    /**
+     * Το event handler του κουμπιού εξόδου από το παιχνίδι.
+     * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
+     */
     public void backClicked() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("SingleModeSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
-
+    /**
+     * Δημιουργεί τα αντικείμενα των image views.
+     * @param grid {@code GridPane}
+     * @param imageViews {@code ArrayList<ImageView>}
+     */
     public void createImageViews(GridPane grid,ArrayList<ImageView> imageViews){
 
         grid.setHgap(10);
@@ -363,6 +407,10 @@ public class  Game {
 
     }
 
+    /**
+     * Παίρνει τις εικόνες από το φάκελο,δημιουργεί τις κάρτες και τις αποθηκεύει στο ArrayList.
+     * @param cards {@code ArrayList<Card>}
+     */
     public void createImages(ArrayList<Card> cards) {
         int times = 0;
         int j = 0;
@@ -377,16 +425,29 @@ public class  Game {
         }
     }
 
+    /**
+     * Βάζει στα ImageViews τις εικόνες των καρτών.
+     * @param imageViews {@code ArrayList<ImageView>}
+     * @param cards {@code ArrayList<Card>}
+     */
     public void setImages(ArrayList<ImageView> imageViews,ArrayList<Card> cards){
         for(int i = 0;i<imageViews.size();i++){
             imageViews.get(i).setImage(cards.get(i).getBackground());
         }
     }
 
+    /**
+     * Ανακατεύει τις κάρτες για να βγουν σε τυχαία σειρά.
+     * @param imageViews {@code (ArrayList<ImageView>}
+     */
     public void shuffleCards(ArrayList<ImageView> imageViews){
         Collections.shuffle(imageViews);
     }
 
+    /**
+     * Φορτώνει τη γλώσσα που εμφανίζεται στο μονό παιχνίδι.
+     * @param lang {@code String}
+     */
     private void loadLang(String lang) {
         locale = new Locale(lang);
         bundle = ResourceBundle.getBundle("sample.lang",locale);
