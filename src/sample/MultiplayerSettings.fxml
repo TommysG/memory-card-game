@@ -147,7 +147,6 @@
                         </MenuButton>
                         <MenuButton fx:id="player1" disable="true" layoutX="10.0" layoutY="52.0" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Goldfish" VBox.vgrow="ALWAYS">
                             <items>
-                                <MenuItem fx:id="Human1" mnemonicParsing="false" onAction="#H1" text="Human" />
                                 <MenuItem fx:id="Goldfish1" mnemonicParsing="false" onAction="#G1" text="Goldfish" />
                                 <MenuItem fx:id="Kangaroo1" mnemonicParsing="false" onAction="#K1" text="Kangaroo" />
                                 <MenuItem fx:id="Elephant1" mnemonicParsing="false" onAction="#E1" text="Elephant" />
@@ -161,7 +160,6 @@
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                             <items>
-                                <MenuItem fx:id="h2" mnemonicParsing="false" onAction="#h2" text="Human" />
                                 <MenuItem fx:id="g2" mnemonicParsing="false" onAction="#g2" text="Goldfish" />
                                 <MenuItem fx:id="k2" mnemonicParsing="false" onAction="#k2" text="Kangaroo" />
                                 <MenuItem fx:id="e2" mnemonicParsing="false" onAction="#e2" text="Elephant" />
@@ -172,7 +170,6 @@
                                 <Insets left="25.0" right="25.0" top="5.0" />
                             </VBox.margin>
                      <items>
-                        <MenuItem fx:id="h3" mnemonicParsing="false" onAction="#h3" text="Human" />
                         <MenuItem fx:id="g3" mnemonicParsing="false" onAction="#g3" text="Goldfish" />
                         <MenuItem fx:id="k3" mnemonicParsing="false" onAction="#k3" text="Kangaroo" />
                         <MenuItem fx:id="e3" mnemonicParsing="false" onAction="#e3" text="Elephant" />

@@ -69,7 +69,7 @@ public class MultiplayerSettings {
             else if(lang.equals("en")) {
                 goldfish = "Goldfish";
                 kangaroo = "Kangaroo";
-                elephant = "Elephnat";
+                elephant = "Elephant";
             }
 
             width = Double.parseDouble(properties.getProperty("width"));
@@ -254,11 +254,7 @@ public class MultiplayerSettings {
         trio.setSelected(true);
     }
 
-    public void H1()
-    {
-        mode.setRival1("Human");
-        player1.setText("Human");
-    }
+
     public void E1()
     {
         mode.setRival1("Elephant");
@@ -274,11 +270,6 @@ public class MultiplayerSettings {
         mode.setRival1("Kangaroo");
         player1.setText(kangaroo);
     }
-    public void h2(){
-        mode.setRival2("Human");
-        player2.setText("Human");
-
-    }
     public void g2(){
         mode.setRival2("Goldfish");
         player2.setText(goldfish);
@@ -292,11 +283,6 @@ public class MultiplayerSettings {
     public void e2(){
         mode.setRival2("Elephant");
         player2.setText(elephant);
-
-    }
-    public void h3(){
-        mode.setRival3("Human");
-        player3.setText("Human");
 
     }
     public void g3(){

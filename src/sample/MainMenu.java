@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -13,10 +14,13 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.util.Locale;
@@ -28,7 +32,7 @@ public class MainMenu {
     @FXML
     private Button exit,highScore;
     @FXML
-    private MenuButton language,resolution,playMenu;
+    private MenuButton language,playMenu;
     @FXML
     private ImageView flag,settings,cards;
     @FXML
@@ -36,7 +40,11 @@ public class MainMenu {
     @FXML
     private VBox vbox;
     @FXML
-    private MenuItem fullScreen,x86,singleMode,multiplayerMod,englishMenu,greekMenu;
+    private MenuItem singleMode,multiplayerItem,englishMenu,greekMenu,battle;
+    @FXML
+    private ToggleButton sounds;
+
+    private Thread thread;
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
@@ -48,7 +56,13 @@ public class MainMenu {
     private Image uk = new Image("Images/en.png");
 
     private Locale locale;
+    private MediaPlayer mediaPlayer;
 
+
+    public MainMenu(){
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
+    }
 
     public void initialize() throws IOException{
         File f = new File("config.properties");
@@ -83,7 +97,6 @@ public class MainMenu {
             flag.setImage(new Image("Images/" + string1 + ".png"));
             loadLang(string1);
 
-            resolution.setText(properties.getProperty("resolution"));
             int width = Integer.parseInt(properties.getProperty("width"));
             if(width == 800){
                 cards.setFitWidth(583);
@@ -122,31 +135,41 @@ public class MainMenu {
             cards.setFitWidth(531);
             cards.setFitHeight(205);
 
-            resolution.setText(properties.getProperty("resolution"));
         }
     }
 
     public void playClicked() throws IOException {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("SingleModeSettings.fxml"));
         Stage stage = (Stage) playMenu.getScene().getWindow();
         stage.getScene().setRoot(root);
 
     }
 
-
     public void multiplayerClicked() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("MultiplayerSettings.fxml"));
         Stage stage = (Stage) playMenu.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
     public void battleClicked() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("BattleSettings.fxml"));
         Stage stage = (Stage) playMenu.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
     public void settingsClicked() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Stage primaryStage = (Stage) exit.getScene().getWindow();
         GaussianBlur blur = new GaussianBlur(3);
         mainMenu.setEffect(blur);
@@ -180,6 +203,9 @@ public class MainMenu {
 
 
     public void highScoreClicked() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("HighScore.fxml"));
         Stage stage = (Stage) highScore.getScene().getWindow();
         stage.getScene().setRoot(root);
@@ -187,6 +213,9 @@ public class MainMenu {
     }
 
     public void exitClicked() throws Exception{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Stage primaryStage = (Stage) exit.getScene().getWindow();
         GaussianBlur blur = new GaussianBlur(3);
         mainMenu.setEffect(blur);
@@ -219,63 +248,10 @@ public class MainMenu {
 
     }
 
-    public void fullScreenSelected() throws IOException{
-        output = new FileOutputStream("config.properties");
-        properties.setProperty("fullScreen","true");
-        properties.setProperty("width","999");
-        properties.setProperty("height","999");
-        properties.setProperty("resolution","FullScreen");
-        properties.store(output,null);
-
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Stage stage = (Stage) resolution.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setFullScreen(true);
-        stage.setFullScreenExitHint("");
-        stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
-        stage.show();
-    }
-
-    public void x1280Selected() throws IOException{
-        output = new FileOutputStream("config.properties");
-        properties.setProperty("resolution","1280x720");
-        properties.setProperty("fullScreen","false");
-        properties.setProperty("width","1280");
-        properties.setProperty("height","720");
-        properties.store(output,null);
-
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Stage stage = (Stage) resolution.getScene().getWindow();
-        stage.setScene(new Scene(root,1280,720));
-    }
-
-    public void x86Selected() throws IOException {
-        output = new FileOutputStream("config.properties");
-        properties.setProperty("resolution","800x600");
-        properties.setProperty("fullScreen","false");
-        properties.setProperty("width","800");
-        properties.setProperty("height","600");
-        properties.store(output,null);
-
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Stage stage = (Stage) resolution.getScene().getWindow();
-        stage.setScene(new Scene(root,800,600));
-    }
-
-    public void x64Selected() throws IOException{
-        output = new FileOutputStream("config.properties");
-        properties.setProperty("resolution","600x600");
-        properties.setProperty("fullScreen","false");
-        properties.setProperty("width","600");
-        properties.setProperty("height","600");
-        properties.store(output,null);
-
-        Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-        Stage stage = (Stage) resolution.getScene().getWindow();
-        stage.setScene(new Scene(root,600,600));
-    }
-
     public void greek() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         loadLang("el");
         flag.setImage(greece);
         language.setText("Ελληνικά");
@@ -287,6 +263,9 @@ public class MainMenu {
     }
 
     public void english() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         loadLang("en");
         flag.setImage(uk);
         language.setText("English");
@@ -302,8 +281,11 @@ public class MainMenu {
         locale = new Locale(lang);
         bundle = ResourceBundle.getBundle("sample.lang",locale);
         playMenu.setText(bundle.getString("play"));
-        highScore.setText(bundle.getString("credits"));
+        highScore.setText(bundle.getString("highScore"));
         exit.setText(bundle.getString("exit"));
+        singleMode.setText(bundle.getString("singleModeMenu"));
+        multiplayerItem.setText(bundle.getString("multiplayerMenu"));
+        battle.setText(bundle.getString("battleMenu"));
 
         greekMenu.setText(bundle.getString("menuGreek"));
         englishMenu.setText(bundle.getString("menuEnglish"));

@@ -18,7 +18,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303030;">
                <children>
-                    <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" layoutX="13.0" layoutY="10.0" prefHeight="698.0" prefWidth="815.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                    <GridPane fx:id="grid" alignment="CENTER" layoutX="13.0" layoutY="10.0" prefHeight="698.0" prefWidth="815.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
                     <Button fx:id="back" focusTraversable="false" layoutX="1.0" layoutY="1.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css">
                         <graphic>
                             <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
@@ -76,9 +76,9 @@
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Button fx:id="next" maxHeight="150.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="71.0" prefWidth="172.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
+                        <Button fx:id="next" maxHeight="80.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="61.0" prefWidth="64.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.valignment="CENTER">
                            <GridPane.margin>
-                              <Insets bottom="20.0" left="100.0" right="100.0" top="20.0" />
+                              <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                            </GridPane.margin>
                         </Button>
                           <Label fx:id="winLabel" prefHeight="71.0" prefWidth="442.0" textFill="WHITE" GridPane.rowIndex="6">

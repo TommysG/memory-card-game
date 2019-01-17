@@ -188,7 +188,6 @@ public class GameMode {
         return imWidth;
     }
 
-
     public int getRows() {
         return rows;
     }

@@ -1,13 +1,23 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.stage.*;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +28,7 @@ public class Main extends Application {
 
 
     private Properties properties = new Properties();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{

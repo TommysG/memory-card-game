@@ -4,9 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.ResourceBundle;
 
@@ -25,18 +24,24 @@ public class SettingsPane {
     @FXML
     private MenuButton language,resolution;
     @FXML
-    private MenuItem fullScreen,x86;
+    private MenuItem fullScreen,x86,x1280;
+    @FXML
+    private ToggleButton sounds;
+    @FXML
+    private Button clearProgress;
+    @FXML
+    private Label settingsLabel,resolutionLabel,soundsLabel,clearProgressLabel;
+
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
-    private ResourceBundle bundle;
     private OutputStream output = null;
-    private OutputStream output2 = null;
     private InputStream input = null;
-    private InputStream input2 = null;
 
     @FXML
     private Button close;
+
+    private String fs;
 
 
     public void initialize() throws IOException {
@@ -50,13 +55,21 @@ public class SettingsPane {
             input = new FileInputStream("config.properties");
             properties.load(input);
 
+            String lang = properties.getProperty("flag");
+            loadLang(lang);
+
             resolution.setText(properties.getProperty("resolution"));
+            if(properties.getProperty("resolution").equals("FullScreen")){
+                resolution.setText(fs);
+            }
+
         }
+
 
     }
 
     public void fullScreenSelected() throws IOException{
-        resolution.setText("FullScreen");
+        resolution.setText(fs);
         output = new FileOutputStream("config.properties");
         properties.setProperty("fullScreen","true");
         properties.setProperty("width","999");
@@ -175,7 +188,7 @@ public class SettingsPane {
             input = new FileInputStream("score.properties");
             properties.load(input);
 
-            output2 = new FileOutputStream("score.properties");
+            OutputStream output2 = new FileOutputStream("score.properties");
             properties2.setProperty("MultiplayerWins1","0");
             properties2.setProperty("MultiplayerWins2","0");
             properties2.setProperty("MultiplayerWins3","0");
@@ -185,6 +198,24 @@ public class SettingsPane {
             properties2.setProperty("BattleWins","0");
             properties2.store(output2,null);
         }
+
+    }
+
+
+    private void loadLang(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);
+
+        settingsLabel.setText(bundle.getString("settings"));
+        soundsLabel.setText(bundle.getString("sounds"));
+        clearProgressLabel.setText(bundle.getString("clearProgressLabel"));
+        resolutionLabel.setText(bundle.getString("resolutionLabel"));
+        sounds.setText(bundle.getString("sounds"));
+        resolution.setText(bundle.getString("resolutionLabel"));
+        clearProgress.setText(bundle.getString("clearProgressLabel"));
+        x1280.setText(bundle.getString("x1280"));
+        fullScreen.setText(bundle.getString("fullScreen"));
+        fs = bundle.getString("fullScreen");
 
     }
 }

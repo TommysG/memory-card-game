@@ -37,11 +37,9 @@ public class Multiplayer extends Game {
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
     private InputStream input = null,input2 = null;
-    private OutputStream output = null,output2 = null;
+    private OutputStream output = null;
 
     private ResourceBundle bundle;
-
-    private final Object PAUSE_KEY = new Object();
 
     public Multiplayer(){
         clicks = 0;
@@ -403,7 +401,7 @@ public class Multiplayer extends Game {
             });
         }
         else{
-            new Timeline(new KeyFrame(Duration.seconds(2.5),event -> goldfish())).play();
+            new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish())).play();
         }
     }
 
@@ -485,7 +483,7 @@ public class Multiplayer extends Game {
             });
         }
         else{
-            new Timeline(new KeyFrame(Duration.seconds(2.5),event -> goldfish3())).play();
+            new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish3())).play();
         }
     }
 
@@ -552,7 +550,7 @@ public class Multiplayer extends Game {
             });
         }
         else{
-            new Timeline(new KeyFrame(Duration.seconds(2.5),event -> goldfish())).play();
+            new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish())).play();
         }
     }
 
@@ -623,13 +621,13 @@ public class Multiplayer extends Game {
             }));
             timeline.play();
             timeline.setOnFinished(event -> {
-                new Timeline(new KeyFrame(Duration.seconds(3),event2 -> {
+                new Timeline(new KeyFrame(Duration.seconds(2.5),event2 -> {
                     elephant3();
                 })).play();
             });
         }
         else{
-            new Timeline(new KeyFrame(Duration.seconds(3),event -> goldfish3())).play();
+            new Timeline(new KeyFrame(Duration.seconds(1),event -> goldfish3())).play();
         }
     }
 
@@ -707,14 +705,6 @@ public class Multiplayer extends Game {
         imageView.setDisable(true);
     }
 
-    private void pause() {
-        Platform.enterNestedEventLoop(PAUSE_KEY);
-    }
-
-    private void resume() {
-        Platform.exitNestedEventLoop(PAUSE_KEY, null);
-    }
-
     @Override
     public void backClicked() throws IOException {
         clicks = 0;
@@ -752,7 +742,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival1().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {
                     elephant();
                 }));
                 bot.play();
@@ -763,7 +753,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival1().equals("Kangaroo")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {kangaroo();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {kangaroo();}));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 1){
@@ -776,7 +766,7 @@ public class Multiplayer extends Game {
             turn.setText(t + playerTurn3 + "(" + p3 + ")");
             nextTurn.setText(nt + playerTurn4 + "(" + p4 + ")");
             if(gameMode.getRival2().equals("Goldfish")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {goldfish();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {goldfish();}));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 2){
@@ -785,7 +775,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival2().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {elephant();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {elephant();}));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 2){
@@ -794,7 +784,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival2().equals("Kangaroo")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {kangaroo();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {kangaroo();}));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 2){
@@ -807,7 +797,7 @@ public class Multiplayer extends Game {
             turn.setText(t + playerTurn4 + "(" + p4 + ")");
             nextTurn.setText(nt + playerTurn1 + you);
             if(gameMode.getRival3().equals("Goldfish")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> goldfish()));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> goldfish()));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 3){
@@ -815,7 +805,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival3().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> elephant()));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> elephant()));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 3){
@@ -823,7 +813,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival3().equals("Kangaroo")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> kangaroo()));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> kangaroo()));
                 bot.play();
                 clicks = clicks +2;
                 if(gameMode.getRivalsNumber() == 3){
@@ -862,7 +852,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival1().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {elephant3();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {elephant3();}));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 1){
@@ -871,7 +861,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival1().equals("Kangaroo")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {kangaroo3();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {kangaroo3();}));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 1){
@@ -884,7 +874,7 @@ public class Multiplayer extends Game {
             turn.setText(t + playerTurn3 + "(" + p3 + ")");
             nextTurn.setText(nt + playerTurn4 + "(" + p4 + ")");
             if(gameMode.getRival2().equals("Goldfish")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {goldfish3();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {goldfish3();}));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 2){
@@ -893,7 +883,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival2().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {elephant3();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {elephant3();}));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 2){
@@ -902,7 +892,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival2().equals("Kangaroo")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> {kangaroo3();}));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> {kangaroo3();}));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 2){
@@ -915,7 +905,7 @@ public class Multiplayer extends Game {
             turn.setText(t + playerTurn4 + "(" + p4 + ")");
             nextTurn.setText(nt + playerTurn1 + you);
             if(gameMode.getRival3().equals("Goldfish")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> goldfish3()));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> goldfish3()));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 3){
@@ -923,7 +913,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival3().equals("Elephant")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> elephant3()));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> elephant3()));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 3){
@@ -931,7 +921,7 @@ public class Multiplayer extends Game {
                 }
             }
             else if(gameMode.getRival3().equals("Kangaroo")){
-                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(2),event1 -> kangaroo3()));
+                Timeline bot = new Timeline(new KeyFrame(Duration.seconds(1.5),event1 -> kangaroo3()));
                 bot.play();
                 clicks = clicks +3;
                 if(gameMode.getRivalsNumber() == 3){

@@ -18,7 +18,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303030; -fx-border-color: #252525; -fx-border-width: 4;">
                <children>
-                  <GridPane fx:id="gridTable1" alignment="CENTER" gridLinesVisible="true" layoutX="60.0" prefHeight="718.0" prefWidth="448.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                  <GridPane fx:id="gridTable1" alignment="CENTER" layoutX="60.0" prefHeight="718.0" prefWidth="448.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
       </GridPane>
                   <Button fx:id="back" focusTraversable="false" layoutX="2.0" layoutY="2.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css">
                      <graphic>
@@ -33,11 +33,11 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303030;">
                <children>
-                  <SplitPane dividerPositions="0.5905511811023622" prefHeight="718.0" prefWidth="764.0" style="-fx-background-color: #303030;" stylesheets="@/css/divider.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.5459317585301837" prefHeight="718.0" prefWidth="764.0" style="-fx-background-color: #303030;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303030;">
                            <children>
-                              <GridPane fx:id="gridTable2" alignment="CENTER_LEFT" gridLinesVisible="true" layoutX="-198.0" layoutY="10.0" prefHeight="692.0" prefWidth="569.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
+                              <GridPane fx:id="gridTable2" alignment="CENTER_LEFT" layoutX="-198.0" layoutY="10.0" prefHeight="692.0" prefWidth="569.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #252525;">
@@ -76,16 +76,17 @@
                                           <Font size="26.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="nextButton" maxHeight="150.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="61.0" prefWidth="64.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
+                                    <Button fx:id="nextButton" maxHeight="80.0" maxWidth="250.0" minWidth="50.0" mnemonicParsing="false" onAction="#nextClicked" prefHeight="61.0" prefWidth="64.0" stylesheets="@/css/buttons.css" text="Next" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                                        <GridPane.margin>
                                           <Insets bottom="20.0" left="50.0" right="50.0" top="20.0" />
                                        </GridPane.margin>
                                     </Button>
                                     <Label fx:id="winLabel" prefHeight="73.0" prefWidth="336.0" textFill="WHITE" GridPane.rowIndex="4">
                                        <font>
-                                          <Font size="50.0" />
+                                          <Font size="29.0" />
                                        </font>
                                     </Label>
+                                    <Label fx:id="noteLabel" prefHeight="37.0" prefWidth="337.0" text="Note: Tap next in the end to finish the game" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
                                  </children>
                               </GridPane>
                            </children></AnchorPane>

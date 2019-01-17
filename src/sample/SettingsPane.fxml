@@ -39,15 +39,15 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="139.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="106.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                      <MenuButton fx:id="resolution" alignment="CENTER" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" prefWidth="124.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                      <MenuButton fx:id="resolution" alignment="CENTER" maxHeight="50.0" maxWidth="250.0" mnemonicParsing="false" prefWidth="124.0" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
                           <items>
                               <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
-                              <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720(Recommended)" fx:id="x1024" />
+                              <MenuItem mnemonicParsing="false" onAction="#x1024Selected" text="1280x720(Recommended)" fx:id="x1280" />
                               <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
                               <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x600" fx:id="x64" />
                           </items>
@@ -55,16 +55,16 @@
                         <Insets right="20.0" top="50.0" />
                      </GridPane.margin>
                       </MenuButton>
-                    <ToggleButton maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" stylesheets="@/css/toggleButton.css" text="Sounds" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                    <ToggleButton fx:id="sounds" maxHeight="50.0" maxWidth="250.0" mnemonicParsing="false" stylesheets="@/css/toggleButton.css" text="Sounds" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
-                        <Insets bottom="50.0" right="20.0" />
+                        <Insets right="20.0" />
                      </GridPane.margin></ToggleButton>
-                    <Label prefHeight="30.0" prefWidth="75.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Settings" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                    <Label fx:id="settingsLabel" prefHeight="36.0" prefWidth="303.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Settings" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
                         <font>
-                            <Font size="20.0" />
+                            <Font name="System Bold" size="20.0" />
                         </font>
                     </Label>
-                  <Label layoutX="169.0" layoutY="10.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Resolution" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
+                  <Label fx:id="resolutionLabel" layoutX="169.0" layoutY="10.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Resolution" textFill="WHITE" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -72,7 +72,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Sounds" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  <Label fx:id="soundsLabel" layoutX="24.0" layoutY="56.0" prefHeight="30.0" prefWidth="103.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Sounds" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -80,11 +80,11 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Label>
-                  <Button fx:id="clearProgress" maxHeight="50.0" maxWidth="350.0" mnemonicParsing="false" onAction="#clearProgressClicked" prefHeight="42.0" prefWidth="129.0" stylesheets="@/css/buttons.css" text="Clear Progress" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Button fx:id="clearProgress" maxHeight="50.0" maxWidth="250.0" mnemonicParsing="false" onAction="#clearProgressClicked" prefHeight="42.0" prefWidth="198.0" stylesheets="@/css/buttons.css" text="Clear Progress" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <GridPane.margin>
-                        <Insets bottom="50.0" right="20.0" />
+                        <Insets right="20.0" />
                      </GridPane.margin></Button>
-                  <Label layoutX="10.0" layoutY="99.0" prefHeight="30.0" prefWidth="133.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Clear Progress" textFill="WHITE" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                  <Label fx:id="clearProgressLabel" layoutX="10.0" layoutY="99.0" prefHeight="30.0" prefWidth="205.0" style="-fx-text-fill: linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),        #9d4024,        #d86e3a,        radial-gradient(center 50% 50%, radius 100%, #d86e3a, #c54e2c); -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );" text="Clear Progress" textFill="WHITE" GridPane.rowIndex="2" GridPane.valignment="TOP">
                      <font>
                         <Font size="20.0" />
                      </font>

@@ -19,10 +19,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
+
 import javafx.event.*;
 
 public class Battle extends Multiplayer {
@@ -45,17 +43,31 @@ public class Battle extends Multiplayer {
 
     private int botScore,playerScore,wins;
     private Properties properties = new Properties();
-    private InputStream input = null;
-    private OutputStream output = null;
+    private Properties properties2 = new Properties();
+    private InputStream input = null,input2 = null;
+    private OutputStream output = null,output2 = null;
+
+    private String t,nt,pl1,pl2,you,playerTurn1,p2,win,botWin;
 
     @FXML
-    private Label player1,player2,turn,nextTurn,winLabel;
+    private Label player1,player2,turn,nextTurn,winLabel,noteLabel;
+    private boolean oneTime;
 
 
     @Override
     public void initialize() throws IOException {
+        oneTime = false;
         nextButton.setDisable(true);
         File f =new File("score.properties");
+        File f2 =new File("config.properties");
+
+        if(f2.exists()) {
+            input2 = new FileInputStream("config.properties");
+            properties2.load(input2);
+
+            String lang = properties2.getProperty("flag");
+            loadLang(lang);
+        }
 
         if(f.exists()){
             input = new FileInputStream("score.properties");
@@ -73,6 +85,7 @@ public class Battle extends Multiplayer {
         flag = false;
         clicks = 0;
         boolRan = false;
+        oneTime = false;
     }
 
     @Override
@@ -94,8 +107,12 @@ public class Battle extends Multiplayer {
         // shuffleCards();
         setImages(imageViews2,cards2);
 
-        turn.setText("Turn: Player1(You)");
-        nextTurn.setText("Next Turn:"+gameMode.getRival1());
+    }
+
+    public void battleStart() throws IOException{
+        playersLang();
+        turn.setText(t+ playerTurn1+you);
+        nextTurn.setText(nt + p2 );
     }
 
     @Override
@@ -117,13 +134,13 @@ public class Battle extends Multiplayer {
 
         nextButton.setOnAction(event -> {
             if (clicks==0 ) {
-                turn.setText("Turn: Player1(You)");
-                nextTurn.setText("Next Turn: "+gameMode.getRival1());
+                turn.setText(t+ playerTurn1+you);
+                nextTurn.setText(nt + p2 );
                 enableAll();
             }
             else if (clicks==1 ) {
-                turn.setText("Turn: "+gameMode.getRival1());
-                nextTurn.setText("Next Turn: Player1(You)");
+                turn.setText(nt + p2 );
+                nextTurn.setText(t+ playerTurn1+you);
                 if(gameMode.getRival1().equals("Goldfish")){
                     this.goldfish();
                     compareGoldfish(playerImageview,playerCard);
@@ -173,8 +190,8 @@ public class Battle extends Multiplayer {
                 }
             }
             else if(clicks == 3) {
-                turn.setText("Turn: Player1(You)");
-                nextTurn.setText("Next Turn: "+gameMode.getRival1());
+                turn.setText(t+ playerTurn1+you);
+                nextTurn.setText(nt + p2 );
                 enableAll();
             }
             else{
@@ -200,6 +217,11 @@ public class Battle extends Multiplayer {
                     }
                     clicks = 0;
                 }
+                if(foundCards.size() == gameMode.getSize()*2) {
+                    findWinner();
+                    nextButton.setDisable(true);
+                }
+
             }
         });
 
@@ -236,12 +258,12 @@ public class Battle extends Multiplayer {
     }
 
     public void goldfish() {
-        nextButton.setDisable(true);
         if(foundCards.size() == gameMode.getSize()*2) {
             findWinner();
             nextButton.setDisable(true);
             return;
         }
+        nextButton.setDisable(true);
         Random random = new Random();
         random1 = random.nextInt(imageViews2.size());
         boolRan = random.nextBoolean();
@@ -269,12 +291,12 @@ public class Battle extends Multiplayer {
     }
 
     private void elephant(Card card){
-        nextButton.setDisable(true);
         if(foundCards.size() == gameMode.getSize()*2) {
             findWinner();
             nextButton.setDisable(true);
             return;
         }
+        nextButton.setDisable(true);
         flag = false;
         ImageView seenImageView1 = imageViews2.get(0);
         Card seenCard1 = cards2.get(0);
@@ -295,12 +317,12 @@ public class Battle extends Multiplayer {
     }
 
     private void kangaroo(Card card){
-        nextButton.setDisable(true);
         if(foundCards.size() == gameMode.getSize()*2) {
             findWinner();
             nextButton.setDisable(true);
             return;
         }
+        nextButton.setDisable(true);
         flag = false;
         ImageView seenImageView1 = imageViews2.get(0);
         Card seenCard1 = cards2.get(0);
@@ -325,11 +347,11 @@ public class Battle extends Multiplayer {
         if(flag){
             if(clicks == 1){
                 botScore++;
-                player2.setText("Player2: "+botScore);
+                player2.setText(pl2+botScore);
             }
             else if(clicks == 4){
                 playerScore++;
-                player1.setText("Player1: "+playerScore);
+                player1.setText(pl1+playerScore);
             }
 
             foundCards.add(botImageView);
@@ -354,11 +376,11 @@ public class Battle extends Multiplayer {
         if(botCard.getId() == playerCard.getId()){
             if(clicks == 1){
                 botScore++;
-                player2.setText("Player2: "+botScore);
+                player2.setText(pl2+botScore);
             }
             else if(clicks == 4){
                 playerScore++;
-                player1.setText("Player1: "+playerScore);
+                player1.setText(pl1+playerScore);
             }
             foundCards.add(botImageView);
             foundCards.add(playerImageview);
@@ -388,7 +410,7 @@ public class Battle extends Multiplayer {
         if(flag){
             if(clicks == 1){
                 botScore++;
-                player2.setText("Player2: "+botScore);
+                player2.setText(pl2+botScore);
             }
             foundCards.add(botImageView);
             foundCards.add(playerImageview);
@@ -408,7 +430,8 @@ public class Battle extends Multiplayer {
     }
 
     private void findWinner(){
-        if (playerScore>botScore){
+        if (playerScore>botScore && !oneTime){
+            oneTime = true;
             wins++;
             try {
                 output = new FileOutputStream("score.properties");
@@ -421,10 +444,63 @@ public class Battle extends Multiplayer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            winLabel.setText("YOU WIN");
+            winLabel.setText(win);
+            nextButton.setDisable(true);
         }
         else{
-            winLabel.setText(gameMode.getRival1() + " WON");
+            winLabel.setText(p2 + " "+botWin);
+            nextButton.setDisable(true);
+        }
+    }
+
+    private void loadLang(String lang) {
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);
+
+        t = (bundle.getString("turn"));
+        nt = bundle.getString("nextTurn");
+        pl1 = bundle.getString("player1");
+        pl2 = bundle.getString("player2");
+        playerTurn1 = bundle.getString("player1T");
+        you = bundle.getString("you");
+        player1.setText(bundle.getString("player1") + "0");
+        player2.setText(bundle.getString("player2") + "0");
+        win = bundle.getString("win");
+        botWin = bundle.getString("botWin");
+        nextButton.setText(bundle.getString("next"));
+        noteLabel.setText(bundle.getString("noteLabel"));
+    }
+
+    private void playersLang() throws IOException{
+        File f2 =new File("config.properties");
+
+        if(f2.exists()) {
+            input2 = new FileInputStream("config.properties");
+            properties2.load(input2);
+
+            String lang = properties2.getProperty("flag");
+            loadLang(lang);
+
+            if (lang.equals("el")) {
+                if (gameMode.getRival1().equals("Goldfish")) {
+                    p2 = "Χρυσόψαρο";
+                } else if (gameMode.getRival1().equals("Kangaroo")) {
+                    p2 = "Καγκουρό";
+                } else if (gameMode.getRival1().equals("Elephant")) {
+                    p2 = "Ελέφαντας";
+                }
+            }
+            else if(lang.equals("en")){
+                if(gameMode.getRival1().equals("Goldfish")){
+                    p2 = "Goldfish";
+                }
+                else if(gameMode.getRival1().equals("Kangaroo")){
+                    p2 = "Kangaroo";
+                }
+                else if(gameMode.getRival1().equals("Elephant")){
+                    p2 = "Elephant";
+                }
+            }
         }
     }
 }

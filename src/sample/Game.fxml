@@ -17,7 +17,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #303030;">
                <children>
-                  <GridPane fx:id="grid" alignment="CENTER" gridLinesVisible="true" layoutX="63.0" prefHeight="578.0" prefWidth="570.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                  <GridPane fx:id="grid" alignment="CENTER" layoutX="63.0" prefHeight="578.0" prefWidth="570.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
       </GridPane>
                   <Button fx:id="back" focusTraversable="false" mnemonicParsing="false" onAction="#backClicked" prefHeight="60.0" prefWidth="60.0" stylesheets="@/css/buttons.css" AnchorPane.leftAnchor="2.0">
                      <graphic>
@@ -34,20 +34,19 @@
                <children>
                   <GridPane gridLinesVisible="true" layoutX="-14.0" layoutY="209.0" prefHeight="598.0" prefWidth="159.0" style="-fx-border-color: #000000; -fx-border-width: 4;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="191.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="419.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="453.0" minHeight="10.0" prefHeight="438.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="Moves" prefHeight="50.0" prefWidth="151.0" text="Moves: " textFill="WHITE">
+                        <Label fx:id="Moves" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="287.0" text="Moves: " textFill="WHITE">
                            <font>
                               <Font size="26.0" />
                            </font>
                         </Label>
-                        <Label fx:id="foundCardsLabel" text="Found Pairs: " textFill="WHITE" GridPane.rowIndex="1">
+                        <Label fx:id="foundCardsLabel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="70.0" prefWidth="284.0" text="Found Pairs: " textFill="WHITE" GridPane.rowIndex="1">
                            <font>
                               <Font size="26.0" />
                            </font>

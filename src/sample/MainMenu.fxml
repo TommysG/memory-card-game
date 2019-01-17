@@ -27,17 +27,6 @@
             <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="57.0" vgrow="ALWAYS" />
         </rowConstraints>
          <children>
-                <MenuButton fx:id="resolution" mnemonicParsing="false" stylesheets="@/css/menuButton.css" text="Resolution" GridPane.halignment="LEFT" GridPane.valignment="TOP">
-                    <items>
-                        <MenuItem fx:id="fullScreen" mnemonicParsing="false" onAction="#fullScreenSelected" text="Full Screen" />
-                        <MenuItem mnemonicParsing="false" onAction="#x1280Selected" text="1280x720(Recommended)" fx:id="x1280" />
-                        <MenuItem mnemonicParsing="false" onAction="#x86Selected" text="800x600" fx:id="x86" />
-                        <MenuItem mnemonicParsing="false" onAction="#x64Selected" text="600x600" fx:id="x64" />
-                    </items>
-               <GridPane.margin>
-                  <Insets left="2.0" top="2.0" />
-               </GridPane.margin>
-                </MenuButton>
             <Button mnemonicParsing="false" onAction="#settingsClicked" stylesheets="@/css/buttons.css" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <graphic>
                       <ImageView fx:id="settings" fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
