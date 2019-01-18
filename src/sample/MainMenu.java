@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -10,9 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -28,7 +25,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Η κλάση του κυρίως μενού.</h1>
+ * <h1>Η κλάση του Main Menu</h1>
  */
 public class MainMenu {
 
@@ -37,21 +34,15 @@ public class MainMenu {
     @FXML
     private MenuButton language,playMenu;
     @FXML
-    private ImageView flag,settings,cards;
+    private ImageView flag,cards;
     @FXML
     private AnchorPane mainMenu;
     @FXML
-    private VBox vbox;
-    @FXML
     private MenuItem singleMode,multiplayerItem,englishMenu,greekMenu,battle;
-    @FXML
-    private ToggleButton sounds;
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
-    private ResourceBundle bundle;
-    private OutputStream output = null,output2 = null;
-    private InputStream input = null,input2 = null;
+    private OutputStream output = null;
 
     private Image greece = new Image("Images/el.png");
     private Image uk = new Image("Images/en.png");
@@ -77,11 +68,11 @@ public class MainMenu {
         File f2 =new File("score.properties");
 
         if(f2.exists()){
-            input2 = new FileInputStream("score.properties");
+            InputStream input2 = new FileInputStream("score.properties");
             properties2.load(input2);
         }
         else{
-            output2 = new FileOutputStream("score.properties");
+            OutputStream output2 = new FileOutputStream("score.properties");
             properties2.setProperty("MultiplayerWins1","0");
             properties2.setProperty("MultiplayerWins2","0");
             properties2.setProperty("MultiplayerWins3","0");
@@ -93,7 +84,7 @@ public class MainMenu {
         }
 
         if(f.exists()) {
-            input = new FileInputStream("config.properties");
+            InputStream input = new FileInputStream("config.properties");
             properties.load(input);
 
             String string1 = properties.getProperty("flag");
@@ -329,7 +320,7 @@ public class MainMenu {
      */
     private void loadLang(String lang) {
         locale = new Locale(lang);
-        bundle = ResourceBundle.getBundle("sample.lang",locale);
+        ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);
         playMenu.setText(bundle.getString("play"));
         highScore.setText(bundle.getString("highScore"));
         exit.setText(bundle.getString("exit"));

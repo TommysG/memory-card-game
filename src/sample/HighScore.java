@@ -5,7 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,19 +19,28 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Η κλάση των επιδόσεων.</h1>
+ * <h1>Η κλάση των HighScore</h1>
  */
 public class HighScore {
 
     @FXML
     private Button back;
     @FXML
-    private Label sm1,sm2,sm3,m1,m2,m3,battle,singleModeLabel,multiplayerLabel,battleLabel,battleWinsLabel,highScore;
+    private Label sm1,sm2,sm3,m1,m2,m3,singleModeLabel,multiplayerLabel,battleLabel,battleWinsLabel,highScore;
 
     private String s1,s2,s3,mu1,mu2,mu3,bat;
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
+    private MediaPlayer mediaPlayer;
+
+    /**
+     * Κατασκευαστής της κλάσης
+     */
+    public HighScore(){
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
+    }
 
     /**
      * Φορτώνει τις επιδόσεις απο το αρχείο που έχει δημιουργηθεί.
@@ -87,6 +99,9 @@ public class HighScore {
      */
     @FXML
     private void backClicked() throws IOException {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);

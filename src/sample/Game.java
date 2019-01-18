@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -22,15 +24,13 @@ import java.io.*;
 import java.util.*;
 
 /**
- * <h1>Η κλάση του μονού παιχνιδιού.</h1>
+ * <h1>Η κλάση του Single Mode</h1>
  */
 public class  Game {
 
     @FXML
     private Button back;
     public GameMode gameMode;
-    @FXML
-    private AnchorPane Game;
     public ArrayList<ImageView> imageViews,foundCards,seenImageViewsElephant,seenImageViewsKangaroo;
     public ArrayList<Card> cards,seenCardsElephant,seenCardsKangaroo;
 
@@ -43,10 +43,7 @@ public class  Game {
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
-    private InputStream input = null,input2 =null;
-    private OutputStream output = null,output2 =null;
-    private ResourceBundle bundle;
-    private Locale locale;
+    private OutputStream output = null;
     private String word1,word2;
 
     @FXML
@@ -56,6 +53,7 @@ public class  Game {
     private Label Moves,foundCardsLabel;
 
     public Boolean cardsMatch;
+    private MediaPlayer mediaPlayer;
 
     /**
      * Ο κατασκευαστής της κλάσης.
@@ -71,6 +69,8 @@ public class  Game {
         seenCardsKangaroo = new ArrayList<>();
         score= new Score();
         cardsMatch = false;
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
     }
 
     /**
@@ -83,7 +83,7 @@ public class  Game {
         File f1 =new File("config.properties");
 
         if(f1.exists()){
-            input = new FileInputStream("config.properties");
+            InputStream input = new FileInputStream("config.properties");
             properties.load(input);
 
             String lang = properties.getProperty("flag");
@@ -100,7 +100,7 @@ public class  Game {
         }
 
         if(f2.exists()){
-            input2 = new FileInputStream("score.properties");
+            InputStream input2 = new FileInputStream("score.properties");
             properties2.load(input2);
 
             moves1 = Integer.parseInt(properties2.getProperty("SingleModeHighScore1"));
@@ -131,7 +131,7 @@ public class  Game {
     public void gameStart(){
         createImageViews(grid,imageViews);
         createImages(cards);
-        //shuffleCards();
+        shuffleCards(imageViews);
         setImages(imageViews,cards);
 
         player();
@@ -367,6 +367,9 @@ public class  Game {
      * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο FXML.
      */
     public void backClicked() throws IOException {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("SingleModeSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
@@ -452,8 +455,8 @@ public class  Game {
      * @param lang {@code String}
      */
     private void loadLang(String lang) {
-        locale = new Locale(lang);
-        bundle = ResourceBundle.getBundle("sample.lang",locale);
+        Locale locale = new Locale(lang);
+        ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);
 
         Moves.setText(bundle.getString("moves"));
         foundCardsLabel.setText(bundle.getString("foundPairs"));

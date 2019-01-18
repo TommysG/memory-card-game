@@ -1,16 +1,14 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.util.Locale;
@@ -18,7 +16,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Η κλάση της εξόδου από το παιχνίδι.</h1>
+ * <h1>Η κλάση Exit</h1>
  */
 public class Dialog  {
 
@@ -29,9 +27,15 @@ public class Dialog  {
     private Label exit;
 
     private Properties properties = new Properties();
-    private OutputStream output = null;
-    private InputStream input = null;
+    private MediaPlayer mediaPlayer;
 
+    /**
+     * Κατασκευαστής της κλάσης
+     */
+    public Dialog(){
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
+    }
     /**
      * Κάνει initialize.
      * @throws IOException Αν αποτύχει να φορτώσει το αρχειο.
@@ -41,7 +45,7 @@ public class Dialog  {
         File f = new File("config.properties");
 
         if(f.exists()) {
-            input = new FileInputStream("config.properties");
+            InputStream input = new FileInputStream("config.properties");
             properties.load(input);
 
             String lang = properties.getProperty("flag");
@@ -54,6 +58,9 @@ public class Dialog  {
      */
     @FXML
     private void yesClicked(){
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Platform.exit();
     }
     /**
@@ -61,6 +68,9 @@ public class Dialog  {
      */
     @FXML
     private void noClicked() {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Stage dialog = (Stage) no.getScene().getWindow();
 
         Parent root = dialog.getOwner().getScene().getRoot();

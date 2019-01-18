@@ -11,7 +11,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.util.Locale;
@@ -19,7 +22,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 
 /**
- * <h1>Η κλάση των ρυθμίσεων.</h1>
+ * <h1>Η κλάση των Settings</h1>
  */
 
 public class SettingsPane {
@@ -42,10 +45,20 @@ public class SettingsPane {
     private OutputStream output = null;
     private InputStream input = null;
 
+    private MediaPlayer mediaPlayer;
+
     @FXML
     private Button close;
 
     private String fs;
+
+    /**
+     * Κατασκευαστής της κλάσης
+     */
+    public SettingsPane(){
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
+    }
 
     /**
      * Φορτώνει τις τιμές απο το αρχείο.
@@ -82,6 +95,9 @@ public class SettingsPane {
      */
     @FXML
     private void fullScreenSelected() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         resolution.setText(fs);
         output = new FileOutputStream("config.properties");
         properties.setProperty("fullScreen","true");
@@ -113,6 +129,9 @@ public class SettingsPane {
      */
     @FXML
     private void x1280Selected() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         resolution.setText("1280x720");
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","1280x720");
@@ -144,6 +163,9 @@ public class SettingsPane {
      */
     @FXML
     private void x86Selected() throws IOException {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         resolution.setText("800x600");
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","800x600");
@@ -175,6 +197,9 @@ public class SettingsPane {
      */
     @FXML
     private void x66Selected() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         resolution.setText("600x600");
         output = new FileOutputStream("config.properties");
         properties.setProperty("resolution","600x600");
@@ -206,6 +231,9 @@ public class SettingsPane {
      */
     @FXML
     private void closeSettings(){
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Stage settingsPane = (Stage) close.getScene().getWindow();
         Parent mainMenu = settingsPane.getOwner().getScene().getRoot();
         mainMenu.setEffect(null);
@@ -219,6 +247,9 @@ public class SettingsPane {
      */
     @FXML
     private void clearProgressClicked() throws IOException{
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         File f2 =new File("score.properties");
 
         if(f2.exists()){

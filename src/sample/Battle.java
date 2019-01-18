@@ -3,28 +3,25 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.*;
 
-import javafx.event.*;
 
 /**
- * <h1>Η κλάση μονομαχία</h1>
+ * <h1>Η κλάση Battle</h1>
  */
 public class Battle extends Multiplayer {
 
@@ -34,12 +31,12 @@ public class Battle extends Multiplayer {
     private GridPane gridTable1,gridTable2;
     private Image theme;
 
-    private ArrayList<ImageView> imageViews2,foundCards2;
+    private ArrayList<ImageView> imageViews2;
     private ArrayList<Card> cards2;
 
-    private int clicks,random1;
-    private ImageView playerImageview,botImageView,botImageViewE;
-    private Card playerCard,botCard,botCardE;
+    private int clicks;
+    private ImageView playerImageview,botImageView;
+    private Card playerCard,botCard;
 
     private boolean flag,boolRan;
     private GameMode gameMode;
@@ -47,14 +44,15 @@ public class Battle extends Multiplayer {
     private int botScore,playerScore,wins;
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
-    private InputStream input = null,input2 = null;
-    private OutputStream output = null,output2 = null;
+    private InputStream input2 = null;
+    private OutputStream output = null;
 
-    private String t,nt,pl1,pl2,you,playerTurn1,p2,win,botWin;
+    private String t,nt,pl1,pl2,you,playerTurn1,p2,win,botWin,draw;
 
     @FXML
     private Label player1,player2,turn,nextTurn,winLabel,noteLabel;
     private boolean oneTime;
+    private MediaPlayer mediaPlayer;
 
     /**
      * Φορτώνει τα αρχεία και θέτει αρχικές τιμές
@@ -76,7 +74,7 @@ public class Battle extends Multiplayer {
         }
 
         if(f.exists()){
-            input = new FileInputStream("score.properties");
+            InputStream input = new FileInputStream("score.properties");
             properties.load(input);
             wins = Integer.parseInt(properties.getProperty("BattleWins"));
         }
@@ -88,13 +86,14 @@ public class Battle extends Multiplayer {
     public Battle(){
         imageViews2 = new ArrayList<>();
         foundCards = new ArrayList<>();
-        foundCards2 =new ArrayList<>();
         cards2 = new ArrayList<>();
         gameMode = new GameMode();
         flag = false;
         clicks = 0;
         boolRan = false;
         oneTime = false;
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
     }
 
     /**
@@ -113,13 +112,13 @@ public class Battle extends Multiplayer {
 
         createImageViews(gridTable1,imageViews);
         createImages(cards);
-        // shuffleCards();
+      //  shuffleCards(imageViews);
         setImages(imageViews,cards);
         player();
 
         createImageViews(gridTable2,imageViews2);
         createImages(cards2);
-        // shuffleCards();
+       // shuffleCards(imageViews2);
         setImages(imageViews2,cards2);
 
     }
@@ -272,6 +271,9 @@ public class Battle extends Multiplayer {
      * @throws IOException εαν αποτύχει να φορτώσει το αρχείο FXML
      */
     public void backClicked() throws IOException {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("BattleSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
@@ -302,7 +304,7 @@ public class Battle extends Multiplayer {
         }
         nextButton.setDisable(true);
         Random random = new Random();
-        random1 = random.nextInt(imageViews2.size());
+        int random1 = random.nextInt(imageViews2.size());
         boolRan = random.nextBoolean();
 
         while(foundCards.contains(imageViews2.get(random1)))
@@ -508,6 +510,10 @@ public class Battle extends Multiplayer {
             winLabel.setText(win);
             nextButton.setDisable(true);
         }
+        else if(playerScore == botScore){
+            winLabel.setText(draw);
+            nextButton.setDisable(true);
+        }
         else{
             winLabel.setText(p2 + " "+botWin);
             nextButton.setDisable(true);
@@ -534,6 +540,7 @@ public class Battle extends Multiplayer {
         botWin = bundle.getString("botWin");
         nextButton.setText(bundle.getString("next"));
         noteLabel.setText(bundle.getString("noteLabel"));
+        draw = bundle.getString("draw");
     }
 
     /**

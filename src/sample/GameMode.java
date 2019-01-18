@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * <h1>Η κλάση του τύπου παιχνιδιού.</h1>
+ * <h1>Η κλάση του GameMode</h1>
  */
 public class GameMode {
 
@@ -18,7 +18,6 @@ public class GameMode {
     private int selectCards;
     private String globalMode,rival1,rival2,rival3;
     private Properties properties = new Properties();
-    private InputStream input = null;
     private int width,rivalsNumber;
     private double imWidth = 90,imHeight = 130;
 
@@ -67,6 +66,14 @@ public class GameMode {
     }
 
     /**
+     * Θέτει το μέγεθος του ταμπλο
+     * @param size {@code int}
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    /**
      * Φτιάχνει την ανάλυση από τις κάρτες.
      * @throws IOException Εάν αποτύχει να φορτώσει το αρχείο.
      */
@@ -74,7 +81,7 @@ public class GameMode {
 
         File f = new File("config.properties");
         if(f.exists()) {
-            input = new FileInputStream("config.properties");
+            InputStream input = new FileInputStream("config.properties");
             properties.load(input);
 
             width = Integer.parseInt(properties.getProperty("width"));
@@ -275,5 +282,9 @@ public class GameMode {
      */
     public int getRows() {
         return rows;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 }

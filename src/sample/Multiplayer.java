@@ -9,12 +9,17 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.*;
 import java.util.*;
 
+/**
+ * Η κλάση του Multiplayer
+ */
 public class Multiplayer extends Game {
 
     private int clicks,random1,random2,random3,wins1,wins2,wins3;
@@ -27,7 +32,7 @@ public class Multiplayer extends Game {
 
     private String t,nt,p1,p2,p3,p4;
     private String pl1,pl2,pl3,pl4,you;
-    private String playerTurn1,playerTurn2,playerTurn3,playerTurn4;
+    private String playerTurn1,playerTurn2,playerTurn3,playerTurn4,youWin,botWin;
 
     private ImageView clickedImageView;
 
@@ -35,16 +40,25 @@ public class Multiplayer extends Game {
 
     private Properties properties = new Properties();
     private Properties properties2 = new Properties();
-    private InputStream input = null,input2 = null;
+    private InputStream input = null;
     private OutputStream output = null;
 
-    private ResourceBundle bundle;
+    private MediaPlayer mediaPlayer;
 
+    /**
+     * Ο κατασκευαστής της κλάσης
+     */
     public Multiplayer(){
         clicks = 0;
         clickedImageView = null;
+        Media buttonSound = new Media(new File("src/Sounds/buttonSound.wav").toURI().toString());
+        mediaPlayer = new MediaPlayer(buttonSound);
     }
 
+    /**
+     * Φορτώνει τις τιμές απο το αρχείο
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο
+     */
     public void initialize()throws IOException{
         File f =new File("score.properties");
         File f2 =new File("config.properties");
@@ -59,7 +73,7 @@ public class Multiplayer extends Game {
         }
 
         if(f.exists()){
-            input2 = new FileInputStream("score.properties");
+            InputStream input2 = new FileInputStream("score.properties");
             properties2.load(input2);
             wins1 = Integer.parseInt(properties2.getProperty("MultiplayerWins1"));
             wins2 = Integer.parseInt(properties2.getProperty("MultiplayerWins2"));
@@ -67,19 +81,32 @@ public class Multiplayer extends Game {
         }
     }
 
+    /**
+     * Θέτει το GameMode και το θέμα του παιχνιδιού.
+     * @param gameMode {@code GameMode}
+     * @param theme {@code Image} φόντο της κάρτας
+     * @throws IOException -
+     */
     @Override
     public void setMode(GameMode gameMode, Image theme) throws IOException {
         super.setMode(gameMode, theme);
     }
 
+    /**
+     * Διορθώνει την γλώσσα στα Label των παιχτών.
+     * @throws IOException -
+     */
     public void fixLang() throws IOException{
         playersLang();
     }
 
+    /**
+     * Δημιουργεί τα ImageView , τις εικόνες και τις τοποθετεί στο GridPane
+     */
     public void multiplayerStart(){
         createImageViews(grid,imageViews);
         createImages(cards);
-        // shuffleCards();
+        shuffleCards(imageViews);
         setImages(imageViews,cards);
 
         player();
@@ -87,11 +114,19 @@ public class Multiplayer extends Game {
         nextTurn.setText(nt + playerTurn2 + "(" + p2 + ")");
     }
 
+    /**
+     * O Event Handler για τα ImageView
+     */
     @Override
     public void player() {
          super.player();
      }
 
+    /**
+     * Καθορίζει τις κινήσεις του χρήστη και γυρίζει ανάλογα τις κάρτες που αυτός θα επιλέξει.
+     * @param imageView {@code ImageView} το ImageView που φαίνεται στην οθόνη
+     * @param card {@code Card} κάρτα
+     */
     @Override
     public void clickEvent(ImageView imageView, Card card) {
         super.clickEvent(imageView,card);
@@ -155,6 +190,9 @@ public class Multiplayer extends Game {
 
     }
 
+    /**
+     * Το μποτάκι GoldFish που σηκώνει δυο τυχαίες κάρτες.
+     */
     public void goldfish(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -234,6 +272,9 @@ public class Multiplayer extends Game {
 
     }
 
+    /**
+     * Το μποτάκι Goldfish που σηκώνεις τρείς τυχαίες κάρτες.
+     */
     public void goldfish3(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -332,7 +373,9 @@ public class Multiplayer extends Game {
             }
     }
 
-
+    /**
+     * Το μποτάκι Kangaroo που σηκώνει δυο τυχαίες κάρτες.
+     */
     public void kangaroo(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -402,7 +445,9 @@ public class Multiplayer extends Game {
         }
     }
 
-
+    /**
+     * Το μποτάκι Kangaroo που σηκώνει τρείς τυχαίες κάρτες.
+     */
     public void kangaroo3(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -485,7 +530,9 @@ public class Multiplayer extends Game {
         }
     }
 
-
+    /**
+     * Το μποτάκι Elephant που σηκώνει δυο τυχαίες κάρτες.
+     */
     public void elephant(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -553,7 +600,9 @@ public class Multiplayer extends Game {
         }
     }
 
-
+    /**
+     * Το μποτάκι Elephant που σηκώνει τρείς τυχαίες κάρτες.
+     */
     public void elephant3(){
         if(foundCards.size() == gameMode.getSize()) {
             findWinner();
@@ -631,8 +680,10 @@ public class Multiplayer extends Game {
         }
     }
 
-
-    public void findAnimation(ImageView imageView1,ImageView imageView2,Card card1,Card card2){
+    /**
+     * Ένα ScaleTransition για το animation, όταν δύο κάρτες βρίσκονται
+     */
+    private void findAnimation(ImageView imageView1,ImageView imageView2,Card card1,Card card2){
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5),imageView1);
         scaleTransition.setFromX(1);
         scaleTransition.setToX(-1);
@@ -656,7 +707,10 @@ public class Multiplayer extends Game {
         });
     }
 
-    public void findAnimation3(ImageView imageView1,ImageView imageView2,ImageView imageView3,Card card1,Card card2,Card card3){
+    /**
+     * Ένα ScaleTransition για το animation, όταν τρείς κάρτες βρίσκονται
+     */
+    private void findAnimation3(ImageView imageView1,ImageView imageView2,ImageView imageView3,Card card1,Card card2,Card card3){
         ScaleTransition scaleTransition = new ScaleTransition(Duration.seconds(0.5),imageView1);
         scaleTransition.setFromX(1);
         scaleTransition.setToX(-1);
@@ -691,20 +745,33 @@ public class Multiplayer extends Game {
         });
     }
 
-
-    public void enable(ImageView imageView){
+    /**
+     * Απενεργοποιεί τις κάρτες οταν το κλίκ του παίχτη είναι ένα
+     * @param imageView {@code ImageView}
+     */
+    private void enable(ImageView imageView){
         super.enableAll();
         imageView.setDisable(true);
     }
 
+    /**
+     * O Event handler που πηγαίνει στην προηγούμενη σκηνή
+     * @throws IOException εάν αποτύχει να φορτώσει το FXML
+     */
     @Override
     public void backClicked() throws IOException {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.setVolume(0.3f);
+        mediaPlayer.play();
         clicks = 0;
         Parent root = FXMLLoader.load(getClass().getResource("MultiplayerSettings.fxml"));
         Stage stage = (Stage) back.getScene().getWindow();
         stage.getScene().setRoot(root);
     }
 
+    /**
+     * Καθορίζει την σειρά των μποτ και ανάλογα αυτή εκτελεί το μποτ που έχει την σειρά, όταν το παιχνίδι παίζεται με δύο κάρτες
+     */
     private void multiplayerInitialize1_2(){
         if(foundCards.size() == gameMode.getSize()) {
             System.out.println("STOPPED");
@@ -815,6 +882,9 @@ public class Multiplayer extends Game {
         }
     }
 
+    /**
+     * Καθορίζει την σειρά των μποτ και ανάλογα αυτή εκτελεί το μποτ που έχει την σειρά, όταν το παιχνίδι παίζεται με τρείς κάρτες
+     */
     private void multiplayerInitialize3(){
         if(foundCards.size() == gameMode.getSize()) {
             System.out.println("STOPPED");
@@ -923,6 +993,9 @@ public class Multiplayer extends Game {
         }
     }
 
+    /**
+     * Αυξάνει το σκόρ όταν παίζουν τα μποτάκια με δύο κάρτες, αυξάνοντας όμως και το σκόρ αυτών οταν δεν θυμούνται την κάρτα και παίζουν σαν Goldfish
+     */
     private void botUpdateScore1_2(){
         if(gameMode.getRival1().equals("Goldfish") && (clicks == 4 || gameMode.getRivalsNumber() == 1)){
             scoreBots[0]++;
@@ -961,7 +1034,9 @@ public class Multiplayer extends Game {
             player4.setText(pl4+scoreBots[2]);
         }
     }
-
+    /**
+     * Αυξάνει το σκόρ όταν παίζουν τα μποτάκια με τρείς κάρτες, αυξάνοντας όμως και το σκόρ αυτών οταν δεν θυμούνται την κάρτα και παίζουν σαν Goldfish
+     */
     private void botUpdateScore3(){
         if(gameMode.getRival1().equals("Goldfish") && (clicks == 6 || gameMode.getRivalsNumber()==1)){
             scoreBots[0]++;
@@ -1001,6 +1076,9 @@ public class Multiplayer extends Game {
         }
     }
 
+    /**
+     * Ο Event Handler που ελέγχει ποιανού σειρά είναι και εκτελεί τις κατάλληλες μεθόδους.
+     */
     @FXML
     private void nextClicked(){
         if(gameMode.getMode()!=3)
@@ -1009,6 +1087,9 @@ public class Multiplayer extends Game {
             multiplayerInitialize3();
     }
 
+    /**
+     * Ελέγχει ποιος έχει νικήσει και αντίστοιχα εμφανίζει στην οθόνη
+     */
     private void findWinner(){
         int count = 0;
         boolean playerWon = false;
@@ -1042,7 +1123,7 @@ public class Multiplayer extends Game {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            winLabel.setText("YOU WIN");
+            winLabel.setText(youWin);
         }
         else{
             int max = scoreBots[0],pos = 0;
@@ -1053,21 +1134,25 @@ public class Multiplayer extends Game {
                 }
             }
             if(pos == 0){
-                winLabel.setText(gameMode.getRival1() +"1 WON");
+                winLabel.setText(gameMode.getRival1() +" " +botWin);
             }
             else if(pos ==1){
-                winLabel.setText(gameMode.getRival2() + "2 WON");
+                winLabel.setText(gameMode.getRival2() +" "+ botWin);
             }
             else if(pos == 2){
-                winLabel.setText(gameMode.getRival3() + "3 WON");
+                winLabel.setText(gameMode.getRival3() +" "+ botWin);
             }
         }
 
     }
 
+    /**
+     * Φορτώνει την γλώσσα του FXML.
+     * @param lang {@code String}
+     */
     private void loadLang(String lang) {
         Locale locale = new Locale(lang);
-        bundle = ResourceBundle.getBundle("sample.lang", locale);
+        ResourceBundle bundle = ResourceBundle.getBundle("sample.lang", locale);
 
         next.setText(bundle.getString("next"));
 
@@ -1092,9 +1177,15 @@ public class Multiplayer extends Game {
         playerTurn4 = bundle.getString("player4T");
 
         you = bundle.getString("you");
+        youWin = bundle.getString("win");
+        botWin = bundle.getString("botWin");
 
     }
 
+    /**
+     * Διορθώνει την γλώσσα των παιχτών στα Labels
+     * @throws IOException εάν αποτύχει να φορτώσει το αρχείο.
+     */
     private void playersLang() throws IOException{
         File f2 =new File("config.properties");
 

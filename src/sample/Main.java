@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * <h1>Η κλάση από την οποία αρχίζει το παιχνίδι.</h1>
+ * <h1>Η κλάση από την οποία αρχίζει το παιχνίδι</h1>
  */
 public class Main extends Application {
 
@@ -33,6 +33,11 @@ public class Main extends Application {
     private Properties properties = new Properties();
 
 
+    /**
+     * Δημιουργεί το βασικό Stage
+     * @param primaryStage είναι το βασικό stage του παιχνιδιού
+     * @throws Exception εάν αποτύχει να φορτώσει το αρχείο FXML
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
@@ -56,7 +61,7 @@ public class Main extends Application {
         primaryStage.setTitle("Memory Game");
         Scene scene = new Scene(root,width,height);
         primaryStage.setScene(scene);
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }

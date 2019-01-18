@@ -1,7 +1,7 @@
 package sample;
 
 /**
- * <h1>Η κλάση του σκορ.</h1>
+ * <h1>Η κλάση του Score</h1>
  */
 public class Score {
     private int moves;

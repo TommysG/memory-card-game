@@ -4,7 +4,7 @@ package sample;
 import javafx.scene.image.Image;
 
 /**
- * <h1>Η κλάση της κάρτας.</h1>
+ * <h1>Η κλάση Card</h1>
  */
 public class Card {
     private Image value;
