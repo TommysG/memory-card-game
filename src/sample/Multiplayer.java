@@ -1134,13 +1134,13 @@ public class Multiplayer extends Game {
                 }
             }
             if(pos == 0){
-                winLabel.setText(gameMode.getRival1() +" " +botWin);
+                winLabel.setText(playerTurn2 +" " +botWin);
             }
             else if(pos ==1){
-                winLabel.setText(gameMode.getRival2() +" "+ botWin);
+                winLabel.setText(playerTurn3 +" "+ botWin);
             }
             else if(pos == 2){
-                winLabel.setText(gameMode.getRival3() +" "+ botWin);
+                winLabel.setText(playerTurn4 +" "+ botWin);
             }
         }
 
