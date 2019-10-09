@@ -96,6 +96,13 @@ public class MainMenu {
             flag.setImage(new Image("Images/" + string1 + ".png"));
             loadLang(string1);
 
+            if(properties.getProperty("sound").equals("enabled")){
+                Main.mediaPlayer.play();
+            }
+            else if(properties.getProperty("sound").equals("disabled")){
+                Main.mediaPlayer.pause();
+            }
+
             int width = Integer.parseInt(properties.getProperty("width"));
             if(width == 800){
                 cards.setFitWidth(583);
@@ -122,12 +129,14 @@ public class MainMenu {
             properties.setProperty("height","720");
             properties.setProperty("resolution", "1280x720");
             properties.setProperty("fullScreen","false");
+            properties.setProperty("sound","enabled");
             Locale currentLocale = Locale.getDefault();
             loadLang(currentLocale.getLanguage());
             language.setText(currentLocale.getDisplayLanguage());
             flag.setImage(new Image("Images/" + locale.getLanguage() +".png"));
             properties.setProperty("language",currentLocale.getDisplayLanguage());
             properties.setProperty("flag",locale.getLanguage());
+
             properties.store(output,null);
 
 

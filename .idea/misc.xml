@@ -4,7 +4,7 @@
     <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/JavaDoc" />
     <option name="OTHER_OPTIONS" value="-encoding UTF-8" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="10" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_10" default="true" project-jdk-name="10" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

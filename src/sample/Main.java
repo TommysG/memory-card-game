@@ -31,6 +31,7 @@ public class Main extends Application {
 
 
     private Properties properties = new Properties();
+    public static MediaPlayer mediaPlayer;
 
 
     /**
@@ -40,6 +41,13 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        String musicFile = "src/Sounds/bohemian-rhapsody.mp3";     // For example
+
+        Media sound = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
 
         double width = 1280,height =720;

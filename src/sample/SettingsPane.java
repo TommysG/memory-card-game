@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.DoubleProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -28,6 +33,8 @@ import java.util.ResourceBundle;
 public class SettingsPane {
 
 
+    public MenuItem x66;
+    public MenuItem x86;
     @FXML
     private MenuButton resolution;
     @FXML
@@ -38,6 +45,8 @@ public class SettingsPane {
     private Button clearProgress;
     @FXML
     private Label settingsLabel,resolutionLabel,soundsLabel,clearProgressLabel;
+    @FXML
+    private Slider volume;
 
 
     private Properties properties = new Properties();
@@ -84,8 +93,18 @@ public class SettingsPane {
                 resolution.setText(fs);
             }
 
+            if(properties.getProperty("sound").equals("enabled")){
+                sounds.setSelected(true);
+            }
+            else if(properties.getProperty("sound").equals("disabled")){
+                sounds.setSelected(false);
+            }
         }
 
+        //volume slider
+        MediaPlayer mp = Main.mediaPlayer;
+        volume.setValue(mp.getVolume() * 100); // 1.0 = max 0.0 = min
+        volume.valueProperty().addListener(event -> mp.setVolume(volume.getValue() / 100));
 
     }
 
@@ -288,5 +307,19 @@ public class SettingsPane {
         fullScreen.setText(bundle.getString("fullScreen"));
         fs = bundle.getString("fullScreen");
 
+    }
+
+    public void soundsClicked() throws IOException{
+        output = new FileOutputStream("config.properties");
+        if(sounds.isSelected()){
+            Main.mediaPlayer.play();
+            properties.setProperty("sound","enabled");
+            properties.store(output,null);
+        }
+        else{
+            Main.mediaPlayer.pause();
+            properties.setProperty("sound","disabled");
+            properties.store(output,null);
+        }
     }
 }
