@@ -4,9 +4,9 @@ A fun & interactive card game where you can practice your brain. <br>
 
 ### ⚙️ Modes 
 Memory card game has 3 different modes: 
-- <b> Single mode </b>
-- <b> Multiplayer </b> 
-- <b> Battle mode </b>
+- <b> 👤 Single mode </b>
+- <b> 👥 Multiplayer </b> 
+- <b> ⚔️ Battle mode </b>
 
 Single mode and multiplayer also include 3 board sizes. In trio you should match 3 cards.
 
