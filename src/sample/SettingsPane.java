@@ -314,12 +314,11 @@ public class SettingsPane {
         if(sounds.isSelected()){
             Main.mediaPlayer.play();
             properties.setProperty("sound","enabled");
-            properties.store(output,null);
         }
         else{
             Main.mediaPlayer.pause();
             properties.setProperty("sound","disabled");
-            properties.store(output,null);
         }
+        properties.store(output,null);
     }
 }

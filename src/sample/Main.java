@@ -46,6 +46,7 @@ public class Main extends Application {
 
         Media sound = new Media(new File(musicFile).toURI().toString());
         mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.5f);
         mediaPlayer.play();
 
         Parent root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
