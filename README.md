@@ -2,7 +2,7 @@
 
 A fun & interactive card game where you can practice your brain. <br>
 
-## ⚙️ Modes 
+### ⚙️ Modes 
 Memory card game has 3 different modes: 
 - <b> Single mode </b>
 - <b> Multiplayer </b> 
@@ -10,7 +10,7 @@ Memory card game has 3 different modes:
 
 Single mode and multiplayer also include 3 board sizes. In trio you should match 3 cards.
 
-## Multiplayer 
+### Multiplayer 
 
 In this mode you have the option to choose the kind and the number of bots: 
 - <img width="15" src="https://cdn.pixabay.com/photo/2017/01/31/22/30/cartoon-2027752_1280.png"/> <b> GoldFish (Easy) </b>
