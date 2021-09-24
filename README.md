@@ -1,12 +1,26 @@
 # Memory Card game
 
-A fun & interactive card game where you can practice your brain. Check out the screenshots and the instructions below.
+A fun & interactive card game where you can practice your brain.
+Memory card game has 3 different modes.
+- <b> Single mode </b>
+- <b> Multiplayer </b> 
+- <b> Battle mode </b>
 
+Single mode and multiplayer also include 3 board sizes. In trio you should match 3 cards.
+
+In multiplayer you can select between 3 bots: 
+- <b> GoldFish (Easy) </b>
+- <b> Kangaroo (Medium) </b>
+- <b> Elephant (Hard) </b>
+
+Also, you can select between 2 card themes black or red.
+
+<b>Check out the screenshots and the instructions below. </b>
 
 ## Download && Play
 
-You can download the latest release [here](https://github.com/TommysG/memory-card-game/releases/tag/v1.0). 
-You can run the game by running the jar file or the exe file.
+You can download the latest release [here](https://github.com/TommysG/memory-card-game/releases/tag/v1.0). <br>
+Run the game by running the jar file or the exe file.
 
 [✓] To run the JAR file you'll need JDK 10 and run it only with this one, as it's the only one that pre-inludes JavaFX.
 ```
