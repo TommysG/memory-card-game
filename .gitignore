@@ -3,6 +3,7 @@
 
 # exclude IDE settings
 /.idea/
+.idea
 
 # exclude properties files
 *.properties
