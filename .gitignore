@@ -1,0 +1,9 @@
+# exclude build files
+/target/
+
+# exclude IDE settings
+/.idea/
+
+# exclude properties files
+*.properties
+
